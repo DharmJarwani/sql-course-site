@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – JOIN Statement</title>
+
+  <!-- common stylesheet (topic.css ya topic2.css jo marzī) -->
+  <link rel="stylesheet" href="../css/topic2.css" />
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>JOIN – Combine Data From Multiple Tables</h1>
+    <p class="subtitle">
+      <code>JOIN</code> ek se zyaada tables ko relational columns par mila kar
+      ek single result-set deta hai.
+    </p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>JOIN ka use kab hota hai?</h2>
+    <ul class="use-cases">
+      <li>Customers + Orders ka consolidated dashboard banana</li>
+      <li>Employee aur Region tables se combined HR report nikalna</li>
+      <li>Product aur Supplier details ek hi grid me dikhana</li>
+    </ul>
+  </section>
+
+  <!-- QUERY BLOCK -->
+  <section class="card fade-in">
+    <h2>SQL Server Query (INNER JOIN)</h2>
+    <pre class="code-sql">
+<span class="kw">SELECT</span>  <span class="tb">Customers</span>.<span class="id">CompanyName</span>,
+        <span class="tb">Orders</span>.<span class="id">OrderID</span>,
+        <span class="tb">Orders</span>.<span class="id">OrderDate</span>
+<span class="kw">FROM</span>    <span class="tb">Customers</span>
+<span class="kw">INNER JOIN</span> <span class="tb">Orders</span>
+        <span class="kw">ON</span> <span class="tb">Customers</span>.<span class="id">CustomerID</span>
+           = <span class="tb">Orders</span>.<span class="id">CustomerID</span>
+<span class="kw">WHERE</span>   <span class="tb">Customers</span>.<span class="id">Country</span> = <span class="str">'Germany'</span>;
+    </pre>
+  </section>
+
+  <!-- NORTHWIND EXAMPLE -->
+  <section class="card fade-in">
+    <h2>Northwind Sample Data</h2>
+
+    <!-- Customers subset -->
+    <h3 class="result-heading">Customers&nbsp;📄</h3>
+    <table class="sql-table">
+      <thead>
+        <tr>
+          <th>CustomerID</th><th>CompanyName</th><th>Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ALFKI</td><td>Alfreds Futterkiste</td><td>Germany</td></tr>
+        <tr><td>ANATR</td><td>Ana Trujillo Emparedados</td><td>Mexico</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Orders subset -->
+    <h3 class="result-heading" style="margin-top:1.5rem;">Orders&nbsp;📄</h3>
+    <table class="sql-table">
+      <thead>
+        <tr>
+          <th>OrderID</th><th>CustomerID</th><th>OrderDate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>10643</td><td>ALFKI</td><td>1997-08-25</td></tr>
+        <tr><td>10952</td><td>ALFKI</td><td>1998-03-16</td></tr>
+        <tr><td>10308</td><td>ANATR</td><td>1996-09-18</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Result of the JOIN -->
+    <h3 class="result-heading">Query Result</h3>
+    <table class="sql-table output">
+      <thead>
+        <tr><th>CompanyName</th><th>OrderID</th><th>OrderDate</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alfreds Futterkiste</td><td>10643</td><td>1997-08-25</td></tr>
+        <tr><td>Alfreds Futterkiste</td><td>10952</td><td>1998-03-16</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    Agla topic dekhna hai? Sidebar se choose karo aur explore karte raho!
+  </footer>
+</body>
+</html>

@@ -1,0 +1,114 @@
+:root {
+  --bg-1: #fffaf0;               /* warm background */
+  --bg-2: #ffffff;
+  --accent-1: #ff914d;           /* orange for headings/table */
+  --accent-2: #d63447;           /* red for keywords */
+  --accent-3: #3ac569;           /* green for bullets / highlights */
+  --text-1: #322f2f;
+  --text-2: #6c5f5b;
+  --border:  #e8ded2;
+  --shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Segoe UI", sans-serif;
+  color: var(--text-1);
+  background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+  padding: 3rem 5vw;
+  line-height: 1.6;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--accent-1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+.subtitle {
+  margin-top: 0.5rem;
+  font-size: 1.05rem;
+  color: var(--text-2);
+}
+
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.card > h2 {
+  margin-bottom: 1rem;
+  color: var(--accent-1);
+  font-size: 1.4rem;
+}
+
+.use-cases {
+  list-style: none;
+}
+.use-cases li::before {
+  content: "✔";
+  color: var(--accent-3);
+  margin-right: 0.6rem;
+  font-weight: 600;
+}
+
+.code-sql {
+  background: #2b2b2b;
+  color: #f0f0f0;
+  padding: 1rem 1.2rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  border: 1px solid #444;
+}
+
+/* syntax highlight */
+.kw  { color: var(--accent-2); font-weight: 600; }
+.tb  { color: var(--accent-3); }
+.id  { color: #ffd166; }
+.str { color: #ff6bcb; }
+
+.sql-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.8rem;
+  font-size: 0.95rem;
+}
+.sql-table thead {
+  background: var(--accent-1);
+  color: #fff;
+}
+.sql-table th,
+.sql-table td {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.sql-table tbody tr:nth-child(even) {
+  background: #fff3e6;
+}
+
+.output thead { background: var(--accent-3); }
+.result-heading { margin-top: 2rem; }
+
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeInUp 0.6s ease both; }
