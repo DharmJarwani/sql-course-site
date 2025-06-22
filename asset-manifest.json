@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/sql-course-site/static/css/main.e6c13ad2.css",
-    "main.js": "/sql-course-site/static/js/main.2cd3a074.js",
-    "static/js/453.ef220730.chunk.js": "/sql-course-site/static/js/453.ef220730.chunk.js",
-    "index.html": "/sql-course-site/index.html",
-    "main.e6c13ad2.css.map": "/sql-course-site/static/css/main.e6c13ad2.css.map",
-    "main.2cd3a074.js.map": "/sql-course-site/static/js/main.2cd3a074.js.map",
-    "453.ef220730.chunk.js.map": "/sql-course-site/static/js/453.ef220730.chunk.js.map"
+    "main.css": "./static/css/main.e6c13ad2.css",
+    "main.js": "./static/js/main.1747af53.js",
+    "static/js/453.ef220730.chunk.js": "./static/js/453.ef220730.chunk.js",
+    "index.html": "./index.html",
+    "main.e6c13ad2.css.map": "./static/css/main.e6c13ad2.css.map",
+    "main.1747af53.js.map": "./static/js/main.1747af53.js.map",
+    "453.ef220730.chunk.js.map": "./static/js/453.ef220730.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.2cd3a074.js"
+    "static/js/main.1747af53.js"
   ]
 }
