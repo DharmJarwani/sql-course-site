@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – Stored Procedures</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>Stored Procedures – Reusable SQL Logic</h1>
+    <p class="subtitle">
+      Bundle your SQL logic into callable, reusable routines.
+    </p>
+  </header>
+
+  <!-- THEORY -->
+  <section class="card fade-in">
+    <h2>What is a Stored Procedure?</h2>
+    <p>
+      A <strong>stored procedure</strong> is a precompiled SQL program saved in the database. You can execute it by name, often with input/output parameters.
+    </p>
+    <ul class="use-cases">
+      <li>Encapsulates complex queries or logic</li>
+      <li>Improves performance (compiled once)</li>
+      <li>Promotes reusability and consistency</li>
+      <li>Enhances security with controlled access</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>Basic Syntax</h2>
+
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">CREATE PROCEDURE</span> <span class="id">ProcedureName</span>
+    <span class="id">@Param1</span> <span class="kw">INT</span>,
+    <span class="id">@Param2</span> <span class="kw">VARCHAR</span>(50)
+<span class="kw">AS</span>
+<span class="kw">BEGIN</span>
+    -- SQL logic here
+<span class="kw">END</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Procedure for Customer Orders</h2>
+
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">CREATE PROCEDURE</span> <span class="id">GetCustomerOrders</span>
+    <span class="id">@CustomerID</span> <span class="kw">NCHAR</span>(5)
+<span class="kw">AS</span>
+<span class="kw">BEGIN</span>
+    <span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="id">OrderDate</span>
+    <span class="kw">FROM</span> <span class="tb">Orders</span>
+    <span class="kw">WHERE</span> <span class="id">CustomerID</span> = <span class="id">@CustomerID</span>;
+<span class="kw">END</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Execute Stored Procedure</h2>
+
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">EXEC</span> <span class="id">GetCustomerOrders</span> <span class="str">'ALFKI'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 3 -->
+  <section class="card fade-in">
+    <h2>Example 3 – Procedure with Total Sales</h2>
+
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">CREATE PROCEDURE</span> <span class="id">TotalSalesByCountry</span>
+<span class="kw">AS</span>
+<span class="kw">BEGIN</span>
+    <span class="kw">SELECT</span> <span class="id">ShipCountry</span>,
+           <span class="kw">SUM</span>(<span class="id">Freight</span>) <span class="kw">AS</span> <span class="id">TotalFreight</span>
+    <span class="kw">FROM</span> <span class="tb">Orders</span>
+    <span class="kw">GROUP BY</span> <span class="id">ShipCountry</span>;
+<span class="kw">END</span>;
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

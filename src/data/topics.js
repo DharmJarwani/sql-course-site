@@ -38,20 +38,20 @@ const topics = [
   { level: 4, title: "ANY, ALL",      file: "/pages/level-4/any-all.html" },
 
   /* ---------- Level 5: Table & Constraints ---------- */
-  { level: 5, title: "CREATE TABLE",  file: "/pages/create-table.html" },
-  { level: 5, title: "ALTER TABLE",   file: "/pages/alter-table.html" },
-  { level: 5, title: "DROP TABLE",    file: "/pages/drop-table.html" },
-  { level: 5, title: "CONSTRAINTS",   file: "/pages/constraints.html" },
-  { level: 5, title: "PRIMARY KEY",   file: "/pages/primary-key.html" },
-  { level: 5, title: "FOREIGN KEY",   file: "/pages/foreign-key.html" },
-  { level: 5, title: "UNIQUE",        file: "/pages/unique.html" },
-  { level: 5, title: "NOT NULL",      file: "/pages/not-null.html" },
-  { level: 5, title: "CHECK",         file: "/pages/check.html" },
-  { level: 5, title: "DEFAULT",       file: "/pages/default.html" },
+  // { level: 5, title: "CREATE TABLE",  file: "/pages/create-table.html" },
+  // { level: 5, title: "ALTER TABLE",   file: "/pages/alter-table.html" },
+  // { level: 5, title: "DROP TABLE",    file: "/pages/drop-table.html" },
+  { level: 5, title: "CONSTRAINTS",   file: "/pages/level-5/constraints.html" },
+  { level: 5, title: "PRIMARY KEY",   file: "/pages/level-5/primary-key.html" },
+  { level: 5, title: "FOREIGN KEY",   file: "/pages/level-5/foreign-key.html" },
+  { level: 5, title: "UNIQUE",        file: "/pages/level-5/unique.html" },
+  { level: 5, title: "NOT NULL",      file: "/pages/level-5/not-null.html" },
+  { level: 5, title: "CHECK",         file: "/pages/level-5/check.html" },
+  { level: 5, title: "DEFAULT",       file: "/pages/level-5/default.html" },
 
   /* ---------- Level 6: DB Management ---------- */
-  { level: 6, title: "CREATE DATABASE", file: "/pages/create-db.html" },
-  { level: 6, title: "DROP DATABASE",   file: "/pages/drop-db.html" },
+  // { level: 6, title: "CREATE DATABASE", file: "/pages/create-db.html" },
+  // { level: 6, title: "DROP DATABASE",   file: "/pages/drop-db.html" },
   { level: 6, title: "BACKUP DATABASE", file: "/pages/backup-db.html" },
 
   /* ---------- Level 7: Stored Logic ---------- */

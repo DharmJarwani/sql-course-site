@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – Comments</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>Comments – Annotate Your SQL Code</h1>
+    <p class="subtitle">
+      Make your SQL easier to read and maintain by adding helpful comments.
+    </p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>Why Use Comments?</h2>
+    <ul class="use-cases">
+      <li>Explain logic behind complex queries</li>
+      <li>Temporarily disable part of the SQL during testing</li>
+      <li>Improve collaboration in team environments</li>
+      <li>Document assumptions or limitations</li>
+    </ul>
+  </section>
+
+  <!-- COMMENT TYPES -->
+  <section class="card fade-in">
+    <h2>Types of SQL Comments</h2>
+    <ul class="use-cases">
+      <li><strong>Single-line:</strong> Starts with <code>--</code></li>
+      <li><strong>Multi-line:</strong> Enclosed between <code>/*</code> and <code>*/</code></li>
+    </ul>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Single-line Comment</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+-- Select customer orders from the USA
+<span class="kw">SELECT</span> * 
+<span class="kw">FROM</span> <span class="tb">Orders</span>
+<span class="kw">WHERE</span> <span class="id">ShipCountry</span> = <span class="str">'USA'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Multi-line Comment</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+/*
+Get orders shipped to Germany.
+We are only interested in the columns relevant to shipping.
+*/
+<span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="id">ShipName</span>, <span class="id">ShipCountry</span>
+<span class="kw">FROM</span> <span class="tb">Orders</span>
+<span class="kw">WHERE</span> <span class="id">ShipCountry</span> = <span class="str">'Germany'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 3 -->
+  <section class="card fade-in">
+    <h2>Example 3 – Disable Query Line</h2>
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">SELECT</span> * 
+<span class="kw">FROM</span> <span class="tb">Customers</span>;
+-- <span class="kw">WHERE</span> <span class="id">Country</span> = <span class="str">'Brazil'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
