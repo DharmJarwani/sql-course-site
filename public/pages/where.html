@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – WHERE Clause</title>
+
+  <!-- common stylesheet (topic.css / topic2.css) -->
+  <link rel="stylesheet" href="../css/topic.css" />
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>WHERE – Filter Rows With Conditions</h1>
+    <p class="subtitle">
+      <code>WHERE</code> clause se table ke andar sirf wahi rows nikalte hain jo
+      given condition ko satisfy karti हैं.
+    </p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>WHERE कब काम आता है?</h2>
+    <ul class="use-cases">
+      <li>Country = 'USA' वाले customers की लिस्ट निकालना</li>
+      <li>OrderAmount &gt; 10,000 के high-value orders track करना</li>
+      <li>Date range filter करके monthly sales report बनाना</li>
+    </ul>
+  </section>
+
+  <!-- QUERY BLOCK -->
+  <section class="card fade-in">
+    <h2>SQL Server Query</h2>
+    <pre class="code-sql">
+<span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="id">CustomerID</span>, <span class="id">OrderDate</span>
+<span class="kw">FROM</span>   <span class="tb">Orders</span>
+<span class="kw">WHERE</span>  <span class="id">ShipCountry</span> = <span class="str">'USA'</span>;
+    </pre>
+  </section>
+
+  <!-- NORTHWIND EXAMPLE -->
+  <section class="card fade-in">
+    <h2>Northwind – <code>Orders</code> Sample</h2>
+
+    <table class="sql-table">
+      <thead>
+        <tr><th>OrderID</th><th>CustomerID</th><th>OrderDate</th><th>ShipCountry</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>10248</td><td>VINET</td><td>1996-07-04</td><td>France</td></tr>
+        <tr><td>10249</td><td>TOMSP</td><td>1996-07-05</td><td>Germany</td></tr>
+        <tr><td>10413</td><td>HUNGO</td><td>1997-01-23</td><td>USA</td></tr>
+        <tr><td>10507</td><td>GOURL</td><td>1997-04-15</td><td>UK</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="result-heading">Query Result</h3>
+    <table class="sql-table output">
+      <thead>
+        <tr><th>OrderID</th><th>CustomerID</th><th>OrderDate</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>10413</td><td>HUNGO</td><td>1997-01-23</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    और explore करना है? Sidebar से अगला topic चुनो और practice करते रहो!
+  </footer>
+</body>
+</html>

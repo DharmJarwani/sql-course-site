@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL - SELECT Statement</title>
+
+  <!-- link to the common stylesheet -->
+  <link rel="stylesheet" href="../css/topic.css" />
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>SELECT – Retrieve Data From a Table</h1>
+    <p class="subtitle">
+      The <code>SELECT</code> statement picks the columns you want,
+      from the rows you need.
+    </p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>When is <code>SELECT</code> used?</h2>
+    <ul class="use-cases">
+      <li>Displaying customer lists in dashboards</li>
+      <li>Generating reports for finance or inventory</li>
+      <li>Feeding data into BI / analytics tools</li>
+    </ul>
+  </section>
+
+  <!-- QUERY BLOCK -->
+  <section class="card fade-in">
+    <h2>SQL Server Query</h2>
+    <pre class="code-sql">
+<span class="kw">SELECT</span> <span class="id">FirstName</span>, <span class="id">LastName</span>, <span class="id">City</span>
+<span class="kw">FROM</span>   <span class="tb">Customers</span>
+<span class="kw">WHERE</span>  <span class="id">Country</span> = <span class="str">'Germany'</span>;
+    </pre>
+  </section>
+
+  <!-- NORTHWIND EXAMPLE -->
+  <section class="card fade-in">
+    <h2>Northwind – <code>Customers</code> Sample</h2>
+
+    <table class="sql-table">
+      <thead>
+        <tr>
+          <th>CustomerID</th><th>FirstName</th><th>LastName</th><th>City</th><th>Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ALFKI</td><td>Maria</td><td>Anders</td><td>Berlin</td><td>Germany</td></tr>
+        <tr><td>BERGS</td><td>Christina</td><td>Berglund</td><td>Luleå</td><td>Sweden</td></tr>
+        <tr><td>FISSA</td><td>Diego</td><td>Roel</td><td>Madrid</td><td>Spain</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="result-heading">Query Result</h3>
+    <table class="sql-table output">
+      <thead>
+        <tr><th>FirstName</th><th>LastName</th><th>City</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Maria</td><td>Anders</td><td>Berlin</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- tiny footer -->
+  <footer>
+    Need more examples? Head back to the sidebar and pick another topic.
+  </footer>
+</body>
+</html>

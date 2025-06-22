@@ -1,0 +1,120 @@
+/* ----------  COLOUR PALETTE  ---------- */
+:root {
+  --bg-1: #eef4ff;
+  --bg-2: #ffffff;
+  --accent-1: #6b5bff;
+  --accent-2: #ff6b6b;
+  --accent-3: #28c7fa;
+  --text-1: #1e2d40;
+  --text-2: #5c6b7b;
+  --border:  #d2ddec;
+  --shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+}
+
+/* ----------  RESETS  ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Segoe UI", sans-serif;
+  color: var(--text-1);
+  background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  padding: 3rem 5vw;
+  line-height: 1.55;
+}
+
+/* ----------  HEADER  ---------- */
+header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--accent-1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.subtitle {
+  margin-top: 0.5rem;
+  font-size: 1.05rem;
+  color: var(--text-2);
+}
+
+/* ----------  CARD WRAPPER  ---------- */
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.card > h2 {
+  margin-bottom: 1rem;
+  color: var(--accent-1);
+  font-size: 1.35rem;
+}
+
+/* ----------  USE CASE LIST  ---------- */
+.use-cases { list-style: none; }
+.use-cases li::before {
+  content: \"✔\";           /* tick bullet */
+  color: var(--accent-3);
+  margin-right: 0.6rem;
+  font-weight: 600;
+}
+
+/* ----------  CODE BLOCK  ---------- */
+.code-sql {
+  background: #1e2837;
+  color: #e8eef7;
+  padding: 1rem 1.2rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  font-family: \"Consolas\", \"Courier New\", monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  border: 1px solid #0f1724;
+}
+/* manual syntax highlight */
+.kw  { color: var(--accent-2);  font-weight: 600; }  /* SELECT / FROM / WHERE */
+.tb  { color: var(--accent-3); }
+.id  { color: #f5d97d; }
+.str { color: #ffb4d4; }
+
+/* ----------  TABLES  ---------- */
+.sql-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.8rem;
+  font-size: 0.94rem;
+}
+.sql-table thead {
+  background: var(--accent-1);
+  color: #fff;
+}
+.sql-table th,
+.sql-table td {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.sql-table tbody tr:nth-child(even) { background: #f7f9fc; }
+
+/* result table variant */
+.output thead { background: var(--accent-3); }
+
+.result-heading { margin-top: 2rem; }
+
+/* ----------  FOOTER  ---------- */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+
+/* ----------  ANIMATION  ---------- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeInUp 0.6s ease both; }
