@@ -58,6 +58,14 @@ h1 {
   color: var(--accent-1);
   font-size: 1.35rem;
 }
+.card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  border: 2px solid #fc42cd;  /* 🔴 thin red border */
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
 
 /* ---------- LIST ---------- */
 .use-cases {
@@ -218,6 +226,7 @@ footer {
     font-size: 0.9rem;
   }
 }
+
 @media (max-width: 599px) {
   body {
     padding: 1.5rem 4vw;
