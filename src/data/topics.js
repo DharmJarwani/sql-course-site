@@ -28,14 +28,14 @@ const topics = [
   { level: 3, title: "DELETE",                file: "/pages/delete.html" },
 
   /* ---------- Level 4: Joins & Sub-queries ---------- */
-  { level: 4, title: "INNER JOIN",    file: "/pages/Level-3/inner-join.html" },
-  { level: 4, title: "LEFT JOIN",     file: "/pages/left-join.html" },
-  { level: 4, title: "RIGHT JOIN",    file: "/pages/right-join.html" },
-  { level: 4, title: "FULL JOIN",     file: "/pages/full-join.html" },
-  { level: 4, title: "SELF JOIN",     file: "/pages/self-join.html" },
-  { level: 4, title: "UNION",         file: "/pages/union.html" },
-  { level: 4, title: "EXISTS",        file: "/pages/exists.html" },
-  { level: 4, title: "ANY, ALL",      file: "/pages/any-all.html" },
+  { level: 4, title: "INNER JOIN",    file: "/pages/level-4/inner-join.html" },
+  { level: 4, title: "LEFT JOIN",     file: "/pages/level-4/left-join.html" },
+  { level: 4, title: "RIGHT JOIN",    file: "/pages/level-4/right-join.html" },
+  { level: 4, title: "FULL JOIN",     file: "/pages/level-4/full-join.html" },
+  { level: 4, title: "SELF JOIN",     file: "/pages/level-4/self-join.html" },
+  { level: 4, title: "UNION",         file: "/pages/level-4/union.html" },
+  { level: 4, title: "EXISTS",        file: "/pages/level-4/exists.html" },
+  { level: 4, title: "ANY, ALL",      file: "/pages/level-4/any-all.html" },
 
   /* ---------- Level 5: Table & Constraints ---------- */
   { level: 5, title: "CREATE TABLE",  file: "/pages/create-table.html" },

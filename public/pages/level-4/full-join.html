@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – FULL JOIN</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>FULL JOIN – Combine Everything</h1>
+    <p class="subtitle">
+      <code>FULL (OUTER) JOIN</code> returns all rows from both tables — matched where possible, <code>NULL</code> otherwise.
+    </p>
+  </header>
+
+  <!-- INTRO & USE-CASES -->
+  <section class="card fade-in">
+    <h2>Why &amp; When to use <code>FULL&nbsp;JOIN</code>?</h2>
+    <p>
+      A <strong>FULL OUTER JOIN</strong> merges the results of a <em>LEFT JOIN</em> and a <em>RIGHT JOIN</em>:  
+      you get <em>every</em> row from both tables, plus matches where they exist.  
+      Handy for:
+    </p>
+    <ul class="use-cases">
+      <li>Auditing missing relationships on either side</li>
+      <li>Comparing two similar tables (e.g., inventories)</li>
+      <li>Building reports that need “everything” in one list</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>FULL JOIN Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">SELECT</span>  <span class="tb">A</span>.<span class="id">col1</span>, <span class="tb">B</span>.<span class="id">col2</span>
+<span class="kw">FROM</span>    <span class="tb">TableA</span> <span class="kw">A</span>
+<span class="kw">FULL JOIN</span> <span class="tb">TableB</span> <span class="kw">B</span>
+<span class="kw">ON</span>      <span class="tb">A.key</span> = <span class="tb">B.key</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Customers &amp; Orders (all sides)</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> c.<span class="id">CustomerID</span>, o.<span class="id">OrderID</span>
+<span class="kw">FROM</span>   <span class="tb">Customers</span> c
+<span class="kw">FULL JOIN</span> <span class="tb">Orders</span> o
+<span class="kw">ON</span>     c.<span class="id">CustomerID</span> = o.<span class="id">CustomerID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Products &amp; Order Details</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> p.<span class="id">ProductName</span>, od.<span class="id">OrderID</span>
+<span class="kw">FROM</span>   <span class="tb">Products</span> p
+<span class="kw">FULL JOIN</span> <span class="tb">[Order Details]</span> od
+<span class="kw">ON</span>     p.<span class="id">ProductID</span> = od.<span class="id">ProductID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 3 -->
+  <section class="card fade-in">
+    <h2>Example 3 – Employees &amp; Orders handled</h2>
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">SELECT</span> e.<span class="id">EmployeeID</span>, o.<span class="id">OrderID</span>
+<span class="kw">FROM</span>   <span class="tb">Employees</span> e
+<span class="kw">FULL JOIN</span> <span class="tb">Orders</span> o
+<span class="kw">ON</span>     e.<span class="id">EmployeeID</span> = o.<span class="id">EmployeeID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 4 -->
+  <section class="card fade-in">
+    <h2>Example 4 – Categories &amp; Products</h2>
+    <div class="code-wrap mini">
+<pre id="sql4" class="code-sql">
+<span class="kw">SELECT</span> c.<span class="id">CategoryName</span>, p.<span class="id">ProductName</span>
+<span class="kw">FROM</span>   <span class="tb">Categories</span> c
+<span class="kw">FULL JOIN</span> <span class="tb">Products</span> p
+<span class="kw">ON</span>     c.<span class="id">CategoryID</span> = p.<span class="id">CategoryID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql4">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 5 -->
+  <section class="card fade-in">
+    <h2>Example 5 – Suppliers &amp; Products</h2>
+    <div class="code-wrap mini">
+<pre id="sql5" class="code-sql">
+<span class="kw">SELECT</span> s.<span class="id">CompanyName</span>, p.<span class="id">ProductName</span>
+<span class="kw">FROM</span>   <span class="tb">Suppliers</span> s
+<span class="kw">FULL JOIN</span> <span class="tb">Products</span> p
+<span class="kw">ON</span>     s.<span class="id">SupplierID</span> = p.<span class="id">SupplierID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql5">Copy</button>
+    </div>
+  </section>
+
+  <!-- DIFFERENCE CARD -->
+  <section class="card fade-in">
+    <h2>FULL vs LEFT / RIGHT JOIN – Key Difference</h2>
+    <p>
+      <strong>LEFT JOIN</strong> keeps every row from the left table.<br>
+      <strong>RIGHT JOIN</strong> keeps every row from the right table.<br>
+      <strong>FULL JOIN</strong> keeps <em>every row from both</em> — unmatched rows on either side get <code>NULL</code>s.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id   = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
