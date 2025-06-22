@@ -31,6 +31,7 @@ header p {
 .explore-btn {
   display: block;
   margin: 40px auto;
+  width: fit-content;
   padding: 20px 40px;
   font-size: 1.5rem;
   color: white;
@@ -41,6 +42,8 @@ header p {
   box-shadow: 0 8px 15px rgba(0, 121, 107, 0.3);
   transition: all 0.3s ease;
   animation: bounce 2s infinite;
+  text-decoration: none;
+  text-align: center;
 }
 
 .explore-btn:hover {
