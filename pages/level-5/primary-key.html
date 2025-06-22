@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – PRIMARY KEY</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>PRIMARY KEY – Uniquely Identify Each Row</h1>
+    <p class="subtitle">
+      The foundation of data integrity – every table needs a way to uniquely identify its records.
+    </p>
+  </header>
+
+  <!-- DEFINITION -->
+  <section class="card fade-in">
+    <h2>What is a PRIMARY KEY?</h2>
+    <p>
+      A <code>PRIMARY KEY</code> is a constraint that guarantees each row in a table is unique and identifiable.
+    </p>
+    <ul class="use-cases">
+      <li>Each table can have **only one** primary key</li>
+      <li>It can consist of a single column or a combination of columns</li>
+      <li>Primary key columns **cannot contain NULLs**</li>
+      <li>Ensures **uniqueness** and helps maintain **referential integrity**</li>
+      <li>Often used as the **target for foreign keys** in other tables</li>
+      <li>Automatically creates a **unique index** for faster lookup</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>Primary Key Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">CREATE TABLE</span> <span class="tb">Customers</span> (
+  <span class="id">CustomerID</span> <span class="kw">INT</span> <span class="kw">PRIMARY KEY</span>,
+  <span class="id">Name</span> <span class="kw">VARCHAR(100)</span>
+);
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE -->
+  <section class="card fade-in">
+    <h2>Northwind Example – Customers</h2>
+    <p>
+      In the Northwind database, the <code>CustomerID</code> is the primary key of the <code>Customers</code> table.
+      This ensures that no two customers can have the same ID.
+    </p>
+    <table class="sql-table">
+      <thead><tr><th>CustomerID</th><th>Name</th></tr></thead>
+      <tbody>
+        <tr><td>ALFKI</td><td>Maria Anders</td></tr>
+        <tr><td>ANATR</td><td>Ana Trujillo</td></tr>
+        <tr><td>BERGS</td><td>Christina Berglund</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
