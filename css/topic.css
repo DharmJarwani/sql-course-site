@@ -1,81 +1,259 @@
-/* ----------  THEME ---------- */
-:root{
-  --bg-1:#eef4ff;--bg-2:#ffffff;--accent-1:#6b5bff;--accent-2:#ff6b6b;
-  --accent-3:#28c7fa;--text-1:#1e2d40;--text-2:#5c6b7b;--border:#d2ddec;
-  --shadow:0 8px 22px rgba(0,0,0,.04);
+/* ---------- THEME ---------- */
+:root {
+  --bg-1: #eef4ff;
+  --bg-2: #ffffff;
+  --accent-1: #6b5bff;
+  --accent-2: #ff6b6b;
+  --accent-3: #28c7fa;
+  --text-1: #1e2d40;
+  --text-2: #5c6b7b;
+  --border: #d2ddec;
+  --shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
 }
 
-/* RESET & BASE */
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:"Segoe UI",sans-serif;color:var(--text-1);
-  background:linear-gradient(135deg,var(--bg-1),var(--bg-2));
-  padding:3rem 5vw;line-height:1.55;
+/* ---------- RESET & BASE ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* HEADER */
-header{text-align:center;margin-bottom:2.5rem}
-h1{font-size:2.25rem;font-weight:700;color:var(--accent-1);text-shadow:0 1px 2px rgba(0,0,0,.08)}
-.subtitle{margin-top:.5rem;font-size:1.05rem;color:var(--text-2)}
-
-/* CARD */
-.card{
-  background:var(--bg-2);border:1px solid var(--border);border-radius:1rem;
-  box-shadow:var(--shadow);padding:2rem 1.5rem;margin-bottom:2rem;
+body {
+  font-family: "Segoe UI", sans-serif;
+  color: var(--text-1);
+  background: #c9e9e9; /* 💡 New soft background */
+  padding: 3rem 5vw;
+  line-height: 1.55;
 }
-.card>h2{margin-bottom:1rem;color:var(--accent-1);font-size:1.35rem}
 
-/* LIST */
-.use-cases{list-style:none}
-.use-cases li::before{content:"✔";color:var(--accent-3);margin-right:.6rem;font-weight:600}
 
-/* CODE */
-.code-sql{
-  background:#1e2837;color:#e8eef7;padding:1rem 1.2rem;border-radius:.75rem;
-  overflow-x:auto;font-family:"Consolas","Courier New",monospace;font-size:.95rem;line-height:1.5;border:1px solid #0f1724;
+/* ---------- HEADER ---------- */
+header {
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
-.kw{color:var(--accent-2);font-weight:600}
-.tb{color:var(--accent-3)}
-.id{color:#f5d97d}
-.str{color:#ffb4d4}
+h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--accent-1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.subtitle {
+  margin-top: 0.5rem;
+  font-size: 1.05rem;
+  color: var(--text-2);
+}
 
-/* TABLE */
-.sql-table{width:100%;border-collapse:collapse;margin-top:.8rem;font-size:.94rem}
-.sql-table thead{background:var(--accent-1);color:#fff}
-.sql-table th,.sql-table td{padding:.55rem .75rem;border:1px solid var(--border);text-align:left}
-.sql-table tbody tr:nth-child(even){background:#f7f9fc}
-.output thead{background:var(--accent-3)}
-.result-heading{margin-top:2rem}
+/* ---------- CARD ---------- */
+.card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.card > h2 {
+  margin-bottom: 1rem;
+  color: var(--accent-1);
+  font-size: 1.35rem;
+}
 
-/* FOOTER */
-footer{text-align:center;margin-top:3rem;font-size:.85rem;color:var(--text-2)}
+/* ---------- LIST ---------- */
+.use-cases {
+  list-style: none;
+}
+.use-cases li::before {
+  content: "✔";
+  color: var(--accent-3);
+  margin-right: 0.6rem;
+  font-weight: 600;
+}
 
-/* ANIMATION */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.fade-in{animation:fadeInUp .6s ease both}
+/* ---------- CODE ---------- */
+.code-wrap {
+  position: relative;
+}
+.copy-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--accent-1);
+  color: #fff;
+  opacity: 0.9;
+  transition: 0.25s;
+}
+.copy-btn:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.copy-btn:active {
+  transform: scale(0.96);
+}
+
+.code-sql {
+  background: #1e2837;
+  color: #e8eef7;
+  padding: 1rem 1.2rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  border: 1px solid #0f1724;
+}
+.kw {
+  color: var(--accent-2);
+  font-weight: 600;
+}
+.tb {
+  color: var(--accent-3);
+}
+.id {
+  color: #f5d97d;
+}
+.str {
+  color: #ffb4d4;
+}
+
+/* Mini variant */
+.code-wrap.mini pre {
+  font-size: 0.85rem;
+  padding: 0.8rem 1rem;
+}
+.code-wrap.mini .copy-btn {
+  top: 0.55rem;
+  right: 0.55rem;
+}
+
+/* ---------- TABLE ---------- */
+.sql-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.8rem;
+  font-size: 0.94rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+.sql-table thead {
+  background: linear-gradient(135deg, var(--accent-1), #8370ff);
+  color: #fff;
+}
+.sql-table th,
+.sql-table td {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.sql-table td {
+  background: #fbfbfe;
+}
+.sql-table tbody tr:nth-child(even) td {
+  background: #f1f4fc;
+}
+.output thead {
+  background: var(--accent-3);
+}
+.result-heading {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-3);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--text-2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* ---------- ANIMATION ---------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in {
+  animation: fadeInUp 0.6s ease both;
+}
 
 /* ---------- RESPONSIVE ---------- */
-
-/* Tablet (600-899) */
-@media(max-width:899px){
-  body{padding:2rem 4vw}
-  h1{font-size:1.9rem}
-  .card h2{font-size:1.2rem}
-  .card{padding:1.5rem 1.25rem}
-  .sql-table th,.sql-table td{padding:.5rem .6rem;font-size:.9rem}
-  .code-sql{font-size:.9rem}
+@media (max-width: 899px) {
+  body {
+    padding: 2rem 4vw;
+  }
+  h1 {
+    font-size: 1.9rem;
+  }
+  .card h2 {
+    font-size: 1.2rem;
+  }
+  .card {
+    padding: 1.5rem 1.25rem;
+  }
+  .sql-table th,
+  .sql-table td {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.9rem;
+  }
+  .code-sql {
+    font-size: 0.9rem;
+  }
 }
-
-/* Mobile (≤599) */
-@media(max-width:599px){
-  body{padding:1.5rem 4vw}
-  header{margin-bottom:1.8rem}
-  h1{font-size:1.55rem}
-  .subtitle{font-size:.95rem}
-  .card{padding:1.25rem 1rem;margin-bottom:1.4rem}
-  .card h2{font-size:1.1rem}
-  .use-cases li::before{margin-right:.45rem}
-  .code-sql{font-size:.85rem;line-height:1.45;padding:.8rem 1rem}
-  .sql-table{font-size:.85rem;display:block;overflow-x:auto;white-space:nowrap}
-  footer{font-size:.8rem;margin-top:2rem}
+@media (max-width: 599px) {
+  body {
+    padding: 1.5rem 4vw;
+  }
+  header {
+    margin-bottom: 1.8rem;
+  }
+  h1 {
+    font-size: 1.55rem;
+  }
+  .subtitle {
+    font-size: 0.95rem;
+  }
+  .card {
+    padding: 1.25rem 1rem;
+    margin-bottom: 1.4rem;
+  }
+  .card h2 {
+    font-size: 1.1rem;
+  }
+  .use-cases li::before {
+    margin-right: 0.45rem;
+  }
+  .code-sql {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    padding: 0.8rem 1rem;
+  }
+  .sql-table {
+    font-size: 0.85rem;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  footer {
+    font-size: 0.8rem;
+    margin-top: 2rem;
+  }
 }
