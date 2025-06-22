@@ -1,38 +1,103 @@
-.App {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #f0f8ff, #e0f7fa);
+  color: #333;
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  padding: 50px 20px;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+header h1 {
+  font-size: 3rem;
+  color: #004d40;
+}
+
+header p {
+  font-size: 1.3rem;
+  color: #00695c;
+}
+
+.emoji {
+  font-size: 2rem;
+  margin: 0 5px;
+}
+
+.explore-btn {
+  display: block;
+  margin: 40px auto;
+  padding: 20px 40px;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #00796b;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 15px rgba(0, 121, 107, 0.3);
+  transition: all 0.3s ease;
+  animation: bounce 2s infinite;
+}
+
+.explore-btn:hover {
+  background-color: #004d40;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 40px auto;
+  gap: 30px;
+  max-width: 1000px;
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+.feature {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  width: 250px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.feature h3 {
+  color: #00796b;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes fadeInDown {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(-30px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
