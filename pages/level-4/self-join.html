@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – SELF JOIN</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>SELF JOIN – Match a Table to Itself</h1>
+    <p class="subtitle">
+      Use <code>SELF JOIN</code> when rows in a table relate to other rows in the same table.
+    </p>
+  </header>
+
+  <!-- INTRO + USE CASES -->
+  <section class="card fade-in">
+    <h2>What is a <code>SELF JOIN</code>?</h2>
+    <p>
+      A <strong>SELF JOIN</strong> joins a table to itself using an alias.  
+      It's useful when items in one row are related to other rows in the same table.
+    </p>
+    <ul class="use-cases">
+      <li>Employees reporting to managers (in same Employees table)</li>
+      <li>Products that share the same supplier or category</li>
+      <li>Finding duplicate data (e.g. same phone, name)</li>
+      <li>Comparing past and current records in one table</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>SELF JOIN Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">SELECT</span> A.<span class="id">col1</span>, B.<span class="id">col2</span>
+<span class="kw">FROM</span>   <span class="tb">TableName</span> A
+<span class="kw">JOIN</span>   <span class="tb">TableName</span> B
+<span class="kw">ON</span>     A.<span class="id">SomeColumn</span> = B.<span class="id">SomeColumn</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Employee &amp; Manager (Self Reference)</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> E.<span class="id">FirstName</span> AS Employee,
+       M.<span class="id">FirstName</span> AS Manager
+<span class="kw">FROM</span>   <span class="tb">Employees</span> E
+<span class="kw">LEFT JOIN</span> <span class="tb">Employees</span> M
+<span class="kw">ON</span>     E.<span class="id">ReportsTo</span> = M.<span class="id">EmployeeID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Products With Same Supplier</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> P1.<span class="id">ProductName</span>, P2.<span class="id">ProductName</span>
+<span class="kw">FROM</span>   <span class="tb">Products</span> P1
+<span class="kw">JOIN</span>   <span class="tb">Products</span> P2
+<span class="kw">ON</span>     P1.<span class="id">SupplierID</span> = P2.<span class="id">SupplierID</span>
+<span class="kw">AND</span>    P1.<span class="id">ProductID</span> &lt;&gt; P2.<span class="id">ProductID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 3 -->
+  <section class="card fade-in">
+    <h2>Example 3 – Detect Duplicate Contact Names</h2>
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">SELECT</span> C1.<span class="id">CustomerID</span>, C2.<span class="id">CustomerID</span>
+<span class="kw">FROM</span>   <span class="tb">Customers</span> C1
+<span class="kw">JOIN</span>   <span class="tb">Customers</span> C2
+<span class="kw">ON</span>     C1.<span class="id">ContactName</span> = C2.<span class="id">ContactName</span>
+<span class="kw">AND</span>    C1.<span class="id">CustomerID</span> &lt;&gt; C2.<span class="id">CustomerID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 4 -->
+  <section class="card fade-in">
+    <h2>Example 4 – Products in Same Category</h2>
+    <div class="code-wrap mini">
+<pre id="sql4" class="code-sql">
+<span class="kw">SELECT</span> A.<span class="id">ProductName</span>, B.<span class="id">ProductName</span>
+<span class="kw">FROM</span>   <span class="tb">Products</span> A
+<span class="kw">JOIN</span>   <span class="tb">Products</span> B
+<span class="kw">ON</span>     A.<span class="id">CategoryID</span> = B.<span class="id">CategoryID</span>
+<span class="kw">AND</span>    A.<span class="id">ProductID</span> &lt;&gt; B.<span class="id">ProductID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql4">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 5 -->
+  <section class="card fade-in">
+    <h2>Example 5 – Same Postal Codes (Customer)</h2>
+    <div class="code-wrap mini">
+<pre id="sql5" class="code-sql">
+<span class="kw">SELECT</span> A.<span class="id">CustomerID</span>, B.<span class="id">CustomerID</span>, A.<span class="id">PostalCode</span>
+<span class="kw">FROM</span>   <span class="tb">Customers</span> A
+<span class="kw">JOIN</span>   <span class="tb">Customers</span> B
+<span class="kw">ON</span>     A.<span class="id">PostalCode</span> = B.<span class="id">PostalCode</span>
+<span class="kw">AND</span>    A.<span class="id">CustomerID</span> &lt;&gt; B.<span class="id">CustomerID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql5">Copy</button>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section class="card fade-in">
+    <h2>Why SELF JOIN Matters</h2>
+    <p>
+      <strong>Self joins</strong> help explore relationships within a single table.  
+      Common use cases include hierarchy (e.g. employee-manager), matching data within same group, or finding duplicates.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id   = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

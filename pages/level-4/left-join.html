@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – LEFT JOIN</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>LEFT JOIN – Include All from the Left Table</h1>
+    <p class="subtitle">Use LEFT JOIN to get all rows from the first (left) table, and matching rows from the second.</p>
+  </header>
+
+  <!-- INTRO + USE-CASE -->
+  <section class="card fade-in">
+    <h2>When and Why to Use <code>LEFT&nbsp;JOIN</code>?</h2>
+    <p>
+      <strong>LEFT JOIN</strong> returns all rows from the left table and the matching rows from the right table.
+      If there's no match, NULLs will appear for right table columns.
+    </p>
+    <p>Use LEFT JOIN when:</p>
+    <ul class="use-cases">
+      <li>You want to retain all entries from a primary table (e.g., all customers, all products)</li>
+      <li>You care about items *even if* they don’t have related data</li>
+      <li>You’re checking for missing associations (e.g., customers with no orders)</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>LEFT JOIN Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">SELECT</span> table1.<span class="id">columnA</span>, table2.<span class="id">columnB</span>
+<span class="kw">FROM</span>   <span class="tb">table1</span>
+<span class="kw">LEFT JOIN</span> <span class="tb">table2</span>
+<span class="kw">ON</span> table1.<span class="id">common_column</span> = table2.<span class="id">common_column</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLES -->
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Customers with or without Orders</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> c.<span class="id">CustomerID</span>, o.<span class="id">OrderID</span>
+<span class="kw">FROM</span>   <span class="tb">Customers</span> c
+<span class="kw">LEFT JOIN</span> <span class="tb">Orders</span> o
+<span class="kw">ON</span> c.<span class="id">CustomerID</span> = o.<span class="id">CustomerID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Products and Their Orders (if any)</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> p.<span class="id">ProductName</span>, od.<span class="id">OrderID</span>
+<span class="kw">FROM</span>   <span class="tb">Products</span> p
+<span class="kw">LEFT JOIN</span> <span class="tb">[Order Details]</span> od
+<span class="kw">ON</span> p.<span class="id">ProductID</span> = od.<span class="id">ProductID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 3 -->
+  <section class="card fade-in">
+    <h2>Example 3 – Employees and Orders They Handled</h2>
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">SELECT</span> e.<span class="id">FirstName</span>, o.<span class="id">OrderID</span>
+<span class="kw">FROM</span>   <span class="tb">Employees</span> e
+<span class="kw">LEFT JOIN</span> <span class="tb">Orders</span> o
+<span class="kw">ON</span> e.<span class="id">EmployeeID</span> = o.<span class="id">EmployeeID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 4 -->
+  <section class="card fade-in">
+    <h2>Example 4 – Categories and Their Products</h2>
+    <div class="code-wrap mini">
+<pre id="sql4" class="code-sql">
+<span class="kw">SELECT</span> c.<span class="id">CategoryName</span>, p.<span class="id">ProductName</span>
+<span class="kw">FROM</span>   <span class="tb">Categories</span> c
+<span class="kw">LEFT JOIN</span> <span class="tb">Products</span> p
+<span class="kw">ON</span> c.<span class="id">CategoryID</span> = p.<span class="id">CategoryID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql4">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 5 -->
+  <section class="card fade-in">
+    <h2>Example 5 – Suppliers and Their Products (if any)</h2>
+    <div class="code-wrap mini">
+<pre id="sql5" class="code-sql">
+<span class="kw">SELECT</span> s.<span class="id">CompanyName</span>, p.<span class="id">ProductName</span>
+<span class="kw">FROM</span>   <span class="tb">Suppliers</span> s
+<span class="kw">LEFT JOIN</span> <span class="tb">Products</span> p
+<span class="kw">ON</span> s.<span class="id">SupplierID</span> = p.<span class="id">SupplierID</span>;
+</pre>
+      <button class="copy-btn" data-target="sql5">Copy</button>
+    </div>
+  </section>
+
+  <!-- WHY LEFT JOIN IS DIFFERENT -->
+  <section class="card fade-in">
+    <h2>🔍 INNER JOIN vs LEFT JOIN – What's the Difference?</h2>
+    <p>
+      <strong>INNER JOIN</strong> returns only the rows that have matches in both tables.
+    </p>
+    <p>
+      <strong>LEFT JOIN</strong> returns all rows from the left table, whether or not there's a match in the right table. Unmatched rows will show <code>NULL</code> values for the right table.
+    </p>
+    <p>
+      Use LEFT JOIN when you care about the **existence** or **absence** of related data.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
