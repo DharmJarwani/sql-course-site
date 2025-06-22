@@ -28,8 +28,7 @@ const topics = [
   { level: 3, title: "DELETE",                file: "/pages/delete.html" },
 
   /* ---------- Level 4: Joins & Sub-queries ---------- */
-  { level: 4, title: "JOINS (intro)", file: "/pages/joins.html" },
-  { level: 4, title: "INNER JOIN",    file: "/pages/inner-join.html" },
+  { level: 4, title: "INNER JOIN",    file: "/pages/Level-3/inner-join.html" },
   { level: 4, title: "LEFT JOIN",     file: "/pages/left-join.html" },
   { level: 4, title: "RIGHT JOIN",    file: "/pages/right-join.html" },
   { level: 4, title: "FULL JOIN",     file: "/pages/full-join.html" },

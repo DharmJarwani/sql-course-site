@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – HAVING Clause</title>
+  <link rel="stylesheet" href="../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>HAVING – Filter Aggregated Groups</h1>
+    <p class="subtitle">Unlike <code>WHERE</code>, the <code>HAVING</code> clause filters after grouping.</p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>When do we use <code>HAVING</code>?</h2>
+    <p>
+      Use <code>HAVING</code> when you want to filter results **after** applying <code>GROUP BY</code> and aggregate functions like <code>SUM</code>, <code>AVG</code>, <code>COUNT</code>, etc.
+    </p>
+    <hr />
+    <p><strong>Example scenarios from Northwind:</strong></p>
+    <ul class="use-cases">
+      <li>Only show customers with more than 3 orders</li>
+      <li>List ship countries with >100 orders</li>
+      <li>Find categories with high avg. unit price</li>
+      <li>Orders with more than 50 units total</li>
+      <li>Suppliers with >500 total stock</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>Typical HAVING Usage</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">SELECT</span>   <span class="id">col</span>, <span class="fn">AGG_FUNC</span>(<span class="id">val</span>) <span class="kw">AS</span> <span class="id">alias</span>
+<span class="kw">FROM</span>     <span class="tb">table</span>
+<span class="kw">GROUP BY</span> <span class="id">col</span>
+<span class="kw">HAVING</span>   <span class="fn">AGG_FUNC</span>(<span class="id">val</span>) <span class="kw">></span> <span class="num">X</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLES 1–5 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Customers with >2 Orders</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">CustomerID</span>, <span class="kw">COUNT</span>(<span class="id">OrderID</span>) <span class="kw">AS</span> <span class="id">TotalOrders</span>
+<span class="kw">FROM</span>   <span class="tb">Orders</span>
+<span class="kw">GROUP BY</span> <span class="id">CustomerID</span>
+<span class="kw">HAVING</span>   <span class="kw">COUNT</span>(<span class="id">OrderID</span>) <span class="kw">></span> <span class="num">2</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+  </section>
+
+  <section class="card fade-in">
+    <h2>Example 2 – Ship Countries with >100 Orders</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">ShipCountry</span>, <span class="kw">COUNT</span>(*) <span class="kw">AS</span> <span class="id">OrderCount</span>
+<span class="kw">FROM</span>   <span class="tb">Orders</span>
+<span class="kw">GROUP BY</span> <span class="id">ShipCountry</span>
+<span class="kw">HAVING</span>   <span class="kw">COUNT</span>(*) <span class="kw">></span> <span class="num">100</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+  </section>
+
+  <section class="card fade-in">
+    <h2>Example 3 – Categories with Avg Price > 30</h2>
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">CategoryID</span>, <span class="kw">AVG</span>(<span class="id">UnitPrice</span>) <span class="kw">AS</span> <span class="id">AvgPrice</span>
+<span class="kw">FROM</span>   <span class="tb">Products</span>
+<span class="kw">GROUP BY</span> <span class="id">CategoryID</span>
+<span class="kw">HAVING</span>   <span class="kw">AVG</span>(<span class="id">UnitPrice</span>) <span class="kw">></span> <span class="num">30</span>;
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+  </section>
+
+  <section class="card fade-in">
+    <h2>Example 4 – Orders with >50 Total Units</h2>
+    <div class="code-wrap mini">
+<pre id="sql4" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="kw">SUM</span>(<span class="id">Quantity</span>) <span class="kw">AS</span> <span class="id">TotalUnits</span>
+<span class="kw">FROM</span>   <span class="tb">[Order Details]</span>
+<span class="kw">GROUP BY</span> <span class="id">OrderID</span>
+<span class="kw">HAVING</span>   <span class="kw">SUM</span>(<span class="id">Quantity</span>) <span class="kw">></span> <span class="num">50</span>;
+</pre>
+      <button class="copy-btn" data-target="sql4">Copy</button>
+    </div>
+  </section>
+
+  <section class="card fade-in">
+    <h2>Example 5 – Suppliers with >500 Total Stock</h2>
+    <div class="code-wrap mini">
+<pre id="sql5" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">SupplierID</span>, <span class="kw">SUM</span>(<span class="id">UnitsInStock</span>) <span class="kw">AS</span> <span class="id">Stock</span>
+<span class="kw">FROM</span>   <span class="tb">Products</span>
+<span class="kw">GROUP BY</span> <span class="id">SupplierID</span>
+<span class="kw">HAVING</span>   <span class="kw">SUM</span>(<span class="id">UnitsInStock</span>) <span class="kw">></span> <span class="num">500</span>;
+</pre>
+      <button class="copy-btn" data-target="sql5">Copy</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
