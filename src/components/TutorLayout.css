@@ -1,124 +1,61 @@
-/* ----------  GLOBAL  ---------- */
+/* ----------  COLOUR & GLASS ---------- */
 :root {
-  --clr-1: #ffafbd;
-  --clr-2: #ffc3a0;
-  --clr-3: #a18cd1;
-  --clr-4: #fbc2eb;
-  --glass: hsla(0 0% 100% / 0.55);
+  --clr-1:#ffafbd; --clr-2:#ffc3a0; --clr-3:#a18cd1; --clr-4:#fbc2eb;
+  --glass:hsla(0 0% 100% / 0.55);
 }
 
-/* html, body, #root अब पूरे-स्क्रीन भरेंगे */
-html, body, #root {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: "Segoe UI", sans-serif;
+/* full-viewport container */
+html,body,#root {height:100%;width:100%;margin:0;padding:0;font-family:"Segoe UI",sans-serif;}
+
+/* animated gradient bg */
+body{
+  background:linear-gradient(45deg,var(--clr-1),var(--clr-2),var(--clr-3),var(--clr-4));
+  background-size:400% 400%;animation:gradientShift 12s ease infinite;
 }
+@keyframes gradientShift{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
 
-/* animated gradient सिर्फ बैकग्राउण्ड के लिए */
-body {
-  background: linear-gradient(45deg,
-              var(--clr-1), var(--clr-2),
-              var(--clr-3), var(--clr-4));
-  background-size: 400% 400%;
-  animation: gradientShift 12s ease infinite;
+/* ----------  WRAPPER  ---------- */
+.wrapper{display:flex;width:100%;height:100%;}
+
+/* ----------  SIDEBAR (desktop) ---------- */
+.sidebar{
+  width:20%;max-width:260px;padding:2rem 1rem;
+  background:var(--glass);backdrop-filter:blur(12px);
+  border-right:2px solid rgba(255,255,255,.3);box-shadow:8px 0 20px rgba(0,0,0,.05);
+  animation:slideIn .8s ease-out forwards;transform:translateX(-100%);
+  overflow-y:auto;          /* scroll only sidebar */
+  overscroll-behavior:contain;
 }
+@keyframes slideIn{to{transform:translateX(0)}}
 
-@keyframes gradientShift {
-  0%, 100% { background-position: 0 50%; }
-  50%      { background-position: 100% 50%; }
+.title{font-size:1.6rem;font-weight:700;color:#6b34e5;margin-bottom:1.8rem;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.15);}
+.nav{display:flex;flex-direction:column;gap:.75rem;}
+.nav-link{padding:.75rem 1rem;border-radius:.75rem;font-weight:600;text-decoration:none;
+  background:linear-gradient(135deg,rgba(169,104,255,.2),rgba(255,255,255,.4));color:#4b1da1;
+  transition:.25s transform,.25s box-shadow;
 }
+.nav-link:hover{transform:translateX(4px) scale(1.03);box-shadow:0 6px 15px rgba(0,0,0,.1);}
+.nav-link.active{background:#6b34e5;color:#fff;box-shadow:0 6px 18px rgba(107,52,229,.45);}
 
-/* ----------  WRAPPER FLEX  ---------- */
-.wrapper {
-  display: flex;          /* अब flex यहीं पर है */
-  width: 100%;
-  height: 100%;
+/* ----------  CONTENT AREA ---------- */
+.content{width:80%;height:100%;padding:2rem;overflow-y:auto;display:flex;justify-content:center;align-items:flex-start;}
+.iframe-wrapper{width:100%;background:var(--glass);backdrop-filter:blur(10px);
+  border-radius:1.5rem;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.08);
+  animation:fadeIn .8s ease-out .2s both;
 }
+@keyframes fadeIn{to{opacity:1}}
+iframe{width:100%;height:80vh;border:none;}
 
-/* ----------  SIDEBAR (20 %) ---------- */
-.sidebar {
-  width: 20%;
-  padding: 2rem 1rem;
-  background: var(--glass);
-  backdrop-filter: blur(12px);
-  border-right: 2px solid rgba(255,255,255,0.3);
-  box-shadow: 8px 0 20px rgba(0,0,0,0.05);
-  animation: slideIn 0.8s ease-out forwards;
-  transform: translateX(-100%);
-}
+/* ----------  TABLET & DOWN ---------- */
+@media (max-width:768px){
+  .wrapper{flex-direction:column;height:auto;}
 
-@keyframes slideIn { to { transform: translateX(0); } }
-
-.title {
-  text-align: center;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #6b34e5;
-  margin-bottom: 1.8rem;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.15);
-}
-
-.nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.nav-link {
-  text-decoration: none;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  background: linear-gradient(135deg,
-              rgba(169,104,255,0.2),
-              rgba(255,255,255,0.4));
-  color: #4b1da1;
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.nav-link:hover {
-  transform: translateX(4px) scale(1.03);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-}
-
-.nav-link.active {
-  background: #6b34e5;
-  color: #fff;
-  box-shadow: 0 6px 18px rgba(107,52,229,0.45);
-}
-
-/* ----------  CONTENT (80 %) ---------- */
-.content {
-  width: 80%;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.iframe-wrapper {
-  width: 100%;
-  background: var(--glass);
-  backdrop-filter: blur(10px);
-  border-radius: 1.5rem;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  animation: fadeIn 0.8s ease-out forwards 0.2s;
-  opacity: 0;
-}
-
-@keyframes fadeIn { to { opacity: 1; } }
-
-iframe {
-  width: 100%;
-  height: 80vh;
-  border: none;
-}
-
-/* ----------  MOBILE  ---------- */
-@media (max-width: 768px) {
-  .sidebar { width: 100%; position: fixed; height: 60vh; z-index: 10; overflow-y: auto; }
-  .content { width: 100%; margin-top: 60vh; }
+  .sidebar{
+    width:100%;position:relative;height:auto;padding:1.5rem 1rem;
+    border-right:none;border-bottom:2px solid rgba(255,255,255,.3);
+    box-shadow:none;overflow:visible;
+  }
+  .content{width:100%;padding:1rem 1rem;}
+  .iframe-wrapper{border-radius:1rem;box-shadow:none;height:75vh;}
+  iframe{height:75vh;}
 }
