@@ -2,7 +2,7 @@
   "name": "sql-course-site",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://DharmJarwani.github.io/sql-course-site",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
