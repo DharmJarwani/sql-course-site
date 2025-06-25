@@ -52,23 +52,23 @@ const topics = [
   /* ---------- Level 6: DB Management ---------- */
   // { level: 6, title: "CREATE DATABASE", file: "/pages/create-db.html" },
   // { level: 6, title: "DROP DATABASE",   file: "/pages/drop-db.html" },
-  { level: 6, title: "BACKUP DATABASE", file: "/pages/backup-db.html" },
+  { level: 6, title: "BACKUP DATABASE", file: "/pages/level-6/backup-db.html" },
 
   /* ---------- Level 7: Stored Logic ---------- */
-  { level: 7, title: "CASE",              file: "/pages/case.html" },
-  { level: 7, title: "NULL Functions",    file: "/pages/null-functions.html" },
-  { level: 7, title: "Stored Procedures", file: "/pages/stored-procedures.html" },
-  { level: 7, title: "Comments",          file: "/pages/comments.html" },
-  { level: 7, title: "Operators",         file: "/pages/operators.html" },
-  { level: 7, title: "Auto Increment",    file: "/pages/auto-increment.html" },
+  { level: 7, title: "CASE",              file: "/pages/level-7/case.html" },
+  { level: 7, title: "NULL Functions",    file: "/pages/level-7/null-functions.html" },
+  { level: 7, title: "Stored Procedures", file: "/pages/level-7/stored-procedures.html" },
+  { level: 7, title: "Comments",          file: "/pages/level-7/comments.html" },
+  { level: 7, title: "Operators",         file: "/pages/level-7/operators.html" },
+  { level: 7, title: "Auto Increment",    file: "/pages/level-7/auto-increment.html" },
 
   /* ---------- Level 8: Meta / Tools ---------- */
-  { level: 8, title: "Index",        file: "/pages/index.html" },
-  { level: 8, title: "Views",        file: "/pages/views.html" },
-  { level: 8, title: "Dates",        file: "/pages/dates.html" },
-  { level: 8, title: "Hosting",      file: "/pages/hosting.html" },
-  { level: 8, title: "Data Types",   file: "/pages/data-types.html" },
-  { level: 8, title: "SQL Injection",file: "/pages/injection.html" }
+  { level: 8, title: "Index",        file: "/pages/level-8/index.html" },
+  { level: 8, title: "Views",        file: "/pages/level-8/views.html" },
+  { level: 8, title: "Dates",        file: "/pages/level-8/dates.html" },
+  { level: 8, title: "Hosting",      file: "/pages/level-8/hosting.html" },
+  { level: 8, title: "Data Types",   file: "/pages/level-8/data-types.html" },
+  { level: 8, title: "SQL Injection",file: "/pages/level-8/injection.html" }
 ];
 
 export default topics;
