@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – BETWEEN Operator</title>
+  <link rel="stylesheet" href="../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>BETWEEN – Range Filtering</h1>
+    <p class="subtitle">Filter values that fall within a specific range — numeric, date, or text.</p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>When do we use <code>BETWEEN</code>?</h2>
+    <p>The <code>BETWEEN</code> operator lets you filter rows where a value is **within a defined range**, inclusive of the boundary values. It works with numbers, dates, and even alphabetical ranges.</p>
+    <ul class="use-cases">
+      <li>Find orders placed between two dates</li>
+      <li>List products with prices in a target range</li>
+      <li>Get customers with IDs between a lower and upper bound</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>BETWEEN Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">SELECT</span> * 
+<span class="kw">FROM</span> <span class="tb">Orders</span>
+<span class="kw">WHERE</span> <span class="id">OrderDate</span> <span class="kw">BETWEEN</span> <span class="str">'1997-01-01'</span> <span class="kw">AND</span> <span class="str">'1997-01-31'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Orders in January 1997</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="id">CustomerID</span>, <span class="id">OrderDate</span>
+<span class="kw">FROM</span> <span class="tb">Orders</span>
+<span class="kw">WHERE</span> <span class="id">OrderDate</span> <span class="kw">BETWEEN</span> <span class="str">'1997-01-01'</span> <span class="kw">AND</span> <span class="str">'1997-01-31'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>OrderID</th><th>CustomerID</th><th>OrderDate</th></tr></thead>
+      <tbody>
+        <tr><td>10406</td><td>QUEEN</td><td>1997-01-07</td></tr>
+        <tr><td>10409</td><td>FOLKO</td><td>1997-01-10</td></tr>
+        <tr><td>10417</td><td>HUNGO</td><td>1997-01-23</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Products Between $20 and $40</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">ProductID</span>, <span class="id">ProductName</span>, <span class="id">UnitPrice</span>
+<span class="kw">FROM</span> <span class="tb">Products</span>
+<span class="kw">WHERE</span> <span class="id">UnitPrice</span> <span class="kw">BETWEEN</span> 20 <span class="kw">AND</span> 40;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>ProductID</th><th>ProductName</th><th>UnitPrice</th></tr></thead>
+      <tbody>
+        <tr><td>2</td><td>Chang</td><td>19.00</td></tr>
+        <tr><td>35</td><td>Steeleye Stout</td><td>18.00</td></tr>
+        <tr><td>60</td><td>Camembert Pierrot</td><td>34.00</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

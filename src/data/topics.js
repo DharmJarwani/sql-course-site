@@ -3,15 +3,15 @@ const topics = [
   /* ---------- Level 1: Basics ---------- */
 
   { level: 1, title: "SELECT",            file: "/pages/select.html" },
-  { level: 1, title: "SELECT DISTINCT",   file: "/pages/select-distinct.html" },
+  { level: 1, title: "SELECT DISTINCT",   file: "/pages/level-1/select-distinct.html" },
   { level: 1, title: "WHERE",             file: "/pages/where.html" },
-  { level: 1, title: "AND, OR, NOT",      file: "/pages/and-or-not.html" },
-  { level: 1, title: "ORDER BY",          file: "/pages/orderby.html" },
-  { level: 1, title: "LIMIT / TOP",       file: "/pages/limit-top.html" },
-  { level: 1, title: "LIKE",              file: "/pages/like.html" },
-  { level: 1, title: "IN",                file: "/pages/in.html" },
-  { level: 1, title: "BETWEEN",           file: "/pages/between.html" },
-  { level: 1, title: "IS NULL",           file: "/pages/is-null.html" },
+  { level: 1, title: "AND, OR, NOT",      file: "/pages/level-1/and-or-not.html" },
+  { level: 1, title: "ORDER BY",          file: "/pages/level-1/orderby.html" },
+  { level: 1, title: "LIMIT / TOP",       file: "/pages/level-1/limit-top.html" },
+  { level: 1, title: "LIKE",              file: "/pages/level-1/like.html" },
+  { level: 1, title: "IN",                file: "/pages/level-1/in.html" },
+  { level: 1, title: "BETWEEN",           file: "/pages/level-1/between.html" },
+  { level: 1, title: "IS NULL",           file: "/pages/level-1/is-null.html" },
 
   /* ---------- Level 2: Aggregations ---------- */
   { level: 2, title: "COUNT, AVG, SUM",   file: "/pages/count-avg-sum.html" },
