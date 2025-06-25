@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – IS NULL</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>IS NULL – Find Missing Data</h1>
+    <p class="subtitle">Used to filter rows where a column has no value (NULL).</p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>When do we use <code>IS&nbsp;NULL</code>?</h2>
+    <p><code>NULL</code> means missing or unknown data. You use <code>IS NULL</code> or <code>IS NOT NULL</code> to filter rows based on whether a field is blank (null) or filled.</p>
+    <ul class="use-cases">
+      <li>Find orders with no shipping date</li>
+      <li>Detect customers missing contact info</li>
+      <li>Clean incomplete or partial records</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>NULL Check Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">SELECT</span> *
+<span class="kw">FROM</span> <span class="tb">Orders</span>
+<span class="kw">WHERE</span> <span class="id">ShippedDate</span> <span class="kw">IS NULL</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Orders Not Yet Shipped</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="id">CustomerID</span>, <span class="id">ShippedDate</span>
+<span class="kw">FROM</span> <span class="tb">Orders</span>
+<span class="kw">WHERE</span> <span class="id">ShippedDate</span> <span class="kw">IS NULL</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>OrderID</th><th>CustomerID</th><th>ShippedDate</th></tr></thead>
+      <tbody>
+        <tr><td>11077</td><td>BERGS</td><td>NULL</td></tr>
+        <tr><td>11078</td><td>FRANK</td><td>NULL</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Customers with Missing Region</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">CustomerID</span>, <span class="id">CompanyName</span>, <span class="id">Region</span>
+<span class="kw">FROM</span> <span class="tb">Customers</span>
+<span class="kw">WHERE</span> <span class="id">Region</span> <span class="kw">IS NULL</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>CustomerID</th><th>CompanyName</th><th>Region</th></tr></thead>
+      <tbody>
+        <tr><td>ALFKI</td><td>Alfreds Futterkiste</td><td>NULL</td></tr>
+        <tr><td>WELLI</td><td>Wellington Importadora</td><td>NULL</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
