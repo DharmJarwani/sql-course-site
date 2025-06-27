@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #e0f7ff, #ffffff);
+  padding: 3rem 5vw;
+  color: #123;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.welcome-container {
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #4c4cff;
+  margin-bottom: 0.75rem;
+}
+
+.intro {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2.5rem;
+}
+
+.circle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+}
+
+.circle {
+  background: linear-gradient(135deg, #ffffff, #f0f4ff);
+  border: 2px solid black; /* Default black border */
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+  transition: 0.3s ease;
+}
+
+/* Active circle glowing border in sync */
+.circle:nth-child(1) { animation: glow1 14s infinite; }
+.circle:nth-child(2) { animation: glow2 14s infinite; }
+.circle:nth-child(3) { animation: glow3 14s infinite; }
+.circle:nth-child(4) { animation: glow4 14s infinite; }
+.circle:nth-child(5) { animation: glow5 14s infinite; }
+.circle:nth-child(6) { animation: glow6 14s infinite; }
+.circle:nth-child(7) { animation: glow7 14s infinite; }
+.circle:nth-child(8) { animation: glow8 14s infinite; }
+
+@keyframes glow1 {
+  0%, 12.49% { border: 2px solid #ff5959; box-shadow: 0 0 8px #ff5959; }
+  12.5%, 100% { border: 2px solid black; box-shadow: none; }
+}
+@keyframes glow2 {
+  12.5%, 24.99% { border: 2px solid #ff8c42; box-shadow: 0 0 8px #ff8c42; }
+  25%, 100% { border: 2px solid black; box-shadow: none; }
+}
+@keyframes glow3 {
+  25%, 37.49% { border: 2px solid #ffc107; box-shadow: 0 0 8px #ffc107; }
+  37.5%, 100% { border: 2px solid black; box-shadow: none; }
+}
+@keyframes glow4 {
+  37.5%, 49.99% { border: 2px solid #4caf50; box-shadow: 0 0 8px #4caf50; }
+  50%, 100% { border: 2px solid black; box-shadow: none; }
+}
+@keyframes glow5 {
+  50%, 62.49% { border: 2px solid #2196f3; box-shadow: 0 0 8px #2196f3; }
+  62.5%, 100% { border: 2px solid black; box-shadow: none; }
+}
+@keyframes glow6 {
+  62.5%, 74.99% { border: 2px solid #9c27b0; box-shadow: 0 0 8px #9c27b0; }
+  75%, 100% { border: 2px solid black; box-shadow: none; }
+}
+@keyframes glow7 {
+  75%, 87.49% { border: 2px solid #e91e63; box-shadow: 0 0 8px #e91e63; }
+  87.5%, 100% { border: 2px solid black; box-shadow: none; }
+}
+@keyframes glow8 {
+  87.5%, 100% { border: 2px solid #26a69a; box-shadow: 0 0 8px #26a69a; }
+}
+
+/* 👈 animated hand */
+.guide-hand {
+  position: absolute;
+  left: 8px;
+  top: 4.5rem;
+  font-size: 1.8rem;
+  animation: moveHand 14s ease-in-out infinite;
+  z-index: 20;
+}
+
+@keyframes moveHand {
+  0%   { top: 4.5rem;  opacity: 0 }
+  5%   { opacity: 1 }
+  12.5%  { top: 8.5rem }
+  25%    { top: 11.5rem }
+  37.5%  { top: 14.5rem }
+  50%    { top: 17.5rem }
+  62.5%  { top: 21.5rem }
+  75%    { top: 24.5rem }
+  87.5%  { top: 27.5rem; opacity: 1 }
+  100%   { top: 4.5rem;  opacity: 0 }
+}
+
+/* Fade animation for intro */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tip {
+  font-size: 0.95rem;
+  color: #444;
+  margin-top: 2rem;
+}
