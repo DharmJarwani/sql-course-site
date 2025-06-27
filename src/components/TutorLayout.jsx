@@ -7,8 +7,14 @@ import topics from "../data/topics";   // 50-item array
 const levels = [...new Set(topics.map(t => t.level))].sort((a, b) => a - b);
 
 export default function TutorLayout() {
-  const [current, setCurrent]   = useState(topics[0].file);
-  const [open  , setOpen]       = useState([1]);          // Level-1 open by default
+
+
+  // Default: load welcome page and collapse all levels
+  const [current, setCurrent] = useState("/pages/welcome.html");
+  const [open, setOpen] = useState([]); // Start with all levels collapsed
+
+  // const [current, setCurrent]   = useState(topics[0].file);
+  // const [open  , setOpen]       = useState([1]);          // Level-1 open by default
 
   const toggle = lvl =>
     setOpen(o => (o.includes(lvl) ? o.filter(x => x !== lvl) : [...o, lvl]));

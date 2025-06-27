@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – Data Types</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>SQL Data Types – Define What Your Data Looks Like</h1>
+    <p class="subtitle">Each column in a table must be assigned a type: number, text, date, etc.</p>
+  </header>
+
+  <!-- INTRO -->
+  <section class="card fade-in">
+    <h2>What Are Data Types?</h2>
+    <p>
+      Data types define the kind of values that can be stored in each column. Choosing the right data type improves performance, enforces data integrity, and reduces storage size.
+    </p>
+  </section>
+
+  <!-- COMMON DATA TYPES -->
+  <section class="card fade-in">
+    <h2>Common SQL Data Types</h2>
+    <table class="sql-table">
+      <thead>
+        <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>INT</code></td><td>Whole numbers</td><td>42, -10, 999</td></tr>
+        <tr><td><code>DECIMAL</code></td><td>Fixed-point numbers</td><td>10.99, 5.75</td></tr>
+        <tr><td><code>VARCHAR(n)</code></td><td>Variable-length text (n = max chars)</td><td>'Hello', 'John Doe'</td></tr>
+        <tr><td><code>DATE</code></td><td>Calendar dates</td><td>'2024-12-31'</td></tr>
+        <tr><td><code>DATETIME</code></td><td>Date and time together</td><td>'2024-12-31 23:59:59'</td></tr>
+        <tr><td><code>BIT</code></td><td>Boolean value (0 or 1)</td><td>1 (true), 0 (false)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- GOOD PRACTICES -->
+  <section class="card fade-in">
+    <h2>Best Practices</h2>
+    <ul class="use-cases">
+      <li>Use <code>INT</code> for numeric IDs and counts</li>
+      <li>Use <code>VARCHAR</code> with appropriate length (e.g. VARCHAR(100))</li>
+      <li>Prefer <code>DATE</code> over storing dates as strings</li>
+      <li>Always use <code>DECIMAL</code> for prices and money</li>
+    </ul>
+  </section>
+
+  <!-- TIP -->
+  <section class="card fade-in">
+    <h2>Tip – Data Type Differences</h2>
+    <p>
+      <strong>CHAR</strong> is fixed-length, while <strong>VARCHAR</strong> is variable-length.<br>
+      <strong>FLOAT</strong> can be imprecise for calculations — use <strong>DECIMAL</strong> if precision matters.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+</body>
+</html>
