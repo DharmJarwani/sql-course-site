@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – MIN and MAX</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>MIN and MAX – Get the Smallest & Largest Values</h1>
+    <p class="subtitle">Quickly find the minimum or maximum value from a column of data.</p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>When do we use <code>MIN</code> and <code>MAX</code>?</h2>
+    <p>Use these functions to find extreme values in numeric or date columns — great for analysis and reporting.</p>
+    <ul class="use-cases">
+      <li>Earliest and latest orders or hires</li>
+      <li>Minimum or maximum price, discount, or freight</li>
+      <li>Lowest or highest quantity sold</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>Basic Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">SELECT</span> 
+   <span class="kw">MIN</span>(<span class="id">column_name</span>) <span class="kw">AS</span> <span class="id">Smallest</span>,
+   <span class="kw">MAX</span>(<span class="id">column_name</span>) <span class="kw">AS</span> <span class="id">Largest</span>
+<span class="kw">FROM</span> <span class="tb">table_name</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Earliest and Latest Orders</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> 
+   <span class="kw">MIN</span>(<span class="id">OrderDate</span>) <span class="kw">AS</span> <span class="id">EarliestOrder</span>,
+   <span class="kw">MAX</span>(<span class="id">OrderDate</span>) <span class="kw">AS</span> <span class="id">LatestOrder</span>
+<span class="kw">FROM</span> <span class="tb">Orders</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>EarliestOrder</th><th>LatestOrder</th></tr></thead>
+      <tbody>
+        <tr><td>1996-07-04</td><td>1998-05-06</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Min/Max Freight</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> 
+   <span class="kw">MIN</span>(<span class="id">Freight</span>) <span class="kw">AS</span> <span class="id">Cheapest</span>,
+   <span class="kw">MAX</span>(<span class="id">Freight</span>) <span class="kw">AS</span> <span class="id">Costliest</span>
+<span class="kw">FROM</span> <span class="tb">Orders</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>Cheapest</th><th>Costliest</th></tr></thead>
+      <tbody>
+        <tr><td>0.00</td><td>1007.64</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- EXAMPLE 3 -->
+  <section class="card fade-in">
+    <h2>Example 3 – Max Discount from Order Details</h2>
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">SELECT</span> <span class="kw">MAX</span>(<span class="id">Discount</span>) AS MaxDiscount
+<span class="kw">FROM</span> <span class="tb">[Order Details]</span>;
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>MaxDiscount</th></tr></thead>
+      <tbody><tr><td>0.25</td></tr></tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

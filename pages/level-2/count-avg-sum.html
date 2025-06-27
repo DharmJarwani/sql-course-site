@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – COUNT, AVG, SUM</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>COUNT, AVG, SUM – Aggregate Functions</h1>
+    <p class="subtitle">Quickly summarize values in columns with totals, averages, and counts.</p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>When do we use <code>COUNT</code>, <code>AVG</code>, and <code>SUM</code>?</h2>
+    <p>These aggregate functions are used to compute values over a set of rows — for insights, summaries, and metrics.</p>
+    <ul class="use-cases">
+      <li>Count total number of orders or customers</li>
+      <li>Get average freight, price, or quantity</li>
+      <li>Sum total sales or revenue</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>Basic Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">SELECT</span> 
+   <span class="kw">COUNT</span>(*) AS TotalCount,
+   <span class="kw">AVG</span>(<span class="id">Freight</span>) AS AverageFreight,
+   <span class="kw">SUM</span>(<span class="id">Freight</span>) AS TotalFreight
+<span class="kw">FROM</span> <span class="tb">Orders</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Total Number of Orders</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> <span class="kw">COUNT</span>(*) AS TotalOrders
+<span class="kw">FROM</span> <span class="tb">Orders</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>TotalOrders</th></tr></thead>
+      <tbody><tr><td>830</td></tr></tbody>
+    </table>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Average Freight Per Order</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> <span class="kw">AVG</span>(<span class="id">Freight</span>) AS AvgFreight
+<span class="kw">FROM</span> <span class="tb">Orders</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>AvgFreight</th></tr></thead>
+      <tbody><tr><td>32.5</td></tr></tbody>
+    </table>
+  </section>
+
+  <!-- EXAMPLE 3 -->
+  <section class="card fade-in">
+    <h2>Example 3 – Total Freight to USA</h2>
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">SELECT</span> <span class="kw">SUM</span>(<span class="id">Freight</span>) AS FreightToUSA
+<span class="kw">FROM</span> <span class="tb">Orders</span>
+<span class="kw">WHERE</span> <span class="id">ShipCountry</span> = <span class="str">'USA'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>FreightToUSA</th></tr></thead>
+      <tbody><tr><td>25000.75</td></tr></tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
