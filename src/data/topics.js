@@ -14,12 +14,12 @@ const topics = [
   { level: 1, title: "IS NULL",           file: "/pages/level-1/is-null.html" },
 
   /* ---------- Level 2: Aggregations ---------- */
-  { level: 2, title: "COUNT, AVG, SUM",   file: "/pages/count-avg-sum.html" },
-  { level: 2, title: "MIN and MAX",       file: "/pages/min-max.html" },
-  { level: 2, title: "GROUP BY",          file: "/pages/groupby.html" },
-  { level: 2, title: "HAVING",            file: "/pages/having.html" },
-  { level: 2, title: "ALIASES",           file: "/pages/aliases.html" },
-  { level: 2, title: "WILDCARDS",         file: "/pages/wildcards.html" },
+  { level: 2, title: "COUNT, AVG, SUM",   file: "/pages/level-2/count-avg-sum.html" },
+  { level: 2, title: "MIN and MAX",       file: "/pages/level-2/min-max.html" },
+  { level: 2, title: "GROUP BY",          file: "/pages/level-2/groupby.html" },
+  { level: 2, title: "HAVING",            file: "/pages/level-2/having.html" },
+  { level: 2, title: "ALIASES",           file: "/pages/level-2/aliases.html" },
+  { level: 2, title: "WILDCARDS",         file: "/pages/level-2/wildcards.html" },
 
   /* ---------- Level 3: DML ---------- */
   { level: 3, title: "INSERT INTO",           file: "/pages/insert.html" },
