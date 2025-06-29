@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – DELETE Statement</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+  <header class="fade-in">
+    <h1>DELETE – Remove Data</h1>
+    <p class="subtitle">Permanently remove one or more rows from a table.</p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>When do we use <code>DELETE</code>?</h2>
+    <p>The <code>DELETE</code> statement is used to remove unwanted or outdated records from a table. Always use a <code>WHERE</code> clause unless you intend to clear all rows!</p>
+    <ul class="use-cases">
+      <li>Deleting inactive users or old orders</li>
+      <li>Removing test or sample data</li>
+      <li>Data cleanup during migration</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql"><span class="kw">DELETE FROM</span> <span class="tb">table_name</span>
+<span class="kw">WHERE</span> <span class="id">condition</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE -->
+  <section class="card fade-in">
+    <h2>Example – Remove Cancelled Orders</h2>
+    <div class="code-wrap">
+<pre id="sql1" class="code-sql"><span class="kw">DELETE FROM</span> <span class="tb">Orders</span>
+<span class="kw">WHERE</span> <span class="id">Status</span> = <span class="str">'Cancelled'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>OrderID</th><th>CustomerID</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>10411</td><td>ALFKI</td><td>Cancelled</td></tr>
+        <tr><td>10412</td><td>ANATR</td><td>Cancelled</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

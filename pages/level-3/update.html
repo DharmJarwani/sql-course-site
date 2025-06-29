@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – UPDATE Statement</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+  <header class="fade-in">
+    <h1>UPDATE – Modify Data</h1>
+    <p class="subtitle">Change existing values in a table using filters.</p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>When do we use <code>UPDATE</code>?</h2>
+    <p>The <code>UPDATE</code> statement is used to modify existing records in a table. You typically use it with a <code>WHERE</code> clause to avoid changing all rows.</p>
+    <ul class="use-cases">
+      <li>Correcting customer information</li>
+      <li>Updating order status or payment info</li>
+      <li>Adjusting prices or stock levels</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql"><span class="kw">UPDATE</span> <span class="tb">table_name</span>
+<span class="kw">SET</span>    <span class="id">column1</span> = <span class="str">'new_value'</span>,
+         <span class="id">column2</span> = <span class="str">'new_value'</span>
+<span class="kw">WHERE</span>  <span class="id">condition</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE -->
+  <section class="card fade-in">
+    <h2>Example – Update Country Name</h2>
+    <div class="code-wrap">
+<pre id="sql1" class="code-sql"><span class="kw">UPDATE</span> <span class="tb">Customers</span>
+<span class="kw">SET</span>    <span class="id">Country</span> = <span class="str">'USA'</span>
+<span class="kw">WHERE</span>  <span class="id">Country</span> = <span class="str">'United States'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>CustomerID</th><th>Name</th><th>Country</th></tr></thead>
+      <tbody>
+        <tr><td>ALFKI</td><td>Maria Anders</td><td>USA</td></tr>
+        <tr><td>FRANK</td><td>Peter Franken</td><td>USA</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
