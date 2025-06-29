@@ -22,7 +22,7 @@ const topics = [
   { level: 2, title: "WILDCARDS",         file: "/pages/level-2/wildcards.html" },
 
   /* ---------- Level 3: DML ---------- */
-  { level: 3, title: "INSERT INTO",           file: "/pages/insert.html" },
+  
   { level: 3, title: "INSERT INTO SELECT",    file: "/pages/insert-select.html" },
   { level: 3, title: "UPDATE",                file: "/pages/update.html" },
   { level: 3, title: "DELETE",                file: "/pages/delete.html" },

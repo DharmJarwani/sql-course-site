@@ -1,5 +1,5 @@
 // src/App.js
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import TutorLayout from "./components/TutorLayout";
 import Home from "./Home";          // keep your existing landing page

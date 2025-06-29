@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – INSERT INTO SELECT</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+  <header class="fade-in">
+    <h1>INSERT INTO SELECT</h1>
+    <p class="subtitle">Copy data from one table into another — efficiently.</p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>When do we use <code>INSERT INTO SELECT</code>?</h2>
+    <p>We use it when we want to copy selected rows from one table to another — based on filters, transformations, or partial data requirements.</p>
+    <ul class="use-cases">
+      <li>Migrating or archiving records</li>
+      <li>Copying filtered results into summary tables</li>
+      <li>Cloning data for testing or versioning</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql"><span class="kw">INSERT INTO</span> <span class="tb">TargetTable</span> (<span class="id">col1</span>, <span class="id">col2</span>)
+<span class="kw">SELECT</span> <span class="id">col1</span>, <span class="id">col2</span>
+<span class="kw">FROM</span>   <span class="tb">SourceTable</span>
+<span class="kw">WHERE</span>  <span class="id">condition</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE -->
+  <section class="card fade-in">
+    <h2>Example – Archive Old Orders</h2>
+    <div class="code-wrap">
+<pre id="sql1" class="code-sql"><span class="kw">INSERT INTO</span> <span class="tb">ArchivedOrders</span> (<span class="id">OrderID</span>, <span class="id">CustomerID</span>, <span class="id">OrderDate</span>)
+<span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="id">CustomerID</span>, <span class="id">OrderDate</span>
+<span class="kw">FROM</span>   <span class="tb">Orders</span>
+<span class="kw">WHERE</span>  <span class="id">OrderDate</span> &lt; <span class="str">'1998-01-01'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead>
+        <tr><th>OrderID</th><th>CustomerID</th><th>OrderDate</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>10300</td><td>ALFKI</td><td>1997-12-15</td></tr>
+        <tr><td>10301</td><td>ANATR</td><td>1997-12-20</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
