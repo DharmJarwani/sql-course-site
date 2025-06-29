@@ -23,9 +23,9 @@ const topics = [
 
   /* ---------- Level 3: DML ---------- */
   
-  { level: 3, title: "INSERT INTO SELECT",    file: "/pages/insert-select.html" },
-  { level: 3, title: "UPDATE",                file: "/pages/update.html" },
-  { level: 3, title: "DELETE",                file: "/pages/delete.html" },
+  { level: 3, title: "INSERT INTO SELECT",    file: "/pages/level-3/insert-select.html" },
+  { level: 3, title: "UPDATE",                file: "/pages/level-3/update.html" },
+  { level: 3, title: "DELETE",                file: "/pages/level-3/delete.html" },
 
   /* ---------- Level 4: Joins & Sub-queries ---------- */
   { level: 4, title: "INNER JOIN",    file: "/pages/level-4/inner-join.html" },
