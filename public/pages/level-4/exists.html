@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – EXISTS Predicate</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>EXISTS – Test for Row Existence</h1>
+    <p class="subtitle">
+      <code>EXISTS</code> returns <em>true</em> if a sub-query yields at least one row.
+    </p>
+  </header>
+
+  <!-- INTRO + USE-CASES -->
+  <section class="card fade-in">
+    <h2>When do we use <code>EXISTS</code>?</h2>
+    <p>
+      Use <strong>EXISTS</strong> to check whether related rows exist, without caring about their content.
+      It’s typically faster for existence checks than <code>IN</code>, especially on large sets.
+    </p>
+    <ul class="use-cases">
+      <li>Find customers who have placed <em>any</em> order</li>
+      <li>Select products that have never been ordered</li>
+      <li>Filter employees who supervise someone</li>
+      <li>Check if suppliers provide at least one product</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>EXISTS Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">SELECT</span> columns
+<span class="kw">FROM</span>   <span class="tb">table</span> t
+<span class="kw">WHERE EXISTS</span> (
+    <span class="kw">SELECT</span> 1
+    <span class="kw">FROM</span>   <span class="tb">other_table</span> x
+    <span class="kw">WHERE</span>  x.<span class="id">key</span> = t.<span class="id">key</span>
+);
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Customers Who Placed Orders</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">CustomerID</span>, <span class="id">CompanyName</span>
+<span class="kw">FROM</span>   <span class="tb">Customers</span> c
+<span class="kw">WHERE EXISTS</span> (
+    <span class="kw">SELECT</span> 1
+    <span class="kw">FROM</span>   <span class="tb">Orders</span> o
+    <span class="kw">WHERE</span>  o.<span class="id">CustomerID</span> = c.<span class="id">CustomerID</span>
+);
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Products Never Ordered</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">ProductName</span>
+<span class="kw">FROM</span>   <span class="tb">Products</span> p
+<span class="kw">WHERE NOT EXISTS</span> (
+    <span class="kw">SELECT</span> 1
+    <span class="kw">FROM</span>   <span class="tb">[Order Details]</span> od
+    <span class="kw">WHERE</span>  od.<span class="id">ProductID</span> = p.<span class="id">ProductID</span>
+);
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 3 -->
+  <section class="card fade-in">
+    <h2>Example 3 – Employees Who Are Managers</h2>
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">FirstName</span>, <span class="id">LastName</span>
+<span class="kw">FROM</span>   <span class="tb">Employees</span> e
+<span class="kw">WHERE EXISTS</span> (
+    <span class="kw">SELECT</span> 1
+    <span class="kw">FROM</span>   <span class="tb">Employees</span> sub
+    <span class="kw">WHERE</span>  sub.<span class="id">ReportsTo</span> = e.<span class="id">EmployeeID</span>
+);
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 4 -->
+  <section class="card fade-in">
+    <h2>Example 4 – Countries With Shipped Orders</h2>
+    <div class="code-wrap mini">
+<pre id="sql4" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">ShipCountry</span>
+<span class="kw">FROM</span>   <span class="tb">Orders</span> o1
+<span class="kw">WHERE EXISTS</span> (
+    <span class="kw">SELECT</span> 1
+    <span class="kw">FROM</span>   <span class="tb">Orders</span> o2
+    <span class="kw">WHERE</span>  o2.<span class="id">ShipCountry</span> = o1.<span class="id">ShipCountry</span>
+          <span class="kw">AND</span> o2.<span class="id">ShippedDate</span> <span class="kw">IS NOT NULL</span>
+);
+</pre>
+      <button class="copy-btn" data-target="sql4">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 5 -->
+  <section class="card fade-in">
+    <h2>Example 5 – Suppliers With In-Stock Products</h2>
+    <div class="code-wrap mini">
+<pre id="sql5" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">CompanyName</span>
+<span class="kw">FROM</span>   <span class="tb">Suppliers</span> s
+<span class="kw">WHERE EXISTS</span> (
+    <span class="kw">SELECT</span> 1
+    <span class="kw">FROM</span>   <span class="tb">Products</span> p
+    <span class="kw">WHERE</span>  p.<span class="id">SupplierID</span> = s.<span class="id">SupplierID</span>
+          <span class="kw">AND</span> p.<span class="id">UnitsInStock</span> > 0
+);
+</pre>
+      <button class="copy-btn" data-target="sql5">Copy</button>
+    </div>
+  </section>
+
+  <!-- WHY / WHEN CARD -->
+  <section class="card fade-in">
+    <h2>Why Choose EXISTS Over IN or JOIN?</h2>
+    <p>
+      <strong>EXISTS</strong> stops at the first matching row, making it efficient for “presence/absence” checks.  
+      Use it when:
+    </p>
+    <ul class="use-cases">
+      <li>You only need to know if a match exists, not the actual data</li>
+      <li>Sub-query returns many rows and you want early exit</li>
+      <li>Comparing correlated data where <em>IN</em> might be slower</li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – FOREIGN KEY</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>FOREIGN KEY – Linking Tables Together</h1>
+    <p class="subtitle">
+      A FOREIGN KEY connects rows in one table to rows in another — enabling relational data.
+    </p>
+  </header>
+
+  <!-- DEFINITION -->
+  <section class="card fade-in">
+    <h2>What is a FOREIGN KEY?</h2>
+    <p>
+      A <code>FOREIGN KEY</code> is a column (or combination of columns) that creates a link between two tables by referencing the <code>PRIMARY KEY</code> of another table.
+    </p>
+    <ul class="use-cases">
+      <li>Maintains **referential integrity** across tables</li>
+      <li>Prevents invalid data from being inserted into the referencing table</li>
+      <li>Creates a **parent-child relationship** between tables</li>
+      <li>Used heavily in normalized databases for efficient structure</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>Foreign Key Syntax</h2>
+
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">CREATE TABLE</span> <span class="tb">Orders</span> (
+  <span class="id">OrderID</span> <span class="kw">INT</span> <span class="kw">PRIMARY KEY</span>,
+  <span class="id">CustomerID</span> <span class="kw">INT</span>,
+  <span class="kw">FOREIGN KEY</span> (<span class="id">CustomerID</span>)
+    <span class="kw">REFERENCES</span> <span class="tb">Customers</span>(<span class="id">CustomerID</span>)
+);
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- NORTHWIND EXAMPLE -->
+  <section class="card fade-in">
+    <h2>Northwind Example – Customers & Orders</h2>
+    <p>
+      In the Northwind database, the <code>Orders</code> table references the <code>Customers</code> table using a foreign key.
+      Each order is associated with a valid customer.
+    </p>
+
+    <table class="sql-table">
+      <thead><tr><th>Customers Table</th><th>Orders Table</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CustomerID</strong>: ALFKI<br>Name: Maria Anders</td>
+            <td><strong>OrderID</strong>: 10248<br><strong>CustomerID</strong>: ALFKI</td></tr>
+        <tr><td><strong>CustomerID</strong>: ANATR<br>Name: Ana Trujillo</td>
+            <td><strong>OrderID</strong>: 10249<br><strong>CustomerID</strong>: ANATR</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

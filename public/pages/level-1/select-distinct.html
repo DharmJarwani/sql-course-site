@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – SELECT DISTINCT</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>SELECT DISTINCT – Remove Duplicates</h1>
+    <p class="subtitle">Get unique values from a column by eliminating duplicates.</p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>When do we use <code>SELECT DISTINCT</code>?</h2>
+    <p><code>SELECT DISTINCT</code> is used to return only different (unique) values from a column. It is helpful when you want to remove duplicates from a result set.</p>
+    <ul class="use-cases">
+      <li>List of unique cities customers are from</li>
+      <li>Unique product categories sold</li>
+      <li>Filtering dropdown values in a UI</li>
+    </ul>
+  </section>
+
+  <!-- GENERIC SYNTAX -->
+  <section class="card fade-in">
+    <h2>Basic Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql"><span class="kw">SELECT DISTINCT</span> <span class="id">column_name</span>
+<span class="kw">FROM</span> <span class="tb">table_name</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Unique Ship Countries</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql"><span class="kw">SELECT DISTINCT</span> <span class="id">ShipCountry</span>
+<span class="kw">FROM</span> <span class="tb">Orders</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>ShipCountry</th></tr></thead>
+      <tbody>
+        <tr><td>Germany</td></tr>
+        <tr><td>France</td></tr>
+        <tr><td>Brazil</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Unique Customer Cities</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql"><span class="kw">SELECT DISTINCT</span> <span class="id">City</span>
+<span class="kw">FROM</span> <span class="tb">Customers</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>City</th></tr></thead>
+      <tbody>
+        <tr><td>Berlin</td></tr>
+        <tr><td>Madrid</td></tr>
+        <tr><td>London</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

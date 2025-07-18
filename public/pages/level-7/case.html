@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – CASE Statement</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>CASE – Conditional Logic in SQL</h1>
+    <p class="subtitle">Add dynamic logic directly inside your SELECT queries using CASE.</p>
+  </header>
+
+  <!-- THEORY -->
+  <section class="card fade-in">
+    <h2>What is the <code>CASE</code> Statement?</h2>
+    <p>
+      The <code>CASE</code> expression lets you apply conditional logic to rows — similar to an <strong>if-else</strong> or <strong>switch</strong> statement in other languages. It's commonly used to:
+    </p>
+    <ul class="use-cases">
+      <li>Display labels based on column values</li>
+      <li>Transform data within a SELECT query</li>
+      <li>Apply logic without writing stored procedures</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>General Syntax</h2>
+
+    <div class="code-wrap">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">column1</span>,
+       <span class="kw">CASE</span>
+         <span class="kw">WHEN</span> <span class="id">condition1</span> <span class="kw">THEN</span> <span class="str">'Result A'</span>
+         <span class="kw">WHEN</span> <span class="id">condition2</span> <span class="kw">THEN</span> <span class="str">'Result B'</span>
+         <span class="kw">ELSE</span> <span class="str">'Other'</span>
+       <span class="kw">END</span> <span class="kw">AS</span> <span class="id">NewColumn</span>
+<span class="kw">FROM</span> <span class="tb">TableName</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE -->
+  <section class="card fade-in">
+    <h2>Example – Categorize Order Freight</h2>
+
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="id">Freight</span>,
+       <span class="kw">CASE</span>
+         <span class="kw">WHEN</span> <span class="id">Freight</span> &lt; 50 <span class="kw">THEN</span> <span class="str">'Low'</span>
+         <span class="kw">WHEN</span> <span class="id">Freight</span> BETWEEN 50 <span class="kw">AND</span> 100 <span class="kw">THEN</span> <span class="str">'Medium'</span>
+         <span class="kw">ELSE</span> <span class="str">'High'</span>
+       <span class="kw">END</span> <span class="kw">AS</span> <span class="id">FreightCategory</span>
+<span class="kw">FROM</span> <span class="tb">Orders</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>OrderID</th><th>Freight</th><th>FreightCategory</th></tr></thead>
+      <tbody>
+        <tr><td>10248</td><td>32.38</td><td>Low</td></tr>
+        <tr><td>10249</td><td>65.83</td><td>Medium</td></tr>
+        <tr><td>10250</td><td>120.50</td><td>High</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

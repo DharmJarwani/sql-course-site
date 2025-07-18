@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – ANY and ALL</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>ANY & ALL – Compare with Subqueries</h1>
+    <p class="subtitle">
+      Use <code>ANY</code> or <code>ALL</code> to compare a value against a set of results from a subquery.
+    </p>
+  </header>
+
+  <!-- USE-CASE -->
+  <section class="card fade-in">
+    <h2>When do we use <code>ANY</code> or <code>ALL</code>?</h2>
+    <p>
+      Use these to compare a single value with the results from a subquery.  
+      <code>ANY</code> returns true if <strong>any one</strong> row satisfies the condition,  
+      while <code>ALL</code> requires <strong>every</strong> row to meet the condition.
+    </p>
+    <ul class="use-cases">
+      <li>Check if a product is cheaper than all others</li>
+      <li>Find orders with freight above any average freight</li>
+      <li>Validate if a customer ordered more than others</li>
+      <li>Detect minimum/maximum behavior dynamically</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>ANY / ALL Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">SELECT</span> columns
+<span class="kw">FROM</span>   <span class="tb">table</span>
+<span class="kw">WHERE</span>  <span class="id">value</span> <span class="op">operator</span> <span class="kw">ANY</span> (<span class="kw">subquery</span>);
+
+<span class="cmt">-- or</span>
+
+<span class="kw">WHERE</span>  <span class="id">value</span> <span class="op">operator</span> <span class="kw">ALL</span> (<span class="kw">subquery</span>);
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Price Greater Than ANY Product</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">ProductName</span>, <span class="id">UnitPrice</span>
+<span class="kw">FROM</span>   <span class="tb">Products</span>
+<span class="kw">WHERE</span>  <span class="id">UnitPrice</span> > <span class="kw">ANY</span> (
+    <span class="kw">SELECT</span> <span class="id">UnitPrice</span>
+    <span class="kw">FROM</span>   <span class="tb">Products</span>
+    <span class="kw">WHERE</span>  <span class="id">CategoryID</span> = 1
+);
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Freight Higher Than ALL Orders to France</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="id">Freight</span>
+<span class="kw">FROM</span>   <span class="tb">Orders</span>
+<span class="kw">WHERE</span>  <span class="id">Freight</span> > <span class="kw">ALL</span> (
+    <span class="kw">SELECT</span> <span class="id">Freight</span>
+    <span class="kw">FROM</span>   <span class="tb">Orders</span>
+    <span class="kw">WHERE</span>  <span class="id">ShipCountry</span> = <span class="str">'France'</span>
+);
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 3 -->
+  <section class="card fade-in">
+    <h2>Example 3 – Employees Older Than ANY Employee in London</h2>
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">FirstName</span>, <span class="id">BirthDate</span>
+<span class="kw">FROM</span>   <span class="tb">Employees</span>
+<span class="kw">WHERE</span>  <span class="id">BirthDate</span> < <span class="kw">ANY</span> (
+    <span class="kw">SELECT</span> <span class="id">BirthDate</span>
+    <span class="kw">FROM</span>   <span class="tb">Employees</span>
+    <span class="kw">WHERE</span>  <span class="id">City</span> = <span class="str">'London'</span>
+);
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 4 -->
+  <section class="card fade-in">
+    <h2>Example 4 – Orders with Quantity Greater Than ALL Others</h2>
+    <div class="code-wrap mini">
+<pre id="sql4" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="id">Quantity</span>
+<span class="kw">FROM</span>   <span class="tb">[Order Details]</span>
+<span class="kw">WHERE</span>  <span class="id">Quantity</span> > <span class="kw">ALL</span> (
+    <span class="kw">SELECT</span> <span class="id">Quantity</span>
+    <span class="kw">FROM</span>   <span class="tb">[Order Details]</span>
+    <span class="kw">WHERE</span>  <span class="id">ProductID</span> = 1
+);
+</pre>
+      <button class="copy-btn" data-target="sql4">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 5 -->
+  <section class="card fade-in">
+    <h2>Example 5 – Product Cost Less Than ANY in Same Category</h2>
+    <div class="code-wrap mini">
+<pre id="sql5" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">ProductName</span>, <span class="id">UnitPrice</span>
+<span class="kw">FROM</span>   <span class="tb">Products</span> p1
+<span class="kw">WHERE</span>  <span class="id">UnitPrice</span> < <span class="kw">ANY</span> (
+    <span class="kw">SELECT</span> <span class="id">UnitPrice</span>
+    <span class="kw">FROM</span>   <span class="tb">Products</span> p2
+    <span class="kw">WHERE</span>  p2.<span class="id">CategoryID</span> = p1.<span class="id">CategoryID</span>
+          <span class="kw">AND</span> p2.<span class="id">ProductID</span> != p1.<span class="id">ProductID</span>
+);
+</pre>
+      <button class="copy-btn" data-target="sql5">Copy</button>
+    </div>
+  </section>
+
+  <!-- CARD: Summary -->
+  <section class="card fade-in">
+    <h2>ANY vs ALL – Quick Summary</h2>
+    <ul class="use-cases">
+      <li><strong>ANY</strong>: True if <em>any one</em> row matches</li>
+      <li><strong>ALL</strong>: True if <em>all</em> rows match</li>
+      <li>Works with comparison operators: <code>=</code>, <code>></code>, <code><</code>, etc.</li>
+      <li>Often used in correlated subqueries</li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

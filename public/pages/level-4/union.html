@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – UNION</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>UNION – Combine Results from Multiple Queries</h1>
+    <p class="subtitle">
+      Use <code>UNION</code> to merge rows from two or more queries into one result set.
+    </p>
+  </header>
+
+  <!-- USE-CASE + INTRO -->
+  <section class="card fade-in">
+    <h2>When do we use <code>UNION</code>?</h2>
+    <p>
+      <strong>UNION</strong> allows combining the output of two or more <code>SELECT</code> statements, as long as they have the same number of columns and compatible data types.
+    </p>
+    <hr />
+    <p><strong>Typical uses in Northwind DB:</strong></p>
+    <ul class="use-cases">
+      <li>Get customers and suppliers from different tables in one list</li>
+      <li>Merge results of orders from different countries</li>
+      <li>Combine employees and contractors into a single directory</li>
+      <li>Union historical and current data</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>UNION Syntax</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">SELECT</span> column1, column2 <span class="kw">FROM</span> TableA
+<span class="kw">UNION</span>
+<span class="kw">SELECT</span> column1, column2 <span class="kw">FROM</span> TableB;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Customers and Suppliers in One List</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">ContactName</span>, <span class="str">'Customer'</span> <span class="kw">AS</span> <span class="id">Type</span>
+<span class="kw">FROM</span> <span class="tb">Customers</span>
+<span class="kw">UNION</span>
+<span class="kw">SELECT</span> <span class="id">ContactName</span>, <span class="str">'Supplier'</span>
+<span class="kw">FROM</span> <span class="tb">Suppliers</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Orders Shipped to USA or Canada</h2>
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="id">ShipCountry</span>
+<span class="kw">FROM</span> <span class="tb">Orders</span>
+<span class="kw">WHERE</span> <span class="id">ShipCountry</span> = <span class="str">'USA'</span>
+<span class="kw">UNION</span>
+<span class="kw">SELECT</span> <span class="id">OrderID</span>, <span class="id">ShipCountry</span>
+<span class="kw">FROM</span> <span class="tb">Orders</span>
+<span class="kw">WHERE</span> <span class="id">ShipCountry</span> = <span class="str">'Canada'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 3 -->
+  <section class="card fade-in">
+    <h2>Example 3 – Contact Titles from Two Tables</h2>
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">ContactTitle</span> <span class="kw">FROM</span> <span class="tb">Customers</span>
+<span class="kw">UNION</span>
+<span class="kw">SELECT</span> <span class="id">ContactTitle</span> <span class="kw">FROM</span> <span class="tb">Suppliers</span>;
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 4 -->
+  <section class="card fade-in">
+    <h2>Example 4 – All Cities from Customers and Suppliers</h2>
+    <div class="code-wrap mini">
+<pre id="sql4" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">City</span> <span class="kw">FROM</span> <span class="tb">Customers</span>
+<span class="kw">UNION</span>
+<span class="kw">SELECT</span> <span class="id">City</span> <span class="kw">FROM</span> <span class="tb">Suppliers</span>;
+</pre>
+      <button class="copy-btn" data-target="sql4">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 5 -->
+  <section class="card fade-in">
+    <h2>Example 5 – Union with Different Labels</h2>
+    <div class="code-wrap mini">
+<pre id="sql5" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">CompanyName</span>, <span class="str">'Customer'</span> <span class="kw">AS</span> <span class="id">Type</span>
+<span class="kw">FROM</span> <span class="tb">Customers</span>
+<span class="kw">UNION</span>
+<span class="kw">SELECT</span> <span class="id">CompanyName</span>, <span class="str">'Supplier'</span>
+<span class="kw">FROM</span> <span class="tb">Suppliers</span>;
+</pre>
+      <button class="copy-btn" data-target="sql5">Copy</button>
+    </div>
+  </section>
+
+  <!-- FOOTER: When UNION makes sense -->
+  <section class="card fade-in">
+    <h2>When should you use UNION?</h2>
+    <p>
+      <code>UNION</code> is best when you want to combine rows from multiple sources into a single set — especially when the tables are similar but not directly connected via relationships.
+    </p>
+    <p>
+      Unlike <strong>JOIN</strong>, it doesn't combine columns — it combines rows. Make sure each <code>SELECT</code> has the same number and type of columns.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

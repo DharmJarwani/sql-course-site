@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – NULL Functions</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>NULL Functions – Handling Missing Values</h1>
+    <p class="subtitle">Cleanly deal with missing or undefined values using built-in SQL functions.</p>
+  </header>
+
+  <!-- THEORY -->
+  <section class="card fade-in">
+    <h2>Why Do We Handle NULLs?</h2>
+    <p>
+      <code>NULL</code> represents unknown or missing values in SQL. But they can cause issues in comparisons, calculations, and outputs. NULL functions help to:
+    </p>
+    <ul class="use-cases">
+      <li>Replace NULLs with default values</li>
+      <li>Make expressions safer</li>
+      <li>Return alternate values during selection</li>
+    </ul>
+  </section>
+
+  <!-- MAIN FUNCTIONS -->
+  <section class="card fade-in">
+    <h2>Common NULL Functions</h2>
+    <ul class="use-cases">
+      <li><code>ISNULL(expr, replacement)</code> – Replaces NULL with a fallback value</li>
+      <li><code>COALESCE(expr1, expr2, ...)</code> – Returns first non-NULL expression</li>
+      <li><code>NULLIF(expr1, expr2)</code> – Returns NULL if both expressions are equal</li>
+    </ul>
+  </section>
+
+  <!-- EXAMPLE 1 -->
+  <section class="card fade-in">
+    <h2>Example 1 – Replace NULL City with 'Unknown'</h2>
+
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">CustomerID</span>,
+       <span class="kw">ISNULL</span>(<span class="id">City</span>, <span class="str">'Unknown'</span>) <span class="kw">AS</span> <span class="id">CityName</span>
+<span class="kw">FROM</span> <span class="tb">Customers</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 2 -->
+  <section class="card fade-in">
+    <h2>Example 2 – Return First Non-NULL Contact Info</h2>
+
+    <div class="code-wrap mini">
+<pre id="sql2" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">CustomerID</span>,
+       <span class="kw">COALESCE</span>(<span class="id">Email</span>, <span class="id">Phone</span>, <span class="str">'N/A'</span>) <span class="kw">AS</span> <span class="id">PrimaryContact</span>
+<span class="kw">FROM</span> <span class="tb">Customers</span>;
+</pre>
+      <button class="copy-btn" data-target="sql2">Copy</button>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 3 -->
+  <section class="card fade-in">
+    <h2>Example 3 – Show NULL if Freight = 0</h2>
+
+    <div class="code-wrap mini">
+<pre id="sql3" class="code-sql">
+<span class="kw">SELECT</span> <span class="id">OrderID</span>,
+       <span class="kw">NULLIF</span>(<span class="id">Freight</span>, 0) <span class="kw">AS</span> <span class="id">ActualFreight</span>
+<span class="kw">FROM</span> <span class="tb">Orders</span>;
+</pre>
+      <button class="copy-btn" data-target="sql3">Copy</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

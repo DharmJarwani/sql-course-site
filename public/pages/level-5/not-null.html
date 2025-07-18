@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – NOT NULL Constraint</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>NOT NULL – Require Mandatory Values</h1>
+    <p class="subtitle">
+      The <code>NOT NULL</code> constraint ensures that a column cannot have <code>NULL</code> values.
+    </p>
+  </header>
+
+  <!-- DEFINITION -->
+  <section class="card fade-in">
+    <h2>What is NOT NULL?</h2>
+    <p>
+      <code>NOT NULL</code> is a column-level constraint that enforces presence — every row must contain a value for that column.
+    </p>
+    <ul class="use-cases">
+      <li>Ensure essential fields like <strong>username</strong> or <strong>email</strong> are always provided</li>
+      <li>Avoid NULL-related logic in application code</li>
+      <li>Improve data integrity and consistency</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>NOT NULL Constraint Syntax</h2>
+
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">CREATE TABLE</span> <span class="tb">Users</span> (
+  <span class="id">UserID</span> <span class="kw">INT</span> <span class="kw">PRIMARY KEY</span>,
+  <span class="id">Username</span> <span class="kw">VARCHAR</span>(50) <span class="kw">NOT NULL</span>,
+  <span class="id">Email</span> <span class="kw">VARCHAR</span>(100)
+);
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- NORTHWIND EXAMPLE -->
+  <section class="card fade-in">
+    <h2>Northwind Example – Non-null Country</h2>
+    <p>
+      Suppose we want to ensure that every <code>Customer</code> in the database has a <code>Country</code> value.
+    </p>
+
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">ALTER TABLE</span> <span class="tb">Customers</span>
+<span class="kw">ALTER COLUMN</span> <span class="id">Country</span> <span class="kw">VARCHAR</span>(50) <span class="kw">NOT NULL</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+
+    <table class="sql-table">
+      <thead><tr><th>CustomerID</th><th>CompanyName</th><th>Country</th></tr></thead>
+      <tbody>
+        <tr><td>ALFKI</td><td>Alfreds Futterkiste</td><td>Germany</td></tr>
+        <tr><td>ANATR</td><td>Ana Trujillo Emparedados</td><td>Mexico</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

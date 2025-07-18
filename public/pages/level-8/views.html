@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL – Views</title>
+  <link rel="stylesheet" href="../../css/topic.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <h1>VIEWS – Virtual Tables in SQL</h1>
+    <p class="subtitle">A view is a stored SQL query that behaves like a table.</p>
+  </header>
+
+  <!-- THEORY / USE -->
+  <section class="card fade-in">
+    <h2>What is a View?</h2>
+    <p>A <strong>view</strong> is a virtual table based on the result of a <code>SELECT</code> query. It does not store data itself but shows data from one or more tables.</p>
+    <ul class="use-cases">
+      <li>Simplifies complex queries</li>
+      <li>Provides controlled access to sensitive columns</li>
+      <li>Reusable for reports, dashboards, and BI tools</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX -->
+  <section class="card fade-in">
+    <h2>Create a View</h2>
+    <div class="code-wrap">
+<pre id="sql0" class="code-sql">
+<span class="kw">CREATE VIEW</span> <span class="id">CustomerCities</span> <span class="kw">AS</span>
+<span class="kw">SELECT</span> <span class="id">CustomerID</span>, <span class="id">City</span>, <span class="id">Country</span>
+<span class="kw">FROM</span> <span class="tb">Customers</span>
+<span class="kw">WHERE</span> <span class="id">Country</span> = <span class="str">'Germany'</span>;
+</pre>
+      <button class="copy-btn" data-target="sql0">Copy</button>
+    </div>
+  </section>
+
+  <!-- USAGE -->
+  <section class="card fade-in">
+    <h2>Querying the View</h2>
+    <div class="code-wrap mini">
+<pre id="sql1" class="code-sql">
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tb">CustomerCities</span>;
+</pre>
+      <button class="copy-btn" data-target="sql1">Copy</button>
+    </div>
+    <p>This retrieves customer city and country data for only German customers, as defined in the view.</p>
+  </section>
+
+  <!-- NOTES -->
+  <section class="card fade-in">
+    <h2>Important Notes</h2>
+    <ul class="use-cases">
+      <li>Views are read-only by default</li>
+      <li>You can update views if based on a single table with no joins/aggregates</li>
+      <li>Views help maintain abstraction and security in complex databases</li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>Want more? Pick another topic from the sidebar.</footer>
+
+  <!-- COPY SCRIPT -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const code = document.getElementById(id).innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = '✓ Copied';
+          setTimeout(() => (btn.innerText = 'Copy'), 1200);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,9 +1,17 @@
+// src/App.js
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import TutorLayout from "./components/TutorLayout";
+import Home from "./Home";          // keep your existing landing page
+
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World - SQL Course</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/"        element={<Home />} />          {/* landing banner etc. */}
+        <Route path="/topics/*" element={<TutorLayout />} />   {/* 20 / 80 tutor UI */}
+      </Routes>
+    </Router>
   );
 }
-
 export default App;
