@@ -1,15 +1,12 @@
-// src/components/TutorLayout.jsx
+// src/components/TutorLayoutSQL.jsx
 import { useState } from "react";
 import "./TutorLayout.css";
-import topics from "../data/topics";   // 50-item array
+import topics from "../data/sqlTopics";  // use your original sqlTopics file
 
 /* distinct levels = [1,2,3…] */
 const levels = [...new Set(topics.map(t => t.level))].sort((a, b) => a - b);
 
-export default function TutorLayout() {
-
-
-  // Default: load welcome page and collapse all levels
+export default function TutorLayoutSQL() {
   const [current, setCurrent] = useState("/pages/welcome.html");
   const [open, setOpen] = useState([]); // Start with all levels collapsed
 
@@ -21,13 +18,11 @@ export default function TutorLayout() {
 
   return (
     <div className="wrapper">
-      {/* ---------- SIDEBAR ---------- */}
       <aside className="sidebar">
         <h2 className="title">📘 SQL Topics</h2>
 
         {levels.map(lvl => (
           <div key={lvl} className="level-group">
-            {/* level header */}
             <button
               className={`level-label ${open.includes(lvl) ? "open" : ""}`}
               onClick={() => toggle(lvl)}
@@ -36,21 +31,14 @@ export default function TutorLayout() {
               <span className="chevron" />
             </button>
 
-            {/* links (show only if level open) */}
-            <div
-              className={`links-wrap ${
-                open.includes(lvl) ? "show" : "hide"
-              }`}
-            >
+            <div className={`links-wrap ${open.includes(lvl) ? "show" : "hide"}`}>
               {topics
                 .filter(t => t.level === lvl)
                 .map(({ title, file }) => (
                   <a
                     key={file}
                     href="#!"
-                    className={`nav-link ${
-                      current === file ? "active" : ""
-                    }`}
+                    className={`nav-link ${current === file ? "active" : ""}`}
                     onClick={() => setCurrent(file)}
                   >
                     {title}
@@ -61,7 +49,6 @@ export default function TutorLayout() {
         ))}
       </aside>
 
-      {/* ---------- CONTENT ---------- */}
       <main className="content">
         <div className="iframe-wrapper">
           <iframe title="Lesson" src={current} />
