@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Conceptual Questions</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #0a0b0b, #c8e6c9);
+      /* Light Blue to Light Green */
+      color: #37474f;
+      /* Dark Slate Grey */
+    }
+
+    header {
+      background: linear-gradient(120deg, #b400c1, #26a69a);
+      /* Cyan to Teal */
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      background: linear-gradient(145deg, #ffffff, #e3f2fd);
+      /* White to Lighter Blue */
+      border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 6px solid #118897;
+      /* Light Cyan */
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Style for the horizontal rule to give it some breathing room */
+    hr {
+      border: none;
+      /* Remove default border */
+      border-top: 15px solid #e60808;
+      /* A solid, vibrant Cyan line */
+      margin-top: 2rem;
+      /* More space above */
+      margin-bottom: 2rem;
+      /* More space below */
+      width: 90%;
+      /* Even shorter line for emphasis */
+      margin-left: auto;
+      /* Center the line */
+      margin-right: auto;
+      border-radius: 2px;
+      /* Slightly rounded ends for a softer look */
+    }
+
+    /* Hide the HR after the last sub-question answer */
+    section .answer:last-of-type+hr {
+      display: none;
+    }
+
+    .question {
+      background-color: #e0f7fa;
+      /* Light Cyan */
+      color: #00838f;
+      /* Dark Cyan */
+      font-weight: 600;
+      border-left: 6px solid #26c6da;
+      /* Medium Cyan */
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      /* Added margin for separation */
+    }
+
+    /* --- New Rule for sub-question spacing --- */
+    /* Target the 'question' div when it's specifically a 'Sub-question' for top margin */
+    section .question:has(strong)+pre+div.question {
+      margin-top: 1.5rem;
+      /* Add space above subsequent sub-question headers */
+    }
+
+    /* --- End New Rule --- */
+
+
+    .answer {
+      background-color: #e8f5e9;
+      /* Light Green */
+      border-left: 6px solid #43a047;
+      /* Green */
+      padding: 12px 16px;
+      margin-top: 8px;
+      border-radius: 10px;
+    }
+
+    /* --- New Rule for sub-answer spacing --- */
+    /* Add bottom margin to the answer div within the Sub-question section */
+    section:last-of-type .answer {
+      /* Target only the last section for these specific rules */
+      margin-bottom: 1rem;
+      /* Add space after each sub-answer */
+    }
+
+    /* --- End New Rule --- */
+
+    h2,
+    h3 {
+      margin: 0.5rem 0 1rem;
+      color: #006064;
+      /* Dark Teal */
+    }
+
+    p,
+    li {
+      line-height: 1.8;
+      margin: 0.8rem 0;
+    }
+
+    pre {
+      background: #2d2d2d;
+      /* Darker background for code blocks, complements "Tomorrow" theme */
+      border-radius: 10px;
+      padding: 1.2rem;
+      overflow-x: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+      position: relative;
+      /* Essential for positioning the copy button */
+    }
+
+    /* Custom Copy Button Styles */
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #00bcd4;
+      /* Cyan */
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+      z-index: 10;
+      /* Ensure it's above the code */
+    }
+
+    .copy-btn:hover {
+      background-color: #0097a7;
+      /* Darker Cyan on hover */
+    }
+
+    .copy-btn:active {
+      background-color: #007c8d;
+      /* Even darker on click */
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      /* Slightly darker for inline code against light backgrounds */
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      color: #37474f;
+      /* Matches body text color for inline code */
+    }
+
+    /* Styles for the highlight span in Q26 answers */
+    .highlight {
+      font-weight: bold;
+      color: #e91e63;
+      /* A strong pink for visibility */
+      background-color: #ffebee;
+      /* Very light pink background */
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+    }
+
+    .info-box {
+      background: #e1f5fe;
+      /* Lighter Blue */
+      border-left: 5px solid #2196f3;
+      /* Blue */
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .answer pre.output-pre {
+      background-color: #f0f4c3;
+      /* Light yellowish green */
+      color: #3e2723;
+      /* Dark brown, contrasting well */
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px dashed #afb42b;
+      /* A dashed border for distinction */
+      font-family: 'Fira Code', monospace;
+      /* Keep consistent font */
+      font-size: 1rem;
+      box-shadow: none;
+      /* Remove shadow to make it look like part of the answer */
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.8rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>Chapter - 3</header>
+
+
+  <main>
+
+    <section>
+      <h2>Question 1: What are the errors in the following codes?</h2>
+
+      <!-- Sub-question (a) -->
+      <div class="question"><strong>(a)</strong> Find errors, correct the code, and predict the output:</div>
+
+      <pre><button class="copy-btn">Copy</button><code class="language-python">total = 0;
+def sum(arg1, arg2):  
+    total = arg1 + arg2;  
+    print("Total :", total)  
+    return total;  
+
+sum(10, 20);  
+print("Total :", total)</code></pre>
+
+      <div class="answer">
+        <p><strong>Errors:</strong></p>
+        <ul>
+          <li>Semicolons (<code>;</code>) are not required in Python.</li>
+          <li>Using <code>total</code> inside function creates a local variable; the global <code>total</code> remains
+            0.</li>
+        </ul>
+
+        <p><strong>Corrected Code:</strong></p>
+        <pre><button class="copy-btn">Copy</button><code class="language-python">total = 0
+def sum(arg1, arg2):
+    total = arg1 + arg2
+    print("Total :", total)
+    return total
+
+sum(10, 20)
+print("Total :", total)  # Will still print 0 because global 'total' was not modified</code></pre>
+
+        <p><strong>Output:</strong></p>
+        <pre><code>Total : 30
+Total : 0</code></pre>
+      </div>
+      <hr>
+
+      <!-- Sub-question (b) -->
+      <div class="question"><strong>(b)</strong> Find errors, correct the code, and predict the output:</div>
+
+      <pre><button class="copy-btn">Copy</button><code class="language-python">def Tot(Number)           # Method to find Total
+Sum = 0  
+    for C in Range(1, Number + 1) :  
+        Sum += C  
+    RETURN Sum  
+print (Tot[3])         # function Calls       
+print (Tot[6])</code></pre>
+
+      <div class="answer">
+        <p><strong>Errors:</strong></p>
+        <ul>
+          <li>Missing colon (<code>:</code>) in function definition.</li>
+          <li>Indentation error: <code>Sum = 0</code> should be inside the function.</li>
+          <li><code>Range</code> and <code>RETURN</code> should be lowercase: <code>range</code>, <code>return</code>.
+          </li>
+          <li>Function calls should use parentheses, not square brackets.</li>
+        </ul>
+
+        <p><strong>Corrected Code:</strong></p>
+        <pre><button class="copy-btn">Copy</button><code class="language-python">def Tot(Number):  # Method to find Total
+    Sum = 0
+    for C in range(1, Number + 1):
+        Sum += C
+    return Sum
+
+print(Tot(3))
+print(Tot(6))</code></pre>
+
+        <p><strong>Output:</strong></p>
+        <pre><code>6
+21</code></pre>
+      </div>
+    </section>
+
+
+    <section>
+      <div class="question"><strong>Question 2:</strong> The code below accepts a number and returns its reverse. Fix
+        all syntax and logical errors.</div>
+
+      <pre><button class="copy-btn">Copy</button><code class="language-python">define revNumber(num);
+ rev = 0  
+ rem = 0  
+ While num > 0: 
+     rem == num % 10  
+     rev = rev * 10 + rem  
+     num = num / 10  
+     return rev 
+print(revNumber(1234))</code></pre>
+
+      <div class="answer">
+        <p><strong>Errors:</strong></p>
+        <ul>
+          <li><code>define</code> should be <code>def</code>.</li>
+          <li>Semicolons (<code>;</code>) are not required.</li>
+          <li><code>While</code> should be lowercase: <code>while</code>.</li>
+          <li><code>rem == num % 10</code> is a comparison; should be assignment: <code>rem = num % 10</code>.</li>
+          <li><code>num / 10</code> does float division. Use integer division: <code>num // 10</code>.</li>
+          <li>Return should be outside the loop to return final reversed number.</li>
+        </ul>
+
+        <p><strong>Corrected Code:</strong></p>
+        <pre><button class="copy-btn">Copy</button><code class="language-python">def revNumber(num):
+    rev = 0
+    rem = 0
+    while num > 0:
+        rem = num % 10
+        rev = rev * 10 + rem
+        num = num // 10
+    return rev
+
+print(revNumber(1234))</code></pre>
+
+        <p><strong>Output:</strong></p>
+        <pre><code>4321</code></pre>
+      </div>
+    </section>
+    <hr>
+
+    <section>
+      <div class="question"><strong>Question 3:</strong> Find and write the output of the following code:</div>
+
+      <pre><button class="copy-btn">Copy</button><code class="language-python">def Call(P = 40, Q = 20):  
+    P = P + Q  
+    Q = P - Q  
+    print(P, 'Q', Q)  
+    return P  
+
+R = 200  
+S = 100  
+R = Call(R, S)  
+print(R, '@', S)  
+S = Call(S)  
+print(R, '@', S)</code></pre>
+
+      <div class="answer">
+        <p><strong>Code Explanation:</strong></p>
+        <ul>
+          <li><code>Call(200, 100)</code> → <code>P = 300</code>, <code>Q = 200</code>, prints <code>300 Q 200</code>
+          </li>
+          <li><code>Call(100)</code> (uses default Q=20) → <code>P = 120</code>, <code>Q = 100</code>, prints
+            <code>120 Q 100</code></li>
+        </ul>
+
+        <p><strong>Final Output:</strong></p>
+        <pre><code>300 Q 200
+300 @ 100
+120 Q 100
+300 @ 120</code></pre>
+      </div>
+    </section>
+
+
+<section>
+  <div class="question"><strong>Question 4:</strong> Consider the following code. Explain the flow of execution line by line.</div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">1  def power(b, p):  
+2      y = b ** p  
+3      return y  
+
+5  def calcSquare(x):  
+6      a = power(x, 2)  
+7      return a 
+
+9  n = 5  
+10 result = calcSquare(n)  
+11 print(result)</code></pre>
+
+  <div class="answer">
+    <p><strong>Flow of Execution:</strong></p>
+    <ol>
+      <li>Line <code>9</code>: Variable <code>n</code> is assigned value <code>5</code>.</li>
+      <li>Line <code>10</code>: Function <code>calcSquare(n)</code> is called with <code>x = 5</code>.</li>
+      <li>Line <code>6</code>: Inside <code>calcSquare</code>, function <code>power(x, 2)</code> is called with <code>b = 5</code>, <code>p = 2</code>.</li>
+      <li>Line <code>2</code>: Inside <code>power</code>, <code>y = 5 ** 2 = 25</code> is computed.</li>
+      <li>Line <code>3</code>: <code>25</code> is returned to <code>calcSquare</code>.</li>
+      <li>Line <code>7</code>: <code>calcSquare</code> returns <code>25</code> to the main program.</li>
+      <li>Line <code>11</code>: <code>print(result)</code> prints <code>25</code> on screen.</li>
+    </ol>
+
+    <p><strong>Final Output:</strong></p>
+    <pre><code>25</code></pre>
+  </div>
+</section>
+
+
+<!-- Question 5: -->
+ <section>
+  <div class="question"><strong>Question 5:</strong> What will the following function return?</div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def addEm(x, y, z):  
+    print(x + y + z)</code></pre>
+
+  <div class="answer">
+    <ul>
+      <li>This function uses <code>print()</code> but does not use <code>return</code>.</li>
+      <li>So it will <strong>display</strong> the sum of x, y, z on screen, but will <strong>return <code>None</code></strong>.</li>
+    </ul>
+    <p><strong>Example:</strong></p>
+    <pre><code>>>> addEm(2, 3, 4)
+9
+>>>> result = addEm(2, 3, 4)
+9
+>>>> print(result)
+None</code></pre>
+  </div>
+
+  <hr>
+
+  <div class="question"><strong>Question 6:</strong> What will the following function print when called?</div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def addEm(x, y, z):  
+    return x + y + z  
+    print(x + y + z)</code></pre>
+
+  <div class="answer">
+    <ul>
+      <li>This function has a <code>return</code> statement before the <code>print()</code>.</li>
+      <li>So <strong>after returning</strong>, the function exits and <code>print()</code> is <strong>never executed</strong>.</li>
+    </ul>
+    <p><strong>Output:</strong> The function will <strong>return</strong> the sum, but it will not <strong>print anything</strong> unless <code>print()</code> is used outside:</p>
+
+    <pre><code>>>> addEm(2, 3, 4)
+# (no output because return does not print)
+
+>>>> print(addEm(2, 3, 4))
+9</code></pre>
+  </div>
+</section>
+
+
+
+
+<!-- Question 7: -->
+  <section>
+  <div class="question"><strong>Question 7 (i):</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">num = 1
+
+def myfunc():
+    return num
+
+print(num)
+print(myfunc())
+print(num)</code></pre>
+
+  <div class="answer">
+    <strong>Output:</strong>
+    <pre><code>1
+1
+1</code></pre>
+    <ul>
+      <li><code>myfunc()</code> accesses the global variable <code>num = 1</code>.</li>
+      <li>No value is changed, so all print statements output 1.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="question"><strong>Question 7 (ii):</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">num = 1
+
+def myfunc():
+    num = 10
+    return num
+
+print(num)
+print(myfunc())
+print(num)</code></pre>
+
+  <div class="answer">
+    <strong>Output:</strong>
+    <pre><code>1
+10
+1</code></pre>
+    <ul>
+      <li>Inside <code>myfunc()</code>, <code>num = 10</code> is a <strong>local variable</strong>.</li>
+      <li>It does not affect the global variable <code>num = 1</code>.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="question"><strong>Question 7 (iii):</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">num = 1
+
+def myfunc():
+    global num
+    num = 10
+    return num
+
+print(num)
+print(myfunc())
+print(num)</code></pre>
+
+  <div class="answer">
+    <strong>Output:</strong>
+    <pre><code>1
+10
+10</code></pre>
+    <ul>
+      <li><code>global num</code> tells Python to use and modify the global <code>num</code>.</li>
+      <li>So <code>num</code> becomes 10 after <code>myfunc()</code> runs.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="question"><strong>Question 7 (iv):</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def display():
+    print("Hello", end=' ')
+
+display()
+print("there")</code></pre>
+
+  <div class="answer">
+    <strong>Output:</strong>
+    <pre><code>Hello there</code></pre>
+    <ul>
+      <li><code>end=' '</code> prevents a newline after <code>Hello</code>.</li>
+      <li>So <code>print("there")</code> continues on the same line.</li>
+    </ul>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="question"><strong>Question 8:</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">a = 10 
+y = 5
+
+def myfunct(): 
+    y = a
+    a = 2 
+    print("y =", y, "a =", a)  
+    print("a + y =", a + y)  
+    return a + y   
+
+print("y =", y, "a =", a)  
+print(myfunct())  
+print("y =", y, "a =", a)</code></pre>
+
+  <div class="answer">
+    <strong>Output:</strong>
+    <pre><code>UnboundLocalError: local variable 'a' referenced before assignment</code></pre>
+
+    <ul>
+      <li>Python throws an <code>UnboundLocalError</code> because the variable <code>a</code> is assigned within the function (<code>a = 2</code>), making it a <strong>local variable</strong> by default.</li>
+      <li>When <code>y = a</code> is executed, it tries to access the local <code>a</code> before it has been assigned — which is not allowed.</li>
+      <li>This error happens before any <code>print()</code> inside <code>myfunct()</code> is executed.</li>
+    </ul>
+
+    <p><strong>Correct Fix:</strong> If you want to use the global variable <code>a</code> inside the function, you must declare it using <code>global a</code>:</p>
+
+    <pre><button class="copy-btn">Copy</button><code class="language-python">def myfunct(): 
+    global a
+    y = a
+    a = 2 
+    print("y =", y, "a =", a)  
+    print("a + y =", a + y)  
+    return a + y   </code></pre>
+  </div>
+</section>
+
+<section>
+  <div class="question"><strong>Question 9:</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def addEm(x, y, z):  
+    return x + y + z  
+    print("The answer is", x + y + z)</code></pre>
+
+  <div class="answer">
+    <ul>
+      <li>The <code>print()</code> statement after <code>return</code> is **unreachable** and will never execute.</li>
+      <li>Once the function hits the <code>return</code> line, it exits the function immediately.</li>
+    </ul>
+    <strong>Correct version (if print is intended to run):</strong>
+    <pre><button class="copy-btn">Copy</button><code class="language-python">def addEm(x, y, z):  
+    print("The answer is", x + y + z)
+    return x + y + z</code></pre>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="question"><strong>Question 10:</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def fun():
+    return None</code></pre>
+
+  <div class="answer">
+    <p><strong>Explanation:</strong> By default, Python functions return <code>None</code> if no return value is given. But here we are explicitly returning <code>None</code>.</p>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="question"><strong>Question 11:</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def multiply(number1, number2):  
+    answer = number1 * number2  
+    print(number1, 'times', number2, '=', answer)  
+    return(answer)  
+
+output = multiply(5, 5)</code></pre>
+
+  <div class="answer">
+    <p><strong>(i) Output printed:</strong></p>
+    <pre><code>5 times 5 = 25</code></pre>
+
+    <p><strong>(ii) Value of <code>output</code>:</strong></p>
+    <pre><code>25</code></pre>
+
+    <p><strong>Explanation:</strong> The function prints the result and also returns it. The return value is assigned to <code>output</code>.</p>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 12:</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def multiply(number1, number2):  
+    answer = number1 * number2  
+    return(answer)  
+    print(number1, 'times', number2, '=', answer)  
+
+output = multiply(5, 5)</code></pre>
+
+  <div class="answer">
+    <p><strong>(i) Output printed:</strong></p>
+    <pre><code>(Nothing is printed)</code></pre>
+
+    <p><strong>(ii) Value of <code>output</code>:</strong></p>
+    <pre><code>25</code></pre>
+
+    <p><strong>Explanation:</strong> <code>print()</code> is written after <code>return</code>, so it is never executed. Only the result is returned.</p>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 13: Find the errors in code</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python"># (a)
+def minus(total, decrement)  
+    output = total - decrement  
+    print(output)  
+    return (Output)
+
+# (b)
+define check()  
+    N = input (Enter N:)  
+    i = 3  
+    answer = i + i * 4 / N  
+    Return answer  
+
+# (c)
+def alpha(n, string = "xyz", k = 10):  
+    return beta(string)  
+    return n  
+
+def beta(string)  
+    return string == str(n)  
+
+print(alpha("Valentine’s Day"):)  
+print(beta(string = 'true'))  
+print(alpha(n = 5, "Good-bye"):)  
+</code></pre>
+
+  <div class="answer">
+    <ul>
+      <li><b>(a) Errors:</b> Missing colon after function, incorrect variable name <code>Output</code> (should be <code>output</code>).</li>
+      <li><b>(b) Errors:</b> <code>define</code> should be <code>def</code>, <code>input()</code> argument should be string, <code>Return</code> should be lowercase.</li>
+      <li><b>(c) Errors:</b> <code>beta</code> missing colon, <code>n</code> used in <code>beta</code> is undefined, syntax issues in <code>print()</code> calls.</li>
+    </ul>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 14: Environment at line 10</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">1. def sum(a, b, c, d):  
+2.     result = 0  
+3.     result = result + a + b + c + d  
+4.     return result  
+
+6. def length():  
+7.     return 4  
+
+9. def mean(a, b, c, d):  
+10.     return float(sum(a, b, c, d)) / length()  
+
+12. print(sum(a, b, c, d), length(), mean(a, b, c, d))</code></pre>
+
+  <div class="answer">
+    <b>At line 10:</b> Function <code>mean()</code> is calling:
+    <ul>
+      <li><code>sum()</code> with parameters <code>a, b, c, d</code></li>
+      <li><code>length()</code> returns 4</li>
+      <li><code>float(result) / 4</code> is computed</li>
+    </ul>
+    <b>Environment:</b>
+    <ul>
+      <li>Function definitions: <code>sum</code>, <code>length</code>, <code>mean</code></li>
+      <li>Local vars (inside <code>sum</code>): <code>result</code>, <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code></li>
+    </ul>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 15: Draw flow of execution</strong></div>
+
+  <div class="answer">
+    <ol>
+      <li>Start from <code>print(sum(...), length(), mean(...))</code></li>
+      <li>Call <code>sum()</code>: adds all 4 arguments → returns total</li>
+      <li>Call <code>length()</code>: returns 4</li>
+      <li>Call <code>mean()</code>: internally calls <code>sum()</code> and divides by <code>length()</code></li>
+    </ol>
+    <b>Order:</b> print → sum → length → mean → sum → length
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 16: Find the output</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">a = 10  
+def call():  
+    global a  
+    a = 15  
+    b = 20  
+    print(a)  
+
+call()</code></pre>
+
+  <div class="answer">
+    <b>Output:</b> <code>15</code><br>
+    <b>Explanation:</b> The global <code>a</code> is updated inside <code>call()</code>.
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 17: Which variables are in the same scope?</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def func1():  
+    a = 1  
+    b = 2  
+
+def func2():  
+    c = 3  
+    d = 4  
+
+e = 5</code></pre>
+
+  <div class="answer">
+    <ul>
+      <li><code>a</code> & <code>b</code>: Same scope (inside <code>func1</code>)</li>
+      <li><code>c</code> & <code>d</code>: Same scope (inside <code>func2</code>)</li>
+      <li><code>e</code>: Global scope</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="question"><strong>Question 18: Function to print next number</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def next_number(n):
+    print(n + 1)
+
+next_number(4)
+next_number(6)
+next_number(8)
+next_number(2 + 1)
+next_number(4 - 3 * 2)
+next_number(-3 - 2)</code></pre>
+
+  <div class="answer">
+    <b>Output:</b><br>
+    <code>5<br>7<br>9<br>4<br>-1<br>-4</code>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="question"><strong>Question 18: Function to print next number</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def next_number(n):
+    print(n + 1)
+
+next_number(4)
+next_number(6)
+next_number(8)
+next_number(2 + 1)
+next_number(4 - 3 * 2)
+next_number(-3 - 2)</code></pre>
+
+  <div class="answer">
+    <b>Output:</b><br>
+    <code>5<br>7<br>9<br>4<br>-1<br>-4</code>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="question"><strong>Question 19: Non-void version and flow of execution</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def next_number(n):
+    return n + 1
+
+print(next_number(4))
+print(next_number(6))
+print(next_number(8))
+print(next_number(2 + 1))
+print(next_number(4 - 3 * 2))
+print(next_number(-3 - 2))</code></pre>
+
+  <div class="answer">
+    <b>Output:</b><br>
+    <code>5<br>7<br>9<br>4<br>-1<br>-4</code><br><br>
+    <b>Flow of Execution:</b>
+    <ol>
+      <li>Function is defined</li>
+      <li>Each call computes <code>n + 1</code></li>
+      <li><code>print()</code> displays the return value</li>
+    </ol>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 20 (i):</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def increment(n):  
+    n.append([4])  
+    return n  
+
+L = [1, 2, 3]  
+M = increment(L)  
+print(L, M)</code></pre>
+
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <pre><code>[1, 2, 3, [4]] [1, 2, 3, [4]]</code></pre>
+
+    <p><strong>Explanation:</strong> The function <code>increment()</code> modifies the list <code>L</code> in-place (because lists are mutable). The list gets a new element <code>[4]</code> appended, so both <code>L</code> and <code>M</code> point to the same updated list.</p>
+  </div>
+</section>
+
+<section>
+  <div class="question"><strong>Question 20 (ii):</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def increment(n):  
+    n.append([49])  
+    return [n[0], n[1], n[2], n[3]]  
+
+L = [23, 35, 47]  
+m1, m2, m3, m4 = increment(L)
+print(L)  
+print(m1, m2, m3, m4)  
+print(L[3] == m4)</code></pre>
+
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <pre><code>[23, 35, 47, [49]]
+23 35 47 [49]
+True</code></pre>
+
+    <p><strong>Explanation:</strong> 
+      <ul>
+        <li><code>n.append([49])</code> adds a nested list <code>[49]</code> to <code>L</code>.</li>
+        <li><code>return [n[0], n[1], n[2], n[3]]</code> returns the first 4 elements, including the newly added <code>[49]</code>.</li>
+        <li><code>L[3] == m4</code> returns <code>True</code> because both refer to the same list object <code>[49]</code>.</li>
+      </ul>
+    </p>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="question"><strong>Question 21:</strong></div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">V = 25  
+def Fun(Ch):  
+    V = 50  
+    print(V, end = Ch)  
+    V += 2  
+    print(V, end = Ch)  
+    print(V, end = "")  
+
+Fun(",")  
+print(V)</code></pre>
+
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <pre><code>50,52,5225</code></pre>
+
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li>Inside <code>Fun()</code>, a **local** variable <code>V = 50</code> is defined, so it shadows the global one.</li>
+      <li><code>print(V, end=Ch)</code> prints <code>50,</code></li>
+      <li><code>V += 2</code> → V becomes 52</li>
+      <li><code>print(V, end=Ch)</code> prints <code>52,</code></li>
+      <li><code>print(V, end="")</code> prints <code>52</code> (no newline or separator)</li>
+      <li><code>print(V)</code> outside the function prints the global <code>V = 25</code></li>
+    </ul>
+
+    <p><strong>Final Output:</strong></p>
+    <pre><code>50,52,5225</code></pre>
+
+    <p><strong>Correct Option:</strong> <code>(d) None of the above matches exactly — it's not an error, but the correct output is: <code>50,52,5225</code></code></p>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const codeElement = btn.nextElementSibling;
+        const codeToCopy = codeElement.innerText;
+
+        navigator.clipboard.writeText(codeToCopy).then(() => {
+          btn.innerText = "Copied!";
+          setTimeout(() => btn.innerText = "Copy", 1000);
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+          const textArea = document.createElement("textarea");
+          textArea.value = codeToCopy;
+          textArea.style.position = "fixed";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          try {
+            document.execCommand('copy');
+            btn.innerText = "Copied!";
+            setTimeout(() => btn.innerText = "Copy", 1000);
+          } catch (err) {
+            console.error('Fallback copy failed: ', err);
+            alert('Failed to copy. Please select and copy manually.');
+          }
+          document.body.removeChild(textArea);
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
