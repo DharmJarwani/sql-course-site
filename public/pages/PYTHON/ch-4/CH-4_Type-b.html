@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Conceptual Questions</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #0a0b0b, #c8e6c9);
+      /* Light Blue to Light Green */
+      color: #37474f;
+      /* Dark Slate Grey */
+    }
+
+    header {
+      background: linear-gradient(120deg, #b400c1, #26a69a);
+      /* Cyan to Teal */
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      background: linear-gradient(145deg, #ffffff, #e3f2fd);
+      /* White to Lighter Blue */
+      border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 6px solid #118897;
+      /* Light Cyan */
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Style for the horizontal rule to give it some breathing room */
+    hr {
+      border: none;
+      /* Remove default border */
+      border-top: 15px solid #e60808;
+      /* A solid, vibrant Cyan line */
+      margin-top: 2rem;
+      /* More space above */
+      margin-bottom: 2rem;
+      /* More space below */
+      width: 90%;
+      /* Even shorter line for emphasis */
+      margin-left: auto;
+      /* Center the line */
+      margin-right: auto;
+      border-radius: 2px;
+      /* Slightly rounded ends for a softer look */
+    }
+
+    /* Hide the HR after the last sub-question answer */
+    section .answer:last-of-type+hr {
+      display: none;
+    }
+
+    .question {
+      background-color: #e0f7fa;
+      /* Light Cyan */
+      color: #00838f;
+      /* Dark Cyan */
+      font-weight: 600;
+      border-left: 6px solid #26c6da;
+      /* Medium Cyan */
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      /* Added margin for separation */
+    }
+
+    /* --- New Rule for sub-question spacing --- */
+    /* Target the 'question' div when it's specifically a 'Sub-question' for top margin */
+    section .question:has(strong)+pre+div.question {
+      margin-top: 1.5rem;
+      /* Add space above subsequent sub-question headers */
+    }
+
+    /* --- End New Rule --- */
+
+
+    .answer {
+      background-color: #e8f5e9;
+      /* Light Green */
+      border-left: 6px solid #43a047;
+      /* Green */
+      padding: 12px 16px;
+      margin-top: 8px;
+      border-radius: 10px;
+    }
+
+    /* --- New Rule for sub-answer spacing --- */
+    /* Add bottom margin to the answer div within the Sub-question section */
+    section:last-of-type .answer {
+      /* Target only the last section for these specific rules */
+      margin-bottom: 1rem;
+      /* Add space after each sub-answer */
+    }
+
+    /* --- End New Rule --- */
+
+    h2,
+    h3 {
+      margin: 0.5rem 0 1rem;
+      color: #006064;
+      /* Dark Teal */
+    }
+
+    p,
+    li {
+      line-height: 1.8;
+      margin: 0.8rem 0;
+    }
+
+    pre {
+      background: #2d2d2d;
+      /* Darker background for code blocks, complements "Tomorrow" theme */
+      border-radius: 10px;
+      padding: 1.2rem;
+      overflow-x: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+      position: relative;
+      /* Essential for positioning the copy button */
+    }
+
+    /* Custom Copy Button Styles */
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #00bcd4;
+      /* Cyan */
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+      z-index: 10;
+      /* Ensure it's above the code */
+    }
+
+    .copy-btn:hover {
+      background-color: #0097a7;
+      /* Darker Cyan on hover */
+    }
+
+    .copy-btn:active {
+      background-color: #007c8d;
+      /* Even darker on click */
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      /* Slightly darker for inline code against light backgrounds */
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      color: #37474f;
+      /* Matches body text color for inline code */
+    }
+
+    /* Styles for the highlight span in Q26 answers */
+    .highlight {
+      font-weight: bold;
+      color: #e91e63;
+      /* A strong pink for visibility */
+      background-color: #ffebee;
+      /* Very light pink background */
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+    }
+
+    .info-box {
+      background: #e1f5fe;
+      /* Lighter Blue */
+      border-left: 5px solid #2196f3;
+      /* Blue */
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .answer pre.output-pre {
+      background-color: #f0f4c3;
+      /* Light yellowish green */
+      color: #3e2723;
+      /* Dark brown, contrasting well */
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px dashed #afb42b;
+      /* A dashed border for distinction */
+      font-family: 'Fira Code', monospace;
+      /* Keep consistent font */
+      font-size: 1rem;
+      box-shadow: none;
+      /* Remove shadow to make it look like part of the answer */
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.8rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>Chapter - 4</header>
+
+
+  <main>
+
+   <section>
+  <div class="question"><strong>Question 1:</strong></div>
+
+  <p>Create module <code>tempConversion.py</code> as given in Fig 4.2 in the chapter.</p>
+  <p>If you invoke the module with two different types of import statements, how would the function call statement for imported module's functions be affected?</p>
+
+  <div class="answer">
+    <p><strong>Answer:</strong></p>
+    <p>If <code>tempConversion.py</code> contains the following function:</p>
+
+    <pre><button class="copy-btn">Copy</button><code class="language-python">def celsius_to_fahrenheit(c):
+    return 9 * c / 5 + 32</code></pre>
+
+    <p>Then depending on the type of import, function call changes:</p>
+
+    <ul>
+      <li><strong>Using:</strong> <code>import tempConversion</code><br>
+        <strong>Call:</strong> <code>tempConversion.celsius_to_fahrenheit(30)</code>
+      </li>
+      <li><strong>Using:</strong> <code>from tempConversion import celsius_to_fahrenheit</code><br>
+        <strong>Call:</strong> <code>celsius_to_fahrenheit(30)</code>
+      </li>
+    </ul>
+
+    <p><strong>Conclusion:</strong> The difference lies in the way functions are accessed. With <code>import module</code>, you use <code>module.function()</code>. With <code>from module import function</code>, you use <code>function()</code> directly.</p>
+  </div>
+</section>
+
+<section>
+  <div class="question"><strong>Question 2:</strong></div>
+
+  <p>A function <code>checkMain()</code> defined in module <code>Allchecks.py</code> is being used in two different programs:</p>
+  <ul>
+    <li>Program 1: <code>Allchecks.checkMain(3, 7)</code></li>
+    <li>Program 2: <code>checkMain(4, 7)</code></li>
+  </ul>
+
+  <p>Why are these two function-call statements different from one another when the function being invoked is just the same?</p>
+
+  <div class="answer">
+    <p><strong>Answer:</strong></p>
+    <ul>
+      <li>In <strong>Program 1</strong>, the module was imported using: <code>import Allchecks</code>, so function call must be prefixed with module name: <code>Allchecks.checkMain()</code>.</li>
+      <li>In <strong>Program 2</strong>, the module was imported using: <code>from Allchecks import checkMain</code>, so function can be called directly: <code>checkMain()</code>.</li>
+    </ul>
+
+    <p><strong>Conclusion:</strong> The import method affects how the function is accessed. Both calls use the same function but in different ways based on how the module was imported.</p>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 3:</strong></div>
+
+  <p>Given below is semi-complete code of a module <code>basic.py</code>. Complete the code and save it as a module.</p>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">"""
+This module provides basic math operations like square, multiply, divide, and floor divide.
+"""
+
+def square(x):
+    """Returns the square of the given number."""
+    return mul(x, x)
+
+def mul(x, y):
+    """Returns the product of x and y."""
+    return x * y
+
+def div(x, y):
+    """Returns the floating-point division of x and y."""
+    return float(x) / y
+
+def fdiv(x, y):
+    """Returns the integer division (floor division) of x and y."""
+    return x // y
+
+def floordiv(x, y):
+    """Calls the fdiv() function for floor division."""
+    return fdiv(x, y)</code></pre>
+
+  <div class="answer">
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li>All function definitions are completed and properly indented.</li>
+      <li>Each function includes a docstring for clarity.</li>
+      <li>This file should be saved as <code>basic.py</code> and can be imported in other programs using either of these:</li>
+    </ul>
+
+    <pre><code class="language-python">import basic
+from basic import square, div</code></pre>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 4:</strong></div>
+
+  <p>After importing the above module, some of its functions are executed as per the following statements. Find errors, if any:</p>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">(a) square(print 3)
+(b) basic.div()
+(c) basic.floordiv(7.0, 7)
+(d) div(100, 0)
+(e) basic.mul(3, 5)
+(f) print(basic.square(3.5))
+(g) z = basic.div(13, 3)</code></pre>
+
+  <div class="answer">
+    <p><strong>Analysis of each statement:</strong></p>
+    <ul>
+      <li><strong>(a)</strong> <code>square(print 3)</code><br>
+        ❌ <code>print</code> is used incorrectly inside function arguments.<br>
+        ✅ Correct Syntax: <code>square(3)</code> or <code>square(print(3))</code> (but this returns <code>None</code>).
+      </li>
+      <li><strong>(b)</strong> <code>basic.div()</code><br>
+        ❌ Missing required positional arguments <code>x</code> and <code>y</code>.<br>
+        ✅ Must be called with two arguments, e.g., <code>basic.div(10, 2)</code>.
+      </li>
+      <li><strong>(c)</strong> <code>basic.floordiv(7.0, 7)</code><br>
+        ✅ Valid. Float floor division is allowed in Python. Returns <code>1.0</code>.
+      </li>
+      <li><strong>(d)</strong> <code>div(100, 0)</code><br>
+        ❌ Causes a <code>ZeroDivisionError</code> at runtime.<br>
+        ✅ Cannot divide by zero.
+      </li>
+      <li><strong>(e)</strong> <code>basic.mul(3, 5)</code><br>
+        ✅ Valid. Will return <code>15</code>.
+      </li>
+      <li><strong>(f)</strong> <code>print(basic.square(3.5))</code><br>
+        ✅ Valid. Will return <code>12.25</code>.
+      </li>
+      <li><strong>(g)</strong> <code>z = basic.div(13, 3)</code><br>
+        ✅ Valid. <code>z</code> will be <code>4.333333...</code>.
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 5:</strong></div>
+
+  <p>Import the module <code>basic.py</code> and write statements for the following tasks:</p>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">import basic
+
+# (a) Compute square of 19.23
+print(basic.square(19.23))  # Output: 369.7929
+
+# (b) Compute floor division of 1000.01 with 100.23
+print(basic.floordiv(1000.01, 100.23))  # Output: 9.0
+
+# (c) Compute product of 3, 4 and 5 (using mul() multiple times)
+result = basic.mul(basic.mul(3, 4), 5)
+print(result)  # Output: 60
+
+# (d) Difference between basic.div(100, 0) and basic.div(0, 100)
+# print(basic.div(100, 0))  # ❌ Raises ZeroDivisionError
+print(basic.div(0, 100))  # ✅ Output: 0.0</code></pre>
+
+  <div class="answer">
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li><strong>(a)</strong> <code>square()</code> returns the square of the number using <code>mul()</code>.</li>
+      <li><strong>(b)</strong> <code>floordiv()</code> returns floor division (//), and works fine with floats.</li>
+      <li><strong>(c)</strong> <code>mul()</code> is used twice to multiply three numbers: (3×4)×5.</li>
+      <li><strong>(d)</strong> 
+        <ul>
+          <li><code>basic.div(100, 0)</code> will give a <code>ZeroDivisionError</code>.</li>
+          <li><code>basic.div(0, 100)</code> is valid and gives <code>0.0</code>.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 6:</strong></div>
+
+  <p>Select the correct output of the code:</p>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">s = "Python is fun"  
+l = s.split()  
+s_new = ''.join([[l[0].upper(), l[1], l[2]].capitalize()])  
+print(s_new)</code></pre>
+
+  <div class="answer">
+    <p><strong>Correct Option:</strong> <code>(c) Python-is-fun</code></p>
+
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li><code>s.split()</code> → <code>['Python', 'is', 'fun']</code></li>
+      <li><code>l[0].upper()</code> → <code>'PYTHON'</code></li>
+      <li>List becomes <code>['PYTHON', 'is', 'fun']</code></li>
+      <li><code>[...].capitalize()</code> converts only the first character of the entire string to uppercase and rest to lowercase: → <code>'Python-is-fun'</code></li>
+      <li><code>''.join(...)</code> joins the string into <code>'Python-is-fun'</code></li>
+    </ul>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 7:</strong></div>
+
+  <p>Suppose that after we import the random module, we define the following function called <code>diff()</code> in a Python session:</p>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def diff():  
+    x = random.random() - random.random()  
+    return x</code></pre>
+
+  <p>What would be the result if you now evaluate:</p>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">y = diff y()   
+print(y)</code></pre>
+
+  <div class="answer">
+    <p><strong>Output/Error:</strong></p>
+    <pre><code>SyntaxError: invalid syntax</code></pre>
+
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li>The line <code>y = diff y()</code> is invalid in Python.</li>
+      <li>Function names must be followed directly by parentheses (no space): <code>diff()</code>.</li>
+      <li>If you write <code>diff y()</code>, Python interprets it as calling a function named <code>diff</code> with argument <code>y()</code> — but due to the space, it's treated as a syntax error.</li>
+    </ul>
+
+    <p><strong>Correct Usage:</strong></p>
+    <pre><code>y = diff()
+print(y)</code></pre>
+
+    <p>This would output a random float between -1.0 and 1.0.</p>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 8:</strong></div>
+
+  <p>What are the possible outcome(s) executed from the following code? Also specify the maximum and minimum values that can be assigned to variable <code>NUMBER</code>.</p>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">import random
+
+STRING = "CBSEONLINE"  
+NUMBER = random.randint(1, 3)  
+N = 9  
+
+while STRING[N-1] != 'L':  
+    print(STRING[N-1] + STRING[NUMBER] + 'q', end = '')  
+    NUMBER = NUMBER + 1  
+    N = N - 1</code></pre>
+
+  <div class="answer">
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li>Initial string: <code>"CBSEONLINE"</code> (Length = 10)</li>
+      <li><code>N = 9</code> means loop starts at index <code>8</code> ('N')</li>
+      <li>The loop continues until <code>STRING[N-1] == 'L'</code> (which occurs when <code>N = 6</code>, i.e., index 5)</li>
+      <li>Thus, the loop runs for <code>N = 9</code>, <code>8</code>, and <code>7</code> (i.e., STRING[8], [7], [6]) → characters: 'N', 'I', 'L'</li>
+      <li><code>NUMBER</code> starts from random <code>1 to 3</code>, and is incremented each time → can reach up to 5</li>
+    </ul>
+
+    <p><strong>Possible combinations printed:</strong></p>
+    <p>At each iteration, it prints: <code>STRING[N-1] + STRING[NUMBER] + 'q'</code></p>
+    
+    <p><strong>Maximum value of <code>NUMBER</code>:</strong> 5 (3 initial + 2 increments)<br>
+    <strong>Minimum value of <code>NUMBER</code>:</strong> 1</p>
+
+    <p><strong>Correct output option:</strong> <code>(iii) NSIEHLOJ#</code></p>
+
+    <p>Note: Options like <code>LENONOJ#</code> or <code>ECANBISl#</code> are invalid because characters like 'E', 'C' or 'A' are not at those positions during loop.</p>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 9:</strong></div>
+  <p>Consider the following code:</p>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">import random  
+print(int(20 + random.random()*5), end = '')  
+print(int(20 + random.random()*5), end = '')  
+print(int(20 + random.random()*5), end = '')  
+print(int(20 + random.random()*5), end = '')  
+print(int(20 + random.random()*5))</code></pre>
+
+  <div class="answer">
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li><code>random.random()</code> generates a float from <code>0.0</code> (inclusive) to <code>1.0</code> (exclusive).</li>
+      <li>So <code>random.random()*5</code> → range: <code>0.0</code> to <code>4.999...</code></li>
+      <li>Adding 20: range becomes <code>20.0</code> to <code>24.999...</code></li>
+      <li><code>int()</code> truncates the decimal, so final value ranges from <code>20</code> to <code>24</code></li>
+    </ul>
+
+    <p><strong>Minimum value:</strong> <code>20</code> <br>
+       <strong>Maximum value:</strong> <code>24</code></p>
+
+    <p><strong>Suggested Correct Options:</strong></p>
+    <ul>
+      <li>(i) <code>20 22 24 25</code> ❌ <span style="color:red;">(25 is invalid)</span></li>
+      <li>(ii) <code>22 23 24 25</code> ❌ <span style="color:red;">(25 is invalid)</span></li>
+      <li>(iii) <code>23 24 23 24</code> ✅ <span style="color:green;">(Valid)</span></li>
+      <li>(iv) <code>21 21 21 21</code> ✅ <span style="color:green;">(Possible)</span></li>
+    </ul>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="question"><strong>Question 10:</strong></div>
+  <p>Consider the following code:</p>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">import random  
+print(100 + random.randint(5,10), end = '')  
+print(100 + random.randint(5,10), end = '')  
+print(100 + random.randint(5,10), end = '')  
+print(100 + random.randint(5,10), end = '')  
+print(100 + random.randint(5,10))</code></pre>
+
+  <div class="answer">
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li><code>random.randint(5,10)</code> includes both 5 and 10</li>
+      <li>So values generated: <code>5 to 10</code> → when added to 100: <code>105 to 110</code></li>
+    </ul>
+
+    <p><strong>Minimum value:</strong> <code>105</code> <br>
+       <strong>Maximum value:</strong> <code>110</code></p>
+
+    <p><strong>Suggested Correct Options:</strong></p>
+    <ul>
+      <li>(i) <code>102 105 104 105</code> ❌ <span style="color:red;">(102, 104 invalid)</span></li>
+      <li>(ii) <code>110 103 104 105</code> ❌ <span style="color:red;">(103, 104 invalid)</span></li>
+      <li>(iii) <code>105 107 105 110</code> ✅ <span style="color:green;">(Valid)</span></li>
+      <li>(iv) <code>110 105 105 110</code> ✅ <span style="color:green;">(Valid)</span></li>
+    </ul>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 11:</strong></div>
+  <p>Consider the following package structure:</p>
+
+  <pre><code class="language-treeview">music/                 ← Top-level package
+│
+├── __init__.py
+│
+├── formats/           ← Subpackage for file formats
+│   ├── __init__.py
+│   ├── wavread.py
+│   └── wavwrite.py
+│
+├── effects/           ← Subpackage for sound effects
+│   ├── __init__.py
+│   ├── echo.py
+│   ├── surround.py
+│   └── reverse.py
+│
+└── filters/           ← Subpackage for filters
+    ├── __init__.py
+    ├── equalizer.py
+    ├── vocoder.py
+    └── karaoke.py
+</code></pre>
+
+  <div class="answer">
+    <p>Each module (like <code>wavwrite.py</code>, <code>echo.py</code>, etc.) contains functions: <code>play()</code>, <code>writefile()</code>, and <code>readfile()</code>.</p>
+
+    <p><strong>(a)</strong> If the module is imported using:</p>
+    <pre><code class="language-python">import music.formats.wavwrite</code></pre>
+    <p>Then the <code>writefile()</code> function should be invoked using:</p>
+    <pre><code class="language-python">music.formats.wavwrite.writefile()</code></pre>
+
+    <hr>
+
+    <p><strong>(b)</strong> If the module is imported using:</p>
+    <pre><code class="language-python">from music.formats import wavwrite</code></pre>
+    <p>Then the <code>writefile()</code> function should be invoked using:</p>
+    <pre><code class="language-python">wavwrite.writefile()</code></pre>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 12:</strong></div>
+  <p>What are the possible outcome(s) executed from the following code? Also specify the <strong>maximum</strong> and <strong>minimum</strong> values that can be assigned to variable <code>PICK</code>.</p>
+
+  <pre><code class="language-python">import random  
+PICK = random.randint(0, 3)  
+CITY = ["DELHI", "MUMBAI", "CHENNAI", "KOLKATA"]  
+
+for I in CITY:  
+    for J in range(1, PICK):  
+        print(I, end=" ")
+    print()</code></pre>
+
+  <div class="answer">
+    <p><strong>Understanding the Code:</strong></p>
+    <ul>
+      <li><code>PICK</code> will get a random integer between <code>0</code> and <code>3</code> (inclusive).</li>
+      <li>The inner loop runs from <code>1</code> to <code>PICK - 1</code>.</li>
+      <li>If <code>PICK = 0</code> or <code>PICK = 1</code>, then <code>range(1, PICK)</code> will be empty and nothing will be printed inside the loop.</li>
+    </ul>
+
+    <p><strong>Minimum value of <code>PICK</code>:</strong> <code>0</code></p>
+    <p><strong>Maximum value of <code>PICK</code>:</strong> <code>3</code></p>
+
+    <hr>
+
+    <p><strong>Possible Outcomes:</strong></p>
+
+    <p><strong>(i)</strong> Output when <code>PICK = 3</code>:</p>
+    <pre><code class="language-text">DELHI DELHI 
+MUMBAI MUMBAI 
+CHENNAI CHENNAI 
+KOLKATA KOLKATA</code></pre>
+
+    <p><strong>(ii)</strong> Output when <code>PICK</code> increases across iterations (NOT possible with current loop structure).</p>
+    <p>❌ <em>This output is invalid based on the loop logic.</em></p>
+
+    <p><strong>(iii)</strong> Output when <code>PICK = 1</code>:</p>
+    <pre><code class="language-text">
+
+
+
+</code></pre>
+    <p><em>Just blank lines, because <code>range(1,1)</code> does not execute.</em></p>
+
+    <p><strong>(iv)</strong> Output when <code>PICK = 4</code>:</p>
+    <p>❌ <em>Not possible — because <code>PICK</code> is never more than 3.</em></p>
+
+    <hr>
+
+    <p><strong>Correct and possible output(s):</strong></p>
+    <ul>
+      <li>✔️ (i)</li>
+      <li>✔️ (iii) (blank lines)</li>
+    </ul>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const codeElement = btn.nextElementSibling;
+        const codeToCopy = codeElement.innerText;
+
+        navigator.clipboard.writeText(codeToCopy).then(() => {
+          btn.innerText = "Copied!";
+          setTimeout(() => btn.innerText = "Copy", 1000);
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+          const textArea = document.createElement("textarea");
+          textArea.value = codeToCopy;
+          textArea.style.position = "fixed";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          try {
+            document.execCommand('copy');
+            btn.innerText = "Copied!";
+            setTimeout(() => btn.innerText = "Copy", 1000);
+          } catch (err) {
+            console.error('Fallback copy failed: ', err);
+            alert('Failed to copy. Please select and copy manually.');
+          }
+          document.body.removeChild(textArea);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

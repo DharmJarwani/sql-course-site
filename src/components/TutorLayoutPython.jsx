@@ -6,7 +6,7 @@ import topics from "../data/pytopics";  // use your Python topics file
 const chapters = [...new Set(topics.map(t => t.chapter))].sort((a, b) => a - b);
 
 export default function TutorLayoutPython() {
-  const [current, setCurrent] = useState("/pages/welcome.html");
+  const [current, setCurrent] = useState("/pages/welcomePython.html");
   const [open, setOpen] = useState([]);
 
   const toggle = ch =>
