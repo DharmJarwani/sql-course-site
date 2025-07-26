@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Conceptual Questions</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #0a0b0b, #c8e6c9);
+      /* Light Blue to Light Green */
+      color: #37474f;
+      /* Dark Slate Grey */
+    }
+
+    header {
+      background: linear-gradient(120deg, #b400c1, #26a69a);
+      /* Cyan to Teal */
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      background: linear-gradient(145deg, #ffffff, #e3f2fd);
+      /* White to Lighter Blue */
+      border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 6px solid #118897;
+      /* Light Cyan */
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Style for the horizontal rule to give it some breathing room */
+    hr {
+      border: none;
+      /* Remove default border */
+      border-top: 15px solid #e60808;
+      /* A solid, vibrant Cyan line */
+      margin-top: 2rem;
+      /* More space above */
+      margin-bottom: 2rem;
+      /* More space below */
+      width: 90%;
+      /* Even shorter line for emphasis */
+      margin-left: auto;
+      /* Center the line */
+      margin-right: auto;
+      border-radius: 2px;
+      /* Slightly rounded ends for a softer look */
+    }
+
+    /* Hide the HR after the last sub-question answer */
+    section .answer:last-of-type+hr {
+      display: none;
+    }
+
+    .question {
+      background-color: #e0f7fa;
+      /* Light Cyan */
+      color: #00838f;
+      /* Dark Cyan */
+      font-weight: 600;
+      border-left: 6px solid #26c6da;
+      /* Medium Cyan */
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      /* Added margin for separation */
+    }
+
+    /* --- New Rule for sub-question spacing --- */
+    /* Target the 'question' div when it's specifically a 'Sub-question' for top margin */
+    section .question:has(strong)+pre+div.question {
+      margin-top: 1.5rem;
+      /* Add space above subsequent sub-question headers */
+    }
+
+    /* --- End New Rule --- */
+
+
+    .answer {
+      background-color: #e8f5e9;
+      /* Light Green */
+      border-left: 6px solid #43a047;
+      /* Green */
+      padding: 12px 16px;
+      margin-top: 8px;
+      border-radius: 10px;
+    }
+
+    /* --- New Rule for sub-answer spacing --- */
+    /* Add bottom margin to the answer div within the Sub-question section */
+    section:last-of-type .answer {
+      /* Target only the last section for these specific rules */
+      margin-bottom: 1rem;
+      /* Add space after each sub-answer */
+    }
+
+    /* --- End New Rule --- */
+
+    h2,
+    h3 {
+      margin: 0.5rem 0 1rem;
+      color: #006064;
+      /* Dark Teal */
+    }
+
+    p,
+    li {
+      line-height: 1.8;
+      margin: 0.8rem 0;
+    }
+
+    pre {
+      background: #2d2d2d;
+      /* Darker background for code blocks, complements "Tomorrow" theme */
+      border-radius: 10px;
+      padding: 1.2rem;
+      overflow-x: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+      position: relative;
+      /* Essential for positioning the copy button */
+    }
+
+    /* Custom Copy Button Styles */
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #00bcd4;
+      /* Cyan */
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+      z-index: 10;
+      /* Ensure it's above the code */
+    }
+
+    .copy-btn:hover {
+      background-color: #0097a7;
+      /* Darker Cyan on hover */
+    }
+
+    .copy-btn:active {
+      background-color: #007c8d;
+      /* Even darker on click */
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      /* Slightly darker for inline code against light backgrounds */
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      color: #37474f;
+      /* Matches body text color for inline code */
+    }
+
+    /* Styles for the highlight span in Q26 answers */
+    .highlight {
+      font-weight: bold;
+      color: #e91e63;
+      /* A strong pink for visibility */
+      background-color: #ffebee;
+      /* Very light pink background */
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+    }
+
+    .info-box {
+      background: #e1f5fe;
+      /* Lighter Blue */
+      border-left: 5px solid #2196f3;
+      /* Blue */
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .answer pre.output-pre {
+      background-color: #f0f4c3;
+      /* Light yellowish green */
+      color: #3e2723;
+      /* Dark brown, contrasting well */
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px dashed #afb42b;
+      /* A dashed border for distinction */
+      font-family: 'Fira Code', monospace;
+      /* Keep consistent font */
+      font-size: 1rem;
+      box-shadow: none;
+      /* Remove shadow to make it look like part of the answer */
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.8rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>Chapter - 2 [Type C]</header>
+
+
+  <main>
+
+    <section>
+      <div class="question">
+        <strong>Q1.</strong> Write a program to validate a phone number in the format <code>xxx-xxx-xxxx</code>. Dashes
+        should be at correct positions and rest must be digits.
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+phone = input("Enter phone number (xxx-xxx-xxxx): ")
+
+if len(phone) == 12 and phone[3] == '-' and phone[7] == '-' and phone.replace('-', '').isdigit():
+    print("VALID phone number.")
+else:
+    print("INVALID phone number.")
+
+# Sample Output:
+# Enter phone number (xxx-xxx-xxxx): 017-555-1212
+# VALID phone number.
+</code></pre>
+
+      <div class="answer">
+        <strong>Explanation:</strong>
+        <ul>
+          <li>Checks length = 12.</li>
+          <li>Ensures dashes are at 4th and 8th positions.</li>
+          <li>Ensures other characters are digits using <code>replace('-', '').isdigit()</code>.</li>
+        </ul>
+      </div>
+      <hr>
+    </section>
+
+
+
+    <section>
+      <div class="question">
+        <strong>Q2.</strong> Write a program to accept a sentence and print:
+        number of words, characters, and percentage of alphanumeric characters.
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+sentence = input("Enter a sentence: ")
+
+words = sentence.split()
+num_words = len(words)
+num_char = len(sentence)
+alnum_count = 0
+
+for ch in sentence:
+    if ch.isalnum():
+        alnum_count += 1
+
+percentage = (alnum_count / num_char) * 100
+
+print("Original sentence: ", sentence)
+print("Number of words: ", num_words)
+print("Number of characters: ", num_char)
+print("Percentage of alphanumeric characters: ", percentage)
+
+# Sample Output:
+# Enter a sentence: Hello World 123!
+# Number of words: 3
+# Number of characters: 17
+# Percentage of alphanumeric characters: 82.35
+</code></pre>
+
+      <div class="answer">
+        <strong>Explanation:</strong>
+        <ul>
+          <li><code>split()</code> breaks the sentence into words.</li>
+          <li><code>isalnum()</code> checks for letters and digits.</li>
+          <li>Alphanumeric % = (alnum chars / total chars) × 100</li>
+        </ul>
+      </div>
+      <hr>
+    </section>
+
+
+
+    <section>
+      <div class="question">
+        <strong>Q3.</strong> Write a program that adds two lists element-wise to form a third list.
+        Example: If L = [3,1,4] and M = [1,5,9], output N = [4,6,13]
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+L = [3, 1, 4]
+M = [1, 5, 9]
+N = []
+
+for i in range(len(L)):
+    N.append(L[i] + M[i])
+
+print("New list N: ", N)
+
+# Output:
+# New list N: [4, 6, 13]
+</code></pre>
+
+      <div class="answer">
+        <strong>Explanation:</strong>
+        <ul>
+          <li><code>range(len(L))</code> loops through index of both lists.</li>
+          <li><code>L[i] + M[i]</code> adds elements at same index.</li>
+          <li><code>append()</code> builds the result list <code>N</code>.</li>
+        </ul>
+      </div>
+      <hr>
+    </section>
+
+
+
+    <section>
+      <div class="question">
+        <strong>Q4.</strong> Write a program that rotates the elements of a list to the right.
+        Last element should move to first position.
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+L = [10, 20, 30, 40]
+
+last = L[-1]
+for i in range(len(L) - 1, 0, -1):
+    L[i] = L[i - 1]
+L[0] = last
+
+print("Rotated list: ", L)
+
+# Output:
+# Rotated list: [40, 10, 20, 30]
+</code></pre>
+
+      <div class="answer">
+        <strong>Explanation:</strong>
+        <ul>
+          <li>Save last element.</li>
+          <li>Shift other elements to right by 1 position.</li>
+          <li>Assign last element to position <code>0</code>.</li>
+        </ul>
+      </div>
+      <hr>
+    </section>
+
+
+    <section>
+      <div class="question">
+        <strong>Q5.</strong> Write a short code segment that prints the longest word in a list of words.
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+words = ['apple', 'banana', 'grape', 'watermelon']
+longest = words[0]
+
+for word in words:
+    if len(word) > len(longest):
+        longest = word
+
+print("Longest word: ", longest)
+
+# Output:
+# Longest word: watermelon
+</code></pre>
+
+      <div class="answer">
+        <strong>Explanation:</strong>
+        <ul>
+          <li>Start by assuming first word is the longest.</li>
+          <li>Loop through the list and compare lengths using <code>len()</code>.</li>
+          <li>Update <code>longest</code> if a longer word is found.</li>
+        </ul>
+      </div>
+      <hr>
+    </section>
+
+
+    <section>
+      <div class="question">
+        <strong>Q6.</strong> Write a program that prints all integers less than 100 that are multiples of 3 or 5.
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+for i in range(1, 100):
+    if i % 3 == 0 or i % 5 == 0:
+        print(i, end=' ')
+
+# Output:
+# 3 5 6 9 10 12 15 18 ... 99
+</code></pre>
+
+      <div class="answer">
+        <strong>Explanation:</strong>
+        <ul>
+          <li>Uses <code>range(1,100)</code> to loop till 99.</li>
+          <li><code>%</code> operator checks divisibility by 3 or 5.</li>
+          <li>Numbers printed on same line using <code>end=' '</code>.</li>
+        </ul>
+      </div>
+      <hr>
+    </section>
+
+
+    <section>
+      <div class="question">
+        <strong>Q7.</strong> Define two variables <code>first = "Jimmy"</code> and <code>second = "Johny"</code>. Swap
+        their values and print.
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+first = "Jimmy"
+second = "Johny"
+
+temp = first
+first = second
+second = temp
+
+print("first =", first)
+print("second =", second)
+
+# Output:
+# first = Johny
+# second = Jimmy
+</code></pre>
+
+      <div class="answer">
+        <strong>Explanation:</strong>
+        <ul>
+          <li>Temporary variable <code>temp</code> is used to hold one value.</li>
+          <li>Swapping is done step-by-step.</li>
+          <li>Final values are printed after swap.</li>
+        </ul>
+      </div>
+      <hr>
+    </section>
+
+
+    <section>
+      <div class="question">
+        <strong>Q8.</strong> Write a Python program to create a tuple storing the first 9 Fibonacci numbers.
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+fibo = [0, 1]
+
+for i in range(2, 9):
+    fibo.append(fibo[i - 1] + fibo[i - 2])
+
+fibo_tuple = tuple(fibo)
+print("First 9 Fibonacci numbers: ", fibo_tuple)
+
+# Output:
+# First 9 Fibonacci numbers: (0, 1, 1, 2, 3, 5, 8, 13, 21)
+</code></pre>
+
+      <div class="answer">
+        <strong>Explanation:</strong>
+        <ul>
+          <li>Fibonacci starts with <code>0, 1</code>.</li>
+          <li>Next number is sum of previous two.</li>
+          <li>List is converted to tuple using <code>tuple()</code>.</li>
+        </ul>
+      </div>
+      <hr>
+    </section>
+
+
+    <section>
+      <div class="question">
+        <strong>Q9.</strong> Create a dictionary whose keys are month names and values are number of days. Perform the
+        following:
+        <ul>
+          <li>(a) Ask the user to enter a month name and display number of days</li>
+          <li>(b) Print all keys in alphabetical order</li>
+          <li>(c) Print months with 31 days</li>
+          <li>(d) Sort and print month-day pairs by number of days</li>
+        </ul>
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+months = {
+    "January": 31, "February": 28, "March": 31, "April": 30,
+    "May": 31, "June": 30, "July": 31, "August": 31,
+    "September": 30, "October": 31, "November": 30, "December": 31
+}
+
+# (a)
+name = input("Enter month name: ")
+print("Days in", name, "are:", months.get(name, "Invalid month"))
+# Input: March
+# Output: Days in March are: 31
+
+# (b)
+for key in sorted(months):
+    print(key)
+# Output: Alphabetically sorted month names
+
+# (c)
+print("Months with 31 days:")
+for key in months:
+    if months[key] == 31:
+        print(key)
+# Output: January, March, May, July, August, October, December
+
+# (d)
+sorted_months = sorted(months.items(), key=lambda x: x[1])
+for item in sorted_months:
+    print(item[0], ":", item[1])
+# Output: Months sorted by number of days (ascending)
+  </code></pre>
+      <div class="answer">
+        <strong>Explanation:</strong>
+        The dictionary holds month-day mappings. Various dictionary and loop operations are used for different outputs.
+      </div>
+      <hr>
+    </section>
+
+
+    <section>
+      <div class="question">
+        <strong>Q10.</strong> Write a function <code>addDict(dict1, dict2)</code> that returns the union of two
+        dictionaries.
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+def addDict(dict1, dict2):
+    result = dict1.copy()
+    result.update(dict2)
+    return result
+
+# Main code
+d1 = {"a": 1, "b": 2}
+d2 = {"b": 3, "c": 4}
+print(addDict(d1, d2))
+# Output: {'a': 1, 'b': 3, 'c': 4}
+  </code></pre>
+      <div class="answer">
+        <strong>Explanation:</strong>
+        Dictionary <code>d1</code> is copied and updated with <code>d2</code>. If a key is repeated, <code>d2</code>'s
+        value is used.
+      </div>
+      <hr>
+    </section>
+
+
+    <section>
+      <div class="question">
+        <strong>Q11.</strong> Write a program to sort a dictionary's keys using Bubble Sort.
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+d = {"b": 2, "a": 1, "c": 3}
+keys = list(d.keys())
+n = len(keys)
+
+for i in range(n):
+    for j in range(0, n - i - 1):
+        if keys[j] > keys[j + 1]:
+            keys[j], keys[j + 1] = keys[j + 1], keys[j]
+
+print("Sorted keys:", keys)
+# Output: ['a', 'b', 'c']
+  </code></pre>
+      <div class="answer">
+        <strong>Explanation:</strong>
+        Bubble Sort is applied to list of keys from the dictionary.
+      </div>
+      <hr>
+    </section>
+
+
+
+
+
+    <section>
+      <div class="question">
+        <strong>Q12.</strong> Write a program to sort dictionary values using Bubble Sort.
+      </div>
+      <pre><button class="copy-btn">Copy</button><code class="language-python">
+d = {"b": 2, "a": 1, "c": 3}
+values = list(d.values())
+n = len(values)
+
+for i in range(n):
+    for j in range(n - i - 1):
+        if values[j] > values[j + 1]:
+            values[j], values[j + 1] = values[j + 1], values[j]
+
+print("Sorted values:", values)
+# Output: [1, 2, 3]
+  </code></pre>
+      <div class="answer">
+        <strong>Explanation:</strong>
+        List of values is sorted using bubble sort. Keys are not preserved in sorted form.
+      </div>
+      <hr>
+    </section>
+
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const codeElement = btn.nextElementSibling;
+        const codeToCopy = codeElement.innerText;
+
+        navigator.clipboard.writeText(codeToCopy).then(() => {
+          btn.innerText = "Copied!";
+          setTimeout(() => btn.innerText = "Copy", 1000);
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+          const textArea = document.createElement("textarea");
+          textArea.value = codeToCopy;
+          textArea.style.position = "fixed";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          try {
+            document.execCommand('copy');
+            btn.innerText = "Copied!";
+            setTimeout(() => btn.innerText = "Copy", 1000);
+          } catch (err) {
+            console.error('Fallback copy failed: ', err);
+            alert('Failed to copy. Please select and copy manually.');
+          }
+          document.body.removeChild(textArea);
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

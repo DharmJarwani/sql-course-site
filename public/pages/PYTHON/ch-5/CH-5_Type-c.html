@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Conceptual Questions</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #0a0b0b, #c8e6c9);
+      /* Light Blue to Light Green */
+      color: #37474f;
+      /* Dark Slate Grey */
+    }
+
+    header {
+      background: linear-gradient(120deg, #b400c1, #26a69a);
+      /* Cyan to Teal */
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      background: linear-gradient(145deg, #ffffff, #e3f2fd);
+      /* White to Lighter Blue */
+      border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 6px solid #118897;
+      /* Light Cyan */
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Style for the horizontal rule to give it some breathing room */
+    hr {
+      border: none;
+      /* Remove default border */
+      border-top: 15px solid #e60808;
+      /* A solid, vibrant Cyan line */
+      margin-top: 2rem;
+      /* More space above */
+      margin-bottom: 2rem;
+      /* More space below */
+      width: 90%;
+      /* Even shorter line for emphasis */
+      margin-left: auto;
+      /* Center the line */
+      margin-right: auto;
+      border-radius: 2px;
+      /* Slightly rounded ends for a softer look */
+    }
+
+    /* Hide the HR after the last sub-question answer */
+    section .answer:last-of-type+hr {
+      display: none;
+    }
+
+    .question {
+      background-color: #e0f7fa;
+      /* Light Cyan */
+      color: #00838f;
+      /* Dark Cyan */
+      font-weight: 600;
+      border-left: 6px solid #26c6da;
+      /* Medium Cyan */
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      /* Added margin for separation */
+    }
+
+    /* --- New Rule for sub-question spacing --- */
+    /* Target the 'question' div when it's specifically a 'Sub-question' for top margin */
+    section .question:has(strong)+pre+div.question {
+      margin-top: 1.5rem;
+      /* Add space above subsequent sub-question headers */
+    }
+
+    /* --- End New Rule --- */
+
+
+    .answer {
+      background-color: #e8f5e9;
+      /* Light Green */
+      border-left: 6px solid #43a047;
+      /* Green */
+      padding: 12px 16px;
+      margin-top: 8px;
+      border-radius: 10px;
+    }
+
+    /* --- New Rule for sub-answer spacing --- */
+    /* Add bottom margin to the answer div within the Sub-question section */
+    section:last-of-type .answer {
+      /* Target only the last section for these specific rules */
+      margin-bottom: 1rem;
+      /* Add space after each sub-answer */
+    }
+
+    /* --- End New Rule --- */
+
+    h2,
+    h3 {
+      margin: 0.5rem 0 1rem;
+      color: #006064;
+      /* Dark Teal */
+    }
+
+    p,
+    li {
+      line-height: 1.8;
+      margin: 0.8rem 0;
+    }
+
+    pre {
+      background: #2d2d2d;
+      /* Darker background for code blocks, complements "Tomorrow" theme */
+      border-radius: 10px;
+      padding: 1.2rem;
+      overflow-x: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+      position: relative;
+      /* Essential for positioning the copy button */
+    }
+
+    /* Custom Copy Button Styles */
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #00bcd4;
+      /* Cyan */
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+      z-index: 10;
+      /* Ensure it's above the code */
+    }
+
+    .copy-btn:hover {
+      background-color: #0097a7;
+      /* Darker Cyan on hover */
+    }
+
+    .copy-btn:active {
+      background-color: #007c8d;
+      /* Even darker on click */
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      /* Slightly darker for inline code against light backgrounds */
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      color: #37474f;
+      /* Matches body text color for inline code */
+    }
+
+    /* Styles for the highlight span in Q26 answers */
+    .highlight {
+      font-weight: bold;
+      color: #e91e63;
+      /* A strong pink for visibility */
+      background-color: #ffebee;
+      /* Very light pink background */
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+    }
+
+    .info-box {
+      background: #e1f5fe;
+      /* Lighter Blue */
+      border-left: 5px solid #2196f3;
+      /* Blue */
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .answer pre.output-pre {
+      background-color: #f0f4c3;
+      /* Light yellowish green */
+      color: #3e2723;
+      /* Dark brown, contrasting well */
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px dashed #afb42b;
+      /* A dashed border for distinction */
+      font-family: 'Fira Code', monospace;
+      /* Keep consistent font */
+      font-size: 1rem;
+      box-shadow: none;
+      /* Remove shadow to make it look like part of the answer */
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.8rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>Chapter - 5 [Type - C]</header>
+
+
+  <main>
+
+
+    <section>
+  <div class="question">
+    <strong>Q1.</strong> Write a program that reads a text file and creates another file that is identical except that every sequence of consecutive blank spaces is replaced by a single space.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Function to reduce multiple spaces to single space in a file
+def normalize_spaces(input_file, output_file):
+    with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
+        for line in infile:
+            # ' '.join(line.split()) removes extra spaces between words
+            normalized_line = ' '.join(line.split())
+            outfile.write(normalized_line + '\n')
+
+# Example usage
+# Suppose 'input.txt' contains:
+# Hello     World   !
+# Python     is    fun
+
+normalize_spaces('input.txt', 'output.txt')
+
+# Content of 'output.txt' after running:
+# Hello World !
+# Python is fun
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>line.split()</code> splits the line into words, ignoring extra spaces.</li>
+      <li><code>' '.join(...)</code> joins them back with a single space.</li>
+      <li>The cleaned lines are written to <code>output.txt</code>.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+<section>
+  <div class="question">
+    <strong>Q2.</strong> A file <code>sports.dat</code> contains information in the format: <code>Event : Participant</code> <br>
+    Write a function that would read contents from <code>sports.dat</code> and create a file <code>Athletic.dat</code> copying only those records where the event name is “Athletics”.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Function to filter only "Athletics" records
+def filter_athletics_records(input_file, output_file):
+    with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
+        for line in infile:
+            parts = line.strip().split(":", 1)
+            if len(parts) == 2:
+                event = parts[0].strip()
+                if event.lower() == "athletics":
+                    outfile.write(line)
+
+# Example usage
+# Suppose 'sports.dat' contains:
+# Athletics : Asha
+# Swimming : Ravi
+# Athletics : John
+
+filter_athletics_records('sports.dat', 'Athletic.dat')
+
+# Content of 'Athletic.dat' after running:
+# Athletics : Asha
+# Athletics : John
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Each line is split at the first <code>":"</code> to extract the event name.</li>
+      <li>Only lines where the event is exactly <code>"Athletics"</code> (case-insensitive) are written to the new file.</li>
+      <li>This filters the file based on the required condition.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+
+<section>
+  <div class="question">
+    <strong>Q3.</strong> A file contains a list of telephone numbers in the following form:<br>
+    <code>Arvind 7258031</code><br>
+    <code>Sachin 7259197</code><br>
+    The names contain only one word, and the names and telephone numbers are separated by white spaces.<br>
+    Write a program to read the file and display its contents in two columns.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Function to display name and phone number in two columns
+def display_phonebook(file_name):
+    with open(file_name, 'r') as f:
+        print(f"{'Name':<15}Phone Number")
+        print("-" * 30)
+        for line in f:
+            parts = line.strip().split()
+            if len(parts) == 2:
+                name, phone = parts
+                print(f"{name:<15}{phone}")
+
+# Example usage
+# Suppose 'phones.txt' contains:
+# Arvind 7258031
+# Sachin 7259197
+
+display_phonebook('phones.txt')
+
+# Output:
+# Name           Phone Number
+# ------------------------------
+# Arvind         7258031
+# Sachin         7259197
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>line.strip().split()</code> separates each line into name and number.</li>
+      <li><code>{name:&lt;15}</code> left-aligns the name in a 15-character column.</li>
+      <li>The result is a neat two-column display of names and phone numbers.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q4.</strong> Write a program to count the words <code>"to"</code> and <code>"the"</code> present in a text file <code>Poem.txt</code>.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Function to count "to" and "the" in a file
+def count_to_the(filename):
+    with open(filename, 'r') as f:
+        text = f.read().lower().split()
+        count_to = text.count("to")
+        count_the = text.count("the")
+        print(f'"to" count:', count_to)
+        print(f'"the" count:', count_the)
+
+# Example usage:
+# If Poem.txt contains: "To the stars and to the sky."
+count_to_the("Poem.txt")
+
+# Output:
+# "to" count: 2
+# "the" count: 2
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>File is read and converted to lowercase to ensure case-insensitive match.</li>
+      <li><code>split()</code> separates the text into words.</li>
+      <li><code>count()</code> is used to count exact matches of "to" and "the".</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q5.</strong> Write a function <code>AMCount()</code> in Python, which should read each character of a text file <code>STORY.TXT</code>, and count/display the occurrence of A and M (including small cases a and m too).<br>
+    Example content:<br>
+    <code>Updated information<br>As simplified by official websites.</code><br>
+    Expected Output:<br>
+    <code>A or a : 4<br>M or m : 2</code>
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Function to count A/a and M/m from file
+def AMCount():
+    with open("STORY.TXT", 'r') as f:
+        a_count = 0
+        m_count = 0
+        for char in f.read():
+            if char in ['a', 'A']:
+                a_count += 1
+            elif char in ['m', 'M']:
+                m_count += 1
+        print("A or a :", a_count)
+        print("M or m :", m_count)
+
+# Example: STORY.TXT contains:
+# Updated information
+# As simplified by official websites.
+
+AMCount()
+
+# Output:
+# A or a : 4
+# M or m : 2
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>File is read character-by-character using <code>f.read()</code>.</li>
+      <li>Each character is checked for <code>'a'/'A'</code> and <code>'m'/'M'</code> and respective counters are updated.</li>
+      <li>Result is printed in the required format.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q6.</strong> Write a program to count the number of upper-case alphabets present in a text file <code>Article.txt</code>.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Function to count uppercase letters
+def count_uppercase(filename):
+    with open(filename, 'r') as f:
+        data = f.read()
+        count = sum(1 for ch in data if ch.isupper())
+        print("Total uppercase letters:", count)
+
+# Example:
+# If Article.txt contains: "Python Is FUN."
+count_uppercase("Article.txt")
+
+# Output:
+# Total uppercase letters: 4
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>The file is read using <code>read()</code>.</li>
+      <li>Each character is checked with <code>isupper()</code> to identify uppercase letters.</li>
+      <li><code>sum()</code> with a generator expression counts how many are uppercase.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q7.</strong> Write a program that copies one file to another. Have the program read the file names from the user.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Copy contents of one file to another
+def copy_file():
+    source = input("Enter source filename: ")
+    target = input("Enter target filename: ")
+
+    with open(source, 'r') as f1, open(target, 'w') as f2:
+        f2.write(f1.read())
+        print("File copied successfully.")
+
+# Example:
+# Enter source filename: source.txt
+# Enter target filename: copy.txt
+copy_file()
+
+# Output:
+# File copied successfully.
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>User is prompted for source and destination filenames.</li>
+      <li><code>open()</code> with read and write modes is used.</li>
+      <li><code>f1.read()</code> reads the full content which is written to <code>f2</code>.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q8.</strong> Write a program that appends the contents of one file to another. Have the program take the filenames from the user.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Append content of one file to another
+def append_file():
+    source = input("Enter source filename: ")
+    target = input("Enter target filename: ")
+
+    with open(source, 'r') as f1, open(target, 'a') as f2:
+        f2.write(f1.read())
+        print("File appended successfully.")
+
+# Example:
+# Enter source filename: note.txt
+# Enter target filename: final.txt
+append_file()
+
+# Output:
+# File appended successfully.
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Source file is opened in read mode, target in append mode (<code>'a'</code>).</li>
+      <li>All contents of source file are added at the end of target file.</li>
+      <li>Useful when combining logs, summaries, etc.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+<section>
+  <div class="question">
+    <strong>Q9.</strong> Write a method in Python to read lines from a text file <code>MYNOTES.TXT</code>, and display those lines, which are starting with an alphabet ‘K’.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Function to display lines starting with 'K'
+def display_lines_k():
+    with open("MYNOTES.TXT", 'r') as f:
+        for line in f:
+            if line.strip().startswith('K'):
+                print(line.strip())
+
+# Example:
+# File content:
+# Keep learning
+# Knowledge is power
+# Python is great
+# Output:
+# Keep learning
+# Knowledge is power
+display_lines_k()
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Each line is read using a loop.</li>
+      <li><code>strip()</code> removes spaces/newlines from edges.</li>
+      <li><code>startswith('K')</code> checks if line begins with 'K'.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q10.</strong> Write a function <code>DISPLAYWORDS()</code> in Python to read lines from a text file <code>STORY.TXT</code>, and display those words, which are less than 4 characters.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Function to display words with length < 4
+def DISPLAYWORDS():
+    with open("STORY.TXT", 'r') as f:
+        for line in f:
+            words = line.strip().split()
+            for word in words:
+                if len(word) < 4:
+                    print(word)
+
+# Example:
+# File: STORY.TXT
+# The cat ran to the mat.
+# Output:
+# The
+# cat
+# ran
+# to
+# the
+# mat.
+DISPLAYWORDS()
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>split()</code> breaks line into individual words.</li>
+      <li>Each word is checked using <code>len()</code>.</li>
+      <li>Words having less than 4 characters are printed.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q11.</strong> Write a program that reads characters from the keyboard one by one. All lower-case characters get stored inside the file <code>LOWER</code>, all upper-case characters get stored inside the file <code>UPPER</code> and all other characters get stored inside file <code>OTHERS</code>.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Read characters and store in different files
+def store_by_type():
+    print("Enter characters (type '#' to stop):")
+
+    with open("LOWER.txt", "w") as lower, \
+         open("UPPER.txt", "w") as upper, \
+         open("OTHERS.txt", "w") as others:
+
+        while True:
+            ch = input("Enter character: ")
+            if ch == '#':
+                break
+            elif ch.islower():
+                lower.write(ch)
+            elif ch.isupper():
+                upper.write(ch)
+            else:
+                others.write(ch)
+
+# Example:
+# Input: A, b, @, G, z, #
+# UPPER.txt → AG
+# LOWER.txt → bz
+# OTHERS.txt → @
+store_by_type()
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>User types one character at a time. Typing <code>#</code> stops input.</li>
+      <li><code>islower()</code> and <code>isupper()</code> help classify characters.</li>
+      <li>Characters are saved in separate files accordingly.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+<section>
+  <div class="question">
+    <strong>Q12.</strong> Write a function in Python to count and display the number of lines starting with alphabet ‘A’ present in a text file “LINES.TXT”. <br>
+    <strong>Example File:</strong><br>
+    <pre>
+A boy is playing there.  
+There is a playground.  
+An aeroplane is in the sky.  
+Alphabets & numbers are allowed in password.  
+    </pre>
+    <strong>Expected Output:</strong> <code>3</code>
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Function to count lines starting with 'A' or 'a'
+def count_lines_A():
+    count = 0
+    with open("LINES.TXT", 'r') as f:
+        for line in f:
+            if line.lstrip().startswith('A') or line.lstrip().startswith('a'):
+                count += 1
+    print("Number of lines starting with 'A':", count)
+
+# Example Output:
+# Number of lines starting with 'A': 3
+count_lines_A()
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>lstrip()</code> is used to ignore leading spaces.</li>
+      <li>It checks whether the line starts with 'A' or 'a'.</li>
+      <li>The counter increases only if the line matches the condition.</li>
+      <li>Final count is printed after reading the file.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+
+<section>
+  <div class="question">
+    <strong>Q13.</strong> Write a program that counts the number of characters up to the first <code>$</code> in a text file.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+def count_until_dollar(filename):
+    count = 0
+    with open(filename, 'r') as file:
+        while True:
+            char = file.read(1)
+            if not char or char == '$':
+                break
+            count += 1
+    print("Characters before first $:", count)
+
+# Example:
+# If file content: "Hello world $ this is text"
+# Output: Characters before first $: 12
+count_until_dollar("sample.txt")
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>The function reads the file character-by-character using <code>read(1)</code>.</li>
+      <li>It stops counting once <code>'$'</code> is encountered or end-of-file is reached.</li>
+      <li>Useful for partial reads or stream-parsing applications.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q14.</strong> Write a program that will create an object called <code>file1</code> for writing, associate it with the filename <code>STRS.txt</code>. The code should keep on writing strings to it as long as the user wants.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+file1 = open("STRS.txt", "w")
+
+while True:
+    line = input("Enter a string to write in file: ")
+    file1.write(line + "\n")
+    
+    cont = input("Want to continue writing? (yes/no): ").lower()
+    if cont != 'yes':
+        break
+
+file1.close()
+print("Strings written to STRS.txt")
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>File is opened in write mode using <code>open()</code>.</li>
+      <li>Each user input is written as a new line.</li>
+      <li>The loop continues until the user types anything other than <code>yes</code>.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+
+
+
+<section>
+  <div class="question">
+    <strong>Q15.</strong> Consider the following definition of a dictionary <code>Member = {'MemberNo.' : ______, 'Name' : _______}</code>. Write a method in Python to write the content in a pickled file <code>member.dat</code>.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+import pickle
+
+def save_member():
+    Member = {
+        'MemberNo.': int(input("Enter member number: ")),
+        'Name': input("Enter name: ")
+    }
+    with open("member.dat", "wb") as f:
+        pickle.dump(Member, f)
+    print("Member dictionary saved successfully.")
+
+# Example usage:
+# Enter member number: 101
+# Enter name: John
+# Output: Member dictionary saved successfully.
+save_member()
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>pickle.dump()</code> stores the dictionary in binary format.</li>
+      <li><code>"wb"</code> mode opens the file for binary writing.</li>
+      <li>Helps in persistent storage of complex data like dictionaries.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q16.</strong> Consider the following definition of dictionary Staff:<br>
+    <code>Staff = {'Staffcode' : _______, 'Name' : _______}</code><br>
+    Write a method in Python to search and display the content in a pickled file <code>staff.dat</code>, where <code>Staffcode</code> is matching with ‘S0015’.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+import pickle
+
+def search_staff():
+    try:
+        with open("staff.dat", "rb") as f:
+            while True:
+                staff = pickle.load(f)
+                if staff.get('Staffcode') == 'S0015':
+                    print("Record Found:", staff)
+    except EOFError:
+        pass
+    except FileNotFoundError:
+        print("File not found.")
+
+# Sample Output if match found:
+# Record Found: {'Staffcode': 'S0015', 'Name': 'Aryan'}
+search_staff()
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Opens the file in binary read mode <code>'rb'</code>.</li>
+      <li>Loads each pickled object using <code>pickle.load()</code>.</li>
+      <li>If <code>Staffcode</code> matches "S0015", it prints the dictionary.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+
+
+<section>
+  <div class="question">
+    <strong>Q17.</strong> Considering the dictionary <code>Company = {'CompID': _______, 'CName': _______, 'Turnover': _______}</code><br>
+    Write a Python method to search and display the content from a pickled file <code>COMPANY.DAT</code> where <code>CompID</code> = ‘1005’.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+import pickle
+
+def search_company():
+    try:
+        with open("COMPANY.DAT", "rb") as f:
+            while True:
+                company = pickle.load(f)
+                if company.get('CompID') == 1005:
+                    print("Company Found:", company)
+    except EOFError:
+        pass
+    except FileNotFoundError:
+        print("File not found.")
+
+# Sample Output:
+# Company Found: {'CompID': 1005, 'CName': 'Techno Corp', 'Turnover': 5000000}
+search_company()
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Binary file is read using a <code>while True</code> loop and <code>pickle.load()</code>.</li>
+      <li><code>get('CompID')</code> ensures no KeyError.</li>
+      <li>Prints the record if CompID matches 1005.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+
+
+<section>
+  <div class="question">
+    <strong>Q18.</strong> Write a Python function to display details of all trains whose destination is “Delhi” from binary file <code>TRAIN.DAT</code>.<br>
+    The file contains dictionaries like: <br>
+    <code>Train = {'Tno': _______, 'From': _______, 'To': _______}</code>
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+import pickle
+
+def search_trains_to_delhi():
+    try:
+        with open("TRAIN.DAT", "rb") as f:
+            found = False
+            while True:
+                train = pickle.load(f)
+                if train.get('To') == 'Delhi':
+                    print(train)
+                    found = True
+    except EOFError:
+        if not found:
+            print("No trains to Delhi found.")
+    except FileNotFoundError:
+        print("TRAIN.DAT not found.")
+
+# Sample Output:
+# {'Tno': '12345', 'From': 'Mumbai', 'To': 'Delhi'}
+# {'Tno': '54321', 'From': 'Chennai', 'To': 'Delhi'}
+search_trains_to_delhi()
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>The function reads each train dictionary from the file.</li>
+      <li>Checks if the destination <code>'To'</code> is <code>'Delhi'</code>.</li>
+      <li>Prints all matching records or message if none found.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+<section>
+  <div class="question">
+    <strong>Q19.</strong> A binary file <code>Book.dat</code> has structure [BookNo, Book_Name, Author, Price].<br><br>
+    (i) Write a user-defined function <code>CreateFile()</code> to input data for a record and add it to Book.dat.<br>
+    (ii) Write a function <code>CountRec(Author)</code> in Python which accepts an author name as parameter and returns the number of books by that author stored in the file.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+import pickle
+
+# (i) Function to add book records
+def CreateFile():
+    with open("Book.dat", "ab") as f:
+        while True:
+            BookNo = int(input("Enter Book Number: "))
+            Book_Name = input("Enter Book Name: ")
+            Author = input("Enter Author Name: ")
+            Price = float(input("Enter Book Price: "))
+            book = [BookNo, Book_Name, Author, Price]
+            pickle.dump(book, f)
+            ch = input("Add another record? (y/n): ")
+            if ch.lower() != 'y':
+                break
+
+# (ii) Function to count records by author name
+def CountRec(author_name):
+    count = 0
+    try:
+        with open("Book.dat", "rb") as f:
+            while True:
+                book = pickle.load(f)
+                if book[2].lower() == author_name.lower():
+                    count += 1
+    except EOFError:
+        pass
+    except FileNotFoundError:
+        print("File not found.")
+    return count
+
+# Example usage
+# CreateFile()
+print("Total books by 'Ruskin Bond':", CountRec('Ruskin Bond'))
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>CreateFile()</code>:
+        <ul>
+          <li>Takes book details from the user and creates a list: [BookNo, Book_Name, Author, Price]</li>
+          <li>Stores each book using <code>pickle.dump()</code> in append mode.</li>
+        </ul>
+      </li>
+      <li><code>CountRec(author_name)</code>:
+        <ul>
+          <li>Reads all records using <code>pickle.load()</code></li>
+          <li>Compares <code>book[2]</code> (Author) with the given name (case-insensitive)</li>
+          <li>Counts and returns the total matches</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+<section>
+  <div class="question">
+    <strong>Q20.</strong> Write a function <code>Show_words()</code> in Python to read the content of a text file <code>‘NOTES.TXT’</code> and display only such lines of the file which have exactly 5 words in them.<br><br>
+    <strong>Example:</strong><br>
+    If the file contains:<br>
+    This is a sample file.<br>
+    The file contains many sentences.<br>
+    But need only sentences which have only 5 words.<br><br>
+    Then the function should display:<br>
+    This is a sample file.<br>
+    The file contains many sentences.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+def Show_words():
+    try:
+        with open("NOTES.TXT", "r") as file:
+            for line in file:
+                words = line.strip().split()
+                if len(words) == 5:
+                    print(line.strip())
+    except FileNotFoundError:
+        print("NOTES.TXT file not found.")
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>line.strip()</code> removes leading/trailing whitespace from each line.</li>
+      <li><code>.split()</code> splits the line into words using spaces.</li>
+      <li>If the number of words is exactly 5, the line is printed.</li>
+    </ul>
+    <strong>Sample Output:</strong>
+    <pre>
+This is a sample file.
+The file contains many sentences.
+    </pre>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q21.</strong> Write a Python program to read a given CSV file having tab delimiter.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+import csv
+
+with open("data.csv", newline='') as file:
+    reader = csv.reader(file, delimiter='\t')
+    for row in reader:
+        print(row)
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong> The <code>delimiter='\t'</code> specifies that values are separated by tab character instead of comma.
+  </div>
+  <hr>
+</section>
+
+
+
+
+
+<section>
+  <div class="question">
+    <strong>Q22.</strong> Write a Python program to write a nested Python list to a csv file in one go. After writing the CSV file read the CSV file and display the content.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+import csv
+
+data = [['Name', 'Age'], ['Arjun', 17], ['Kavya', 18]]
+
+# Write to CSV
+with open('students.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerows(data)
+
+# Read from CSV
+with open('students.csv', newline='') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        print(row)
+  </code></pre>
+
+  <div class="answer">
+    <strong>Sample Output:</strong>
+    <pre>
+['Name', 'Age']
+['Arjun', '17']
+['Kavya', '18']
+    </pre>
+  </div>
+  <hr>
+</section>
+
+
+
+
+
+<section>
+  <div class="question">
+    <strong>Q23.</strong> Write a function that reads a csv file and creates another csv file with the same content, but with a different delimiter.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+import csv
+
+def convert_delimiter(source, target, old_delim=',', new_delim='|'):
+    with open(source, newline='') as infile, open(target, 'w', newline='') as outfile:
+        reader = csv.reader(infile, delimiter=old_delim)
+        writer = csv.writer(outfile, delimiter=new_delim)
+        for row in reader:
+            writer.writerow(row)
+  </code></pre>
+
+  <div class="answer">
+    <strong>Usage:</strong> <code>convert_delimiter("data.csv", "new_data.csv")</code><br>
+    <strong>Changes:</strong> Converts comma-separated to pipe-separated content.
+  </div>
+  <hr>
+</section>
+
+
+
+
+<section>
+  <div class="question">
+    <strong>Q24.</strong> Write a function that reads a csv file and creates another csv file with the same content except the lines beginning with ‘check’.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+import csv
+
+def skip_check_lines(source, target):
+    with open(source, newline='') as infile, open(target, 'w', newline='') as outfile:
+        reader = csv.reader(infile)
+        writer = csv.writer(outfile)
+        for row in reader:
+            if not row[0].lower().startswith('check'):
+                writer.writerow(row)
+  </code></pre>
+
+  <div class="answer">
+    <strong>Note:</strong> This skips any row where first column starts with the word "check".
+  </div>
+  <hr>
+</section>
+
+
+
+<section>
+  <div class="question">
+    <strong>Q25.</strong> Give any one point of difference between a binary file and a CSV file.
+  </div>
+
+  <div class="answer">
+    <ul>
+      <li><strong>Binary File:</strong> Stores data in a non-human readable format using 0s and 1s. Used for storing Python objects like dictionaries or custom objects.</li>
+      <li><strong>CSV File:</strong> Stores tabular data in text format (comma-separated). Human-readable and can be opened in Excel or text editors.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+<section>
+  <div class="question">
+    <strong>Q26.</strong> Write a Program in Python that defines and calls the following user defined functions:<br>
+    (a) <code>add()</code> – To accept and add employee data to a CSV file <code>‘furndata.csv’</code>. Each record includes <code>fid</code>, <code>fname</code>, and <code>fprice</code>.<br>
+    (b) <code>search()</code> – To display furniture records whose price is more than 1000.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+import csv
+
+def add():
+    with open('furndata.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        n = int(input("Enter number of furniture records to add: "))
+        for _ in range(n):
+            fid = input("Enter Furniture ID: ")
+            fname = input("Enter Furniture Name: ")
+            fprice = float(input("Enter Furniture Price: "))
+            writer.writerow([fid, fname, fprice])
+    print("Records added successfully.")
+
+def search():
+    print("Furniture items with price more than 1000:")
+    with open('furndata.csv', newline='') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            try:
+                if float(row[2]) > 1000:
+                    print(row)
+            except:
+                pass  # Skip invalid or header rows
+
+# Run the functions
+add()
+search()
+  </code></pre>
+
+  <div class="answer">
+    <strong>Sample Output:</strong>
+    <pre>
+Enter number of furniture records to add: 2
+Enter Furniture ID: F001
+Enter Furniture Name: Sofa
+Enter Furniture Price: 4500
+
+Enter Furniture ID: F002
+Enter Furniture Name: Stool
+Enter Furniture Price: 850
+
+Records added successfully.
+
+Furniture items with price more than 1000:
+['F001', 'Sofa', '4500.0']
+    </pre>
+    <strong>Explanation:</strong> The program appends new furniture records to <code>furndata.csv</code> using <code>add()</code> and filters expensive furniture using <code>search()</code>.
+  </div>
+  <hr>
+</section>
+
+
+
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const codeElement = btn.nextElementSibling;
+        const codeToCopy = codeElement.innerText;
+
+        navigator.clipboard.writeText(codeToCopy).then(() => {
+          btn.innerText = "Copied!";
+          setTimeout(() => btn.innerText = "Copy", 1000);
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+          const textArea = document.createElement("textarea");
+          textArea.value = codeToCopy;
+          textArea.style.position = "fixed";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          try {
+            document.execCommand('copy');
+            btn.innerText = "Copied!";
+            setTimeout(() => btn.innerText = "Copy", 1000);
+          } catch (err) {
+            console.error('Fallback copy failed: ', err);
+            alert('Failed to copy. Please select and copy manually.');
+          }
+          document.body.removeChild(textArea);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

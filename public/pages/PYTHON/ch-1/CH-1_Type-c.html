@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Conceptual Questions</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #0a0b0b, #c8e6c9);
+      /* Light Blue to Light Green */
+      color: #37474f;
+      /* Dark Slate Grey */
+    }
+
+    header {
+      background: linear-gradient(120deg, #b400c1, #26a69a);
+      /* Cyan to Teal */
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      background: linear-gradient(145deg, #ffffff, #e3f2fd);
+      /* White to Lighter Blue */
+      border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 6px solid #118897;
+      /* Light Cyan */
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Style for the horizontal rule to give it some breathing room */
+    hr {
+      border: none;
+      /* Remove default border */
+      border-top: 15px solid #e60808;
+      /* A solid, vibrant Cyan line */
+      margin-top: 2rem;
+      /* More space above */
+      margin-bottom: 2rem;
+      /* More space below */
+      width: 90%;
+      /* Even shorter line for emphasis */
+      margin-left: auto;
+      /* Center the line */
+      margin-right: auto;
+      border-radius: 2px;
+      /* Slightly rounded ends for a softer look */
+    }
+
+    /* Hide the HR after the last sub-question answer */
+    section .answer:last-of-type+hr {
+      display: none;
+    }
+
+    .question {
+      background-color: #e0f7fa;
+      /* Light Cyan */
+      color: #00838f;
+      /* Dark Cyan */
+      font-weight: 600;
+      border-left: 6px solid #26c6da;
+      /* Medium Cyan */
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      /* Added margin for separation */
+    }
+
+    /* --- New Rule for sub-question spacing --- */
+    /* Target the 'question' div when it's specifically a 'Sub-question' for top margin */
+    section .question:has(strong)+pre+div.question {
+      margin-top: 1.5rem;
+      /* Add space above subsequent sub-question headers */
+    }
+
+    /* --- End New Rule --- */
+
+
+    .answer {
+      background-color: #e8f5e9;
+      /* Light Green */
+      border-left: 6px solid #43a047;
+      /* Green */
+      padding: 12px 16px;
+      margin-top: 8px;
+      border-radius: 10px;
+    }
+
+    /* --- New Rule for sub-answer spacing --- */
+    /* Add bottom margin to the answer div within the Sub-question section */
+    section:last-of-type .answer {
+      /* Target only the last section for these specific rules */
+      margin-bottom: 1rem;
+      /* Add space after each sub-answer */
+    }
+
+    /* --- End New Rule --- */
+
+    h2,
+    h3 {
+      margin: 0.5rem 0 1rem;
+      color: #006064;
+      /* Dark Teal */
+    }
+
+    p,
+    li {
+      line-height: 1.8;
+      margin: 0.8rem 0;
+    }
+
+    pre {
+      background: #2d2d2d;
+      /* Darker background for code blocks, complements "Tomorrow" theme */
+      border-radius: 10px;
+      padding: 1.2rem;
+      overflow-x: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+      position: relative;
+      /* Essential for positioning the copy button */
+    }
+
+    /* Custom Copy Button Styles */
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #00bcd4;
+      /* Cyan */
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+      z-index: 10;
+      /* Ensure it's above the code */
+    }
+
+    .copy-btn:hover {
+      background-color: #0097a7;
+      /* Darker Cyan on hover */
+    }
+
+    .copy-btn:active {
+      background-color: #007c8d;
+      /* Even darker on click */
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      /* Slightly darker for inline code against light backgrounds */
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      color: #37474f;
+      /* Matches body text color for inline code */
+    }
+
+    /* Styles for the highlight span in Q26 answers */
+    .highlight {
+      font-weight: bold;
+      color: #e91e63;
+      /* A strong pink for visibility */
+      background-color: #ffebee;
+      /* Very light pink background */
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+    }
+
+    .info-box {
+      background: #e1f5fe;
+      /* Lighter Blue */
+      border-left: 5px solid #2196f3;
+      /* Blue */
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .answer pre.output-pre {
+      background-color: #f0f4c3;
+      /* Light yellowish green */
+      color: #3e2723;
+      /* Dark brown, contrasting well */
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px dashed #afb42b;
+      /* A dashed border for distinction */
+      font-family: 'Fira Code', monospace;
+      /* Keep consistent font */
+      font-size: 1rem;
+      box-shadow: none;
+      /* Remove shadow to make it look like part of the answer */
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.8rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>Chapter - 1 [Type C]</header>
+
+
+  <main>
+
+   <section>
+  <div class="question">
+    <strong>Q1.</strong> Write a program to print one of the words <em>negative</em>, <em>zero</em>, or <em>positive</em>, according to whether variable <code>x</code> is less than zero, zero, or greater than zero, respectively.
+  </div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Program to check if a number is negative, zero or positive
+
+# Taking input from user
+x = int(input("Enter a number: "))
+
+# Checking conditions
+if x &lt; 0:
+    print("negative")
+elif x == 0:
+    print("zero")
+else:
+    print("positive")
+
+# Output:
+# If user enters -5 → negative
+# If user enters 0  → zero
+# If user enters 7  → positive
+</code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>User enters a number which is stored in <code>x</code>.</li>
+      <li><code>if</code>, <code>elif</code>, <code>else</code> statements check whether it is less than, equal to, or greater than zero.</li>
+      <li>This is a basic decision-making program using conditional logic.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+<section>
+  <div class="question">
+    <strong>Q2.</strong> Write a program that returns <code>True</code> if the input number is an even number, <code>False</code> otherwise.
+  </div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Program to check if a number is even
+
+num = int(input("Enter a number: "))
+
+# Return True if even, else False
+if num % 2 == 0:
+    print(True)
+else:
+    print(False)
+
+# Sample Output:
+# If input is 8 → True
+# If input is 5 → False
+</code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>num % 2</code> gives remainder after dividing by 2.</li>
+      <li>If remainder is 0, number is even → return <code>True</code>.</li>
+      <li>Otherwise, it's odd → return <code>False</code>.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q3.</strong> Write a Python program that calculates and prints the number of seconds in a year.
+  </div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Calculate number of seconds in a year
+
+days = 365
+hours = 24
+minutes = 60
+seconds = 60
+
+total_seconds = days * hours * minutes * seconds
+print("Seconds in a year:", total_seconds)
+
+# Output: Seconds in a year: 31536000
+</code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>1 day = 24 × 60 × 60 = 86400 seconds</li>
+      <li>365 days = 365 × 86400 = <code>31536000</code> seconds</li>
+      <li>This program does not account for leap year (extra day).</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+<section>
+  <div class="question">
+    <strong>Q4.</strong> Write a Python program that accepts two integers from the user and prints a message saying if the first number is divisible by the second number or not.
+  </div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+if b != 0:
+    if a % b == 0:
+        print(f"{a} is divisible by {b}")
+    else:
+        print(f"{a} is not divisible by {b}")
+else:
+    print("Cannot divide by zero")
+
+# Sample Output:
+# Enter first number: 10
+# Enter second number: 2
+# Output: 10 is divisible by 2
+</code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Checks if divisor is zero → avoids division error.</li>
+      <li>Then uses modulus operator <code>%</code> to check divisibility.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+<section>
+  <div class="question">
+    <strong>Q5.</strong> Write a program that asks the user the day number in a year (2 to 365) and the first day of the year (e.g. Sunday, Monday, etc.). The program displays the day on the entered day-number.
+  </div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+daynum = int(input("Enter day number (2-365): "))
+first = input("Enter first day of year: ")
+
+days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday"]
+
+if first in days:
+    first_index = days.index(first)
+    day_index = (first_index + daynum - 1) % 7
+    print("Day on that date is:", days[day_index])
+else:
+    print("Invalid first day input")
+
+# Sample:
+# daynum = 3, first = Wednesday → Wednesday + 2 = Friday
+# Output: Day on that date is: Friday
+</code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Finds index of first day in list.</li>
+      <li>Adds day number offset and uses modulo 7 to wrap around.</li>
+      <li>Handles invalid input for day name.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+
+
+<section>
+  <div class="question">
+    <strong>Q6.</strong> Write a program that converts feet to inches using functions.
+  </div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+def feet_inches(feet):
+    return feet * 12
+
+def ask_feet_and_return_inches():
+    feet = int(input("Enter length in feet: "))
+    return feet_inches(feet)
+
+def display_inches(inches):
+    print("Length in inches:", inches)
+
+# Main code
+inches = ask_feet_and_return_inches()
+display_inches(inches)
+
+# Sample Output:
+# Enter length in feet: 5
+# Output: Length in inches: 60
+</code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Uses <code>feet_inches()</code> to convert.</li>
+      <li>Separates input, calculation, and output using modular functions.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+<section>
+  <div class="question">
+    <strong>Q7.</strong> Write a program that prints the sum from N to 2N if N is positive, or from 2N to N if N is negative.
+  </div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+N = int(input("Enter an integer N: "))
+total = 0
+
+if N >= 0:
+    for i in range(N, 2*N + 1):
+        total += i
+else:
+    for i in range(2*N, N + 1):
+        total += i
+
+print("Sum is:", total)
+
+# Sample:
+# If N = 3 → sum = 3+4+5+6 = 18
+# If N = -3 → sum = -6 + -5 + -4 + -3 = -18
+</code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>If N is positive: range from N to 2N.</li>
+      <li>If N is negative: range from 2N to N (ascending).</li>
+      <li>Accumulates the total using a loop.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q8.</strong> Read a date as <code>MMDDYYYY</code> and print it in <code>Month Day, Year</code> format.
+  </div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+date = input("Enter date as MMDDYYYY: ")
+
+month_num = int(date[:2])
+day = int(date[2:4])
+year = int(date[4:])
+
+months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+]
+
+if 1 <= month_num <= 12:
+    month_name = months[month_num - 1]
+    print(f"{month_name} {day}, {year}")
+else:
+    print("Invalid month")
+
+# Sample Output:
+# Enter date as MMDDYYYY: 07202025
+# Output: July 20, 2025
+</code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>date[:2]</code> gives month, <code>date[2:4]</code> gives day, and <code>date[4:]</code> gives year.</li>
+      <li>Month number is converted to month name using a list.</li>
+      <li>Includes a check for valid month number (1–12).</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+<section>
+  <div class="question">
+    <strong>Q9.</strong> Print a table converting miles to kilometers from 1 to 10 miles.
+  </div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+print("Miles\tKilometers")
+for miles in range(1, 11):
+    km = miles * 1.609
+    print(f"{miles}.\t{km:.2f}")
+
+# Sample Output:
+# Miles   Kilometers
+# 1.      1.61
+# 2.      3.22
+# ...
+</code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Loop from 1 to 10 using <code>range(1, 11)</code>.</li>
+      <li>Each mile is converted using 1 mile = 1.609 km.</li>
+      <li>Formatted to 2 decimal places using <code>:.2f</code>.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+<section>
+  <div class="question">
+    <strong>Q10.</strong> Print a table converting pounds to kilograms from 1 to 20 pounds.
+  </div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+print("Pounds\tKilograms")
+for pounds in range(1, 21):
+    kg = pounds * 0.454
+    print(f"{pounds}.\t{kg:.2f}")
+
+# Sample Output:
+# Pounds  Kilograms
+# 1.      0.45
+# 2.      0.91
+# ...
+</code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Loop runs from 1 to 20 pounds.</li>
+      <li>Each pound converted using 1 pound = 0.454 kg.</li>
+      <li>Prints result in a tabular format with 2 decimal precision.</li>
+    </ul>
+  </div>
+  <hr>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const codeElement = btn.nextElementSibling;
+        const codeToCopy = codeElement.innerText;
+
+        navigator.clipboard.writeText(codeToCopy).then(() => {
+          btn.innerText = "Copied!";
+          setTimeout(() => btn.innerText = "Copy", 1000);
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+          const textArea = document.createElement("textarea");
+          textArea.value = codeToCopy;
+          textArea.style.position = "fixed";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          try {
+            document.execCommand('copy');
+            btn.innerText = "Copied!";
+            setTimeout(() => btn.innerText = "Copy", 1000);
+          } catch (err) {
+            console.error('Fallback copy failed: ', err);
+            alert('Failed to copy. Please select and copy manually.');
+          }
+          document.body.removeChild(textArea);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
