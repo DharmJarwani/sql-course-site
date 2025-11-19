@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Solved: 34 Questions (Python & Networking)</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    :root{
+      --accent1:#118897;
+      --accent2:#26a69a;
+      --card1:#ffffff;
+      --bg1:linear-gradient(120deg,#0a0b0b,#c8e6c9);
+      --teal:#006064;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      font-family:'Poppins',sans-serif;
+      margin:0;
+      background:var(--bg1);
+      color:#37474f;
+    }
+
+    header{
+      background:linear-gradient(120deg,#b400c1,#26a69a);
+      color:#fff;
+      padding:2rem 1rem;
+      text-align:center;
+      font-size:2rem;
+      font-weight:600;
+      letter-spacing:1px;
+      box-shadow:0 6px 20px rgba(0,0,0,.18);
+    }
+
+    main{
+      max-width:1100px;
+      margin:2rem auto;
+      padding:1rem;
+    }
+
+    section{
+      background:linear-gradient(145deg,#ffffff,#e3f2fd);
+      border-radius:12px;
+      padding:1.25rem;
+      margin-bottom:1.25rem;
+      box-shadow:0 8px 28px rgba(0,0,0,0.08);
+      border-left:6px solid var(--accent1);
+      transition:transform .2s ease,box-shadow .2s ease;
+    }
+    section:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 40px rgba(0,0,0,0.12);
+    }
+
+    .question{
+      background:#e0f7fa;
+      color:#00838f;
+      border-left:6px solid #26c6da;
+      padding:10px 14px;
+      border-radius:8px;
+      font-weight:600;
+      margin-bottom:0.75rem;
+    }
+
+    .answer{
+      background:#e8f5e9;
+      border-left:6px solid #43a047;
+      padding:10px 14px;
+      border-radius:8px;
+      margin-top:8px;
+      line-height:1.6;
+    }
+
+    .example {
+    background: #f9f9f9;
+    border-left: 4px solid #007acc;
+    padding: 10px 15px;
+    margin-top: 8px;
+    font-family: monospace;
+    border-radius: 6px;
+    }
+    .example h4 {
+    margin: 0 0 5px 0;
+    color: #007acc;
+    }
+
+
+    pre{
+      background:#2d2d2d;
+      color:#fff;
+      border-radius:10px;
+      padding:1rem;
+      overflow:auto;
+      position:relative;
+      margin-top:1rem;
+      font-family: 'Fira Code', monospace;
+      font-size:0.95rem;
+    }
+
+    .copy-btn{
+      position:absolute;
+      top:10px;
+      right:10px;
+      background:#00bcd4;
+      border:none;
+      color:#fff;
+      padding:6px 10px;
+      border-radius:5px;
+      cursor:pointer;
+      font-weight:700;
+      z-index:10;
+    }
+
+    code{font-family:'Fira Code',monospace;font-size:0.95rem}
+
+    h2{color:var(--teal); margin:0 0 .75rem 0}
+
+    .small {font-size:0.92rem; color:#455a64}
+
+    .output-pre{background:#f0f4c3;color:#3e2723;padding:1rem;border-radius:8px;border:1px dashed #afb42b; font-family: 'Fira Code', monospace}
+
+    @media (max-width:700px){
+      header{font-size:1.4rem;padding:1rem}
+      main{padding:.5rem}
+      pre{font-size:.85rem}
+    }
+  </style>
+</head>
+<body>
+  <!-- <header>Complete: 34 Questions — With Expected Answers</header> -->
+
+  <main>
+
+<!-- Q1 -->
+  <section>
+    <div class="question"><strong>Q1.</strong> Find and write the output of the following Python code:
+      <pre><button class="copy-btn">Copy</button><code class="language-python">x = "abcdef"
+i = "a"
+while i in x:
+    print(i, end=" ")</code></pre>
+    </div>
+
+    <div class="answer">
+      <strong>Answer:</strong> This results in an <em>infinite loop</em> printing <code>a a a ...</code> because <code>i</code> never changes and <code>"a" in x</code> is always true.
+    </div>
+  </section>
+
+<!-- Q2 -->
+  <section>
+    <div class="question"><strong>Q2.</strong> Given the list <code>L = [1,3,6,82,5,7,11,92]</code>, what is the output of <code>print(L[2:5])</code>?</div>
+    <div class="answer"><strong>Answer:</strong> <code>[6, 82, 5]</code></div>
+  </section>
+
+<!-- Q3 -->
+  <section>
+    <div class="question"><strong>Q3.</strong> Write the type of tokens:
+      (i) <code>if</code>  &nbsp; (ii) <code>roll_no</code></div>
+    <div class="answer"><strong>Answer:</strong> (i) Keyword. (ii) Identifier (variable name).</div>
+  </section>
+
+<!-- Q4 -->
+  <section>
+    <div class="question"><strong>Q4.</strong> Identify the valid arithmetic operator in Python from: (i) ?  (ii) &lt;  (iii) **  (iv) and</div>
+    <div class="answer"><strong>Answer:</strong> (iii) <code>**</code> (exponentiation operator).</div>
+  </section>
+
+<!-- Q5 -->
+  <section>
+    <div class="question"><strong>Q5.</strong> Given <code>T = (10,12,43,39)</code>, which is incorrect?
+      (i) <code>print(T[1])</code> (ii) <code>T[2] = 29</code> (iii) <code>print(max(T))</code> (iv) <code>print(len(T))</code>
+    </div>
+    <div class="answer"><strong>Answer:</strong> (ii) is incorrect — tuples are immutable so you cannot assign to <code>T[2]</code>.</div>
+  </section>
+
+<!-- Q6 -->
+  <section>
+    <div class="question"><strong>Q6.</strong> Statement to declare dictionary with keys 1,2,3 and values Monday, Tuesday, Wednesday.</div>
+    <div class="answer"><code>days = {1: "Monday", 2: "Tuesday", 3: "Wednesday"}</code></div>
+  </section>
+
+<!-- Q7 -->
+  <section>
+    <div class="question"><strong>Q7.</strong> If <code>T=(2,5,6,9,8)</code>, what is the value of <code>sum(T)</code>?</div>
+    <div class="answer"><strong>Answer:</strong> <code>30</code> (2+5+6+9+8 = 30)</div>
+  </section>
+
+<!-- Q8 -->
+<section>
+  <div class="question"><strong>Q8.</strong> Name the built-in function that returns absolute value.</div>
+  <div class="answer">
+    <strong>Answer:</strong> <code>abs()</code><br>
+    <strong>Definition:</strong> The <code>abs()</code> function in Python returns the absolute value of a number. 
+    For integers and floats, it removes the negative sign if present. For complex numbers, it returns the magnitude.
+  </div>
+  <div class="example">
+    <h4>Example:</h4>
+    <pre><code>print(abs(-7))     # Output: 7
+print(abs(-3.14))  # Output: 3.14
+print(abs(3+4j))   # Output: 5.0</code></pre>
+  </div>
+</section>
+
+
+
+
+<!-- Q9 -->
+  <section>
+    <div class="question"><strong>Q9.</strong> Name the protocol that is used to send emails.</div>
+    <div class="answer"><strong>Answer:</strong> <code>SMTP</code> (Simple Mail Transfer Protocol).</div>
+  </section>
+
+<!-- Q10 -->
+  <section>
+    <div class="question"><strong>Q10.</strong> Transmission media best suitable for connecting to hilly areas?</div>
+    <div class="answer"><strong>Answer:</strong> <em>Satellite communication</em> (or microwave links; satellite is commonly used where wired/radio links are hard).</div>
+  </section>
+
+<!-- Q11 -->
+  <section>
+    <div class="question"><strong>Q11.</strong> Identify the valid declaration of <code>L = ['Mon','23','hello','60.5']</code> — is it (i) dictionary (ii) string (iii) tuple (iv) list?</div>
+    <div class="answer"><strong>Answer:</strong> (iv) <code>list</code>.</div>
+  </section>
+
+<!-- Q12 -->
+  <section>
+    <div class="question"><strong>Q12.</strong> What does this print?
+      <pre><button class="copy-btn">Copy</button><code class="language-python">name = "ComputerSciencewithPython"
+print(name[3:10])</code></pre>
+    </div>
+    <div class="answer"><strong>Answer:</strong> <code>puterSc</code></div>
+  </section>
+
+<!-- Q13 -->
+  <section>
+    <div class="question"><strong>Q13.</strong> Expanded form of ARPANET?</div>
+    <div class="answer"><strong>Answer:</strong> <code>Advanced Research Projects Agency Network</code></div>
+  </section>
+
+<!-- Q14 -->
+  <section>
+    <div class="question"><strong>Q14.</strong> Statement to open "Book.txt" in read mode?</div>
+    <div class="answer"><code>f = open("Book.txt", "r")</code></div>
+  </section>
+
+<!-- Q15 -->
+  <section>
+    <div class="question"><strong>Q15.</strong> Rearrange in increasing order of data transfer rates: Gbps, Mbps, Tbps, Kbps, bps</div>
+    <div class="answer"><strong>Answer:</strong> <code>bps &lt; Kbps &lt; Mbps &lt; Gbps &lt; Tbps</code></div>
+  </section>
+
+
+
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+  <script>
+    // copy button behavior for all code blocks
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // next sibling is the code block (inside pre)
+        const pre = btn.parentElement;
+        let codeEl = pre.querySelector('code');
+        if(!codeEl) return;
+        const txt = codeEl.innerText;
+        navigator.clipboard.writeText(txt).then(()=>{
+          btn.innerText = 'Copied!';
+          setTimeout(()=> btn.innerText = 'Copy', 1200);
+        }).catch(()=> {
+          // fallback
+          const ta = document.createElement('textarea');
+          ta.value = txt;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); btn.innerText='Copied!'; setTimeout(()=>btn.innerText='Copy',1200);} catch(e){ alert('Copy failed — select and copy manually'); }
+          document.body.removeChild(ta);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

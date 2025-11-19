@@ -27,6 +27,19 @@ const pytopics = [
   { chapter: 5, title: "Type B", file: "/pages/PYTHON/ch-5/CH-5_Type-b.html" },
   { chapter: 5, title: "Type C", file: "/pages/PYTHON/ch-5/CH-5_Type-c.html" },
 
+    /* ---------- QP ---------- */
+  { chapter: 5, title: "QP", file: "/pages/PYTHON/QP/halfTearly.html" },
+  { chapter: 5, title: "QPA1", file: "/pages/PYTHON/QP/halfTearly-Part-A-Section-I.html" },
+  { chapter: 5, title: "QPA2", file: "/pages/PYTHON/QP/halfTearly-Part-A-Section-II.html" },
+  { chapter: 5, title: "QPB1", file: "/pages/PYTHON/QP/halfTearly-Part-B-Section-I.html" },
+  { chapter: 5, title: "QPB2", file: "/pages/PYTHON/QP/halfTearly-Part-B-Section-II.html" },
+  { chapter: 5, title: "QPB3", file: "/pages/PYTHON/QP/halfTearly-Part-B-Section-III.html" },
+
+  /* ---------- Practice section ---------- */
+  { chapter: 0, title: "P1 Comparison Operators", file: "/pages/PYTHON/Practice/PythonBasics-Equality-&-Comparison.html" },
+  { chapter: 0, title: "P2 Comparison Operators", file: "/pages/PYTHON/Practice/PythonBasics-Equality-&-Comparison.html" },
+
+  
 ];
 
 export default pytopics;

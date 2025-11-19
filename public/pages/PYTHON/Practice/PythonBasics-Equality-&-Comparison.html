@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>True / False Comparison Examples</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #0a0b0b, #c8e6c9);
+      color: #37474f;
+    }
+
+    header {
+      background: linear-gradient(120deg, #b400c1, #26a69a);
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      background: linear-gradient(145deg, #ffffff, #e3f2fd);
+      border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 6px solid #118897;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    hr {
+      border: none;
+      border-top: 15px solid #e60808;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 2px;
+    }
+
+    .question {
+      background-color: #e0f7fa;
+      color: #00838f;
+      font-weight: 600;
+      border-left: 6px solid #26c6da;
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .answer {
+      background-color: #e8f5e9;
+      border-left: 6px solid #43a047;
+      padding: 12px 16px;
+      margin-top: 8px;
+      border-radius: 10px;
+    }
+
+    pre {
+      background: #2d2d2d;
+      border-radius: 10px;
+      padding: 1.2rem;
+      overflow-x: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+      z-index: 10;
+    }
+
+    .copy-btn:hover {
+      background-color: #0097a7;
+    }
+
+    .copy-btn:active {
+      background-color: #007c8d;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      color: #e80ad5;
+    }
+  </style>
+</head>
+
+<body>
+<header>True / False Comparison Examples</header>
+
+<main>
+
+<!-- ===================================================== -->
+<!-- Q1 – INTEGER COMPARISON -->
+<!-- ===================================================== -->
+<section>
+  <div class="question">
+    <strong>Q1.</strong> Compare two integers using <code>==</code> and print True or False.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+a = 10
+b = 10
+
+print(a == b)   # True
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>a</code> and <code>b</code> both hold value 10.</li>
+      <li><code>a == b</code> checks if values are equal.</li>
+      <li>Since 10 equals 10, the result is <strong>True</strong>.</li>
+    </ul>
+  </div>
+
+  <hr>
+</section>
+
+
+<!-- ===================================================== -->
+<!-- Q2 – STRING COMPARISON -->
+<!-- ===================================================== -->
+<section>
+  <div class="question">
+    <strong>Q2.</strong> Compare two strings using <code>==</code>.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+s1 = "apple"
+s2 = "apple"
+
+print(s1 == s2)   # True
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Both strings contain the same characters.</li>
+      <li><code>"apple" == "apple"</code> gives <strong>True</strong>.</li>
+      <li>String comparison checks each character.</li>
+    </ul>
+  </div>
+
+  <hr>
+</section>
+
+
+<!-- ===================================================== -->
+<!-- Q3 – FLOAT COMPARISON -->
+<!-- ===================================================== -->
+<section>
+  <div class="question">
+    <strong>Q3.</strong> Compare two float numbers using <code>==</code>.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+x = 3.5
+y = 4.2
+
+print(x == y)    # False
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>x</code> is 3.5 and <code>y</code> is 4.2.</li>
+      <li>Values do not match, so result is <strong>False</strong>.</li>
+    </ul>
+  </div>
+
+  <hr>
+</section>
+
+
+<!-- ===================================================== -->
+<!-- Q4 – BOOLEAN COMPARISON -->
+<!-- ===================================================== -->
+<section>
+  <div class="question">
+    <strong>Q4.</strong> Compare two boolean values using <code>==</code>.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+flag1 = True
+flag2 = False
+
+print(flag1 == flag2)   # False
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li><code>True</code> is not equal to <code>False</code>.</li>
+      <li>So comparison gives <strong>False</strong>.</li>
+    </ul>
+  </div>
+
+  <hr>
+</section>
+
+
+<!-- ===================================================== -->
+<!-- Q5 – LIST COMPARISON -->
+<!-- ===================================================== -->
+<section>
+  <div class="question">
+    <strong>Q5.</strong> Compare two lists using <code>==</code>.
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+list1 = [1, 2, 3]
+list2 = [1, 2, 3]
+
+print(list1 == list2)   # True
+  </code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Both lists have the same elements in the same order.</li>
+      <li>List comparison checks both values and order.</li>
+      <li>Since they match, output is <strong>True</strong>.</li>
+    </ul>
+  </div>
+
+  <hr>
+</section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const codeElement = btn.nextElementSibling;
+      const codeToCopy = codeElement.innerText;
+
+      navigator.clipboard.writeText(codeToCopy).then(() => {
+        btn.innerText = "Copied!";
+        setTimeout(() => btn.innerText = "Copy", 1000);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
