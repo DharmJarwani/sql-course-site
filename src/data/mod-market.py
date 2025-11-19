@@ -177,7 +177,7 @@ def generate_receipt(username):
 
     cursor = conn.cursor(dictionary=True)
 
-    cursor.execute("SELECT * FROM cart")
+    cursor.execute("SELECT * FROM cart WHERE username = %s", (username,))
     cart_items = cursor.fetchall()
 
     if not cart_items:
@@ -214,9 +214,12 @@ def generate_receipt(username):
             (receipt_id, item['product_name'], item['price'], item['quantity'])
         )
 
+    #  Step 3: Clear user's cart after generating receipt
+    cursor.execute("DELETE FROM cart WHERE username = %s", (username,))
+
     conn.commit()
     conn.close()
-    print(" Receipt saved successfully!")
+    print(" Receipt saved successfully and your cart is cleared!")
 
 
 
