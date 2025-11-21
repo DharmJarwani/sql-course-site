@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sqlTopics/*" element={<TutorLayoutSQL />} />
+        {/* <Route path="/sqlTopics/*" element={<TutorLayoutSQL />} /> */}
         <Route path="/pytopics/*" element={<TutorLayoutPython />} />
       </Routes>
     </Router>
@@ -17,3 +17,11 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+

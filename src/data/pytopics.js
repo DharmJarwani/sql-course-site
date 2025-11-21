@@ -36,10 +36,8 @@ const pytopics = [
   { chapter: 100, title: "QPB3", file: "/pages/PYTHON/QP/halfTearly-Part-B-Section-III.html" },
 
   /* ---------- Practice section ---------- */
-  { chapter: 0, title: "P1 Comparison Operators", file: "/pages/PYTHON/Practice/PythonBasics-Equality-&-Comparison.html" },
-  { chapter: 0, title: "P2 Comparison Operators", file: "/pages/PYTHON/Practice/PythonBasics-Equality-&-Comparison.html" },
-
-  
+  { chapter: 0, title: "P1 Comparison Operators", file: "pages/PYTHON/Practice/PythonBasics-1-Equality-&-Comparison.html" },
+  { chapter: 0, title: "P2 Comparison & Alignment Explained", file: "pages/PYTHON/Practice/PythonBasics-2.html" },
 ];
 
 export default pytopics;
