@@ -1,6 +1,6 @@
 // src/App.js
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TutorLayoutSQL from "./components/TutorLayoutSQL";
+// import TutorLayoutSQL from "./components/TutorLayoutSQL";
 import TutorLayoutPython from "./components/TutorLayoutPython";
 import Home from "./Home";
 
