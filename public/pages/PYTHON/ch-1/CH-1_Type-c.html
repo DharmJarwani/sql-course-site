@@ -579,7 +579,65 @@ for pounds in range(1, 21):
 
 
 
+<section>
+  <div class="question">
+    <strong>Q11.</strong> Write a program that reads two times in military format (0900, 1730) and prints the number of hours and minutes between the two times. A sample run is being given below :
+    <br><br>
+    Please enter the first time : 0900<br>
+    Please enter the second time : 1730<br>
+    8 hours 30 minutes
+  </div>
 
+  <pre><button class="copy-btn">Copy</button><code class="language-python">
+# Program to find difference between two military times
+
+# Read first time (like 0900 or 1730)
+t1 = int(input("Please enter the first time : "))
+t2 = int(input("Please enter the second time : "))
+
+# Convert each time into minutes
+h1 = t1 // 100
+m1 = t1 % 100
+total1 = h1 * 60 + m1
+
+h2 = t2 // 100
+m2 = t2 % 100
+total2 = h2 * 60 + m2
+
+# Find difference in minutes
+diff = abs(total2 - total1)
+
+# Convert back to hours and minutes
+hours = diff // 60
+minutes = diff % 60
+
+print(hours, "hours", minutes, "minutes")
+
+# Sample Output:
+# Please enter the first time : 0900
+# Please enter the second time : 1730
+# 8 hours 30 minutes
+</code></pre>
+
+  <div class="answer">
+    <strong>Explanation:</strong>
+    <ul>
+      <li>Input times are given in military format e.g., <code>0900</code>, <code>1730</code>.</li>
+      <li>Split into hours and minutes using <code>//</code> and <code>%</code>.</li>
+      <li>Convert both times into total minutes so subtraction becomes easy.</li>
+      <li><code>abs(total2 - total1)</code> gives a positive difference even if user enters times in reverse.</li>
+      <li>Convert minutes difference back into hours and minutes.</li>
+    </ul>
+
+    <strong>ABS() Function Meaning:</strong>
+    <ul>
+      <li><code>abs(x)</code> returns the positive value of any number.</li>
+      <li>Example: <code>abs(4 - 10) = -6</code> and <code>abs(10 - 4) = 6</code>.</li>
+    </ul>
+  </div>
+
+  <hr>
+</section>
 
 
 
