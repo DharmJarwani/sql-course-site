@@ -38,6 +38,10 @@ const pytopics = [
   /* ---------- Practice section ---------- */
   { chapter: 0, title: "P1 Comparison Operators", file: "pages/PYTHON/Practice/PythonBasics-1-Equality-&-Comparison.html" },
   { chapter: 0, title: "P2 Comparison & Alignment Explained", file: "pages/PYTHON/Practice/PythonBasics-2.html" },
+  { chapter: 0, title: "P3 HHint", file: "pages/PYTHON/Practice/hint.html" },
+  { chapter: 0, title: "P4 HHint", file: "pages/PYTHON/Practice/hint2.html" },
+
+  
 ];
 
 export default pytopics;
