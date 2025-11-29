@@ -1,6 +1,6 @@
 // Chapter-wise Python Topics for TutorLayout
 const pytopics = [
-  
+
   /* ---------- Chapter 1: Introduction ---------- */
   { category: "Chapter 1", title: "Type A", file: "/pages/PYTHON/ch-1/CH-1_Type-a.html" },
   { category: "Chapter 1", title: "Type B", file: "/pages/PYTHON/ch-1/CH-1_Type-b.html" },
@@ -27,11 +27,21 @@ const pytopics = [
   { category: "Chapter 5", title: "Type B", file: "/pages/PYTHON/ch-5/CH-5_Type-b.html" },
   { category: "Chapter 5", title: "Type C", file: "/pages/PYTHON/ch-5/CH-5_Type-c.html" },
 
-    /* ---------- Chapter 7: Stack ---------- */
+  /* ---------- Chapter 7: Stack ---------- */
   { category: "Chapter 7", title: "Practical 1", file: "/pages/PYTHON/ch-7/CH-7_page_288_practical.html" },
-  
+  { category: "Chapter 7", title: "Practical 2", file: "/pages/PYTHON/ch-7/Ch-7_page_299_7.1_.html" },
+  { category: "Chapter 7", title: "Practical 2", file: "/pages/PYTHON/ch-7/Ch-7_page_299_7.1_Practical.html" },
 
-    /* ---------- QP ---------- */
+  /* ---------- Chapter 10: Relational Databases ---------- */
+  { category: "Chapter 10", title: "Summary", file: "/pages/PYTHON/ch-10/ch_10_summary.html" },
+
+  /* ---------- Chapter 11: Relational Databases ---------- */
+  { category: "Chapter 11", title: "Summary", file: "/pages/PYTHON/ch-11/ch_11_summary.html" },
+  { category: "Chapter 11", title: "Assertion and Reason", file: "/pages/PYTHON/ch-11/ch_11_A_and_R.html" },
+  { category: "Chapter 11", title: "Solved Problems", file: "/pages/PYTHON/ch-11/ch_11_Solved_Problems.html" },
+
+
+  /* ---------- QP ---------- */
   { category: "QP", title: "QP", file: "/pages/PYTHON/QP/halfTearly.html" },
   { category: "QP", title: "QPA1", file: "/pages/PYTHON/QP/halfTearly-Part-A-Section-I.html" },
   { category: "QP", title: "QPA2", file: "/pages/PYTHON/QP/halfTearly-Part-A-Section-II.html" },
