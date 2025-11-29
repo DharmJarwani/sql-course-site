@@ -1,5 +1,8 @@
 // Chapter-wise Python Topics for TutorLayout
 const pytopics = [
+
+  
+
   /* ---------- Chapter 1: Introduction ---------- */
   { chapter: 1, title: "Type A", file: "/pages/PYTHON/ch-1/CH-1_Type-a.html" },
   { chapter: 1, title: "Type B", file: "/pages/PYTHON/ch-1/CH-1_Type-b.html" },
@@ -46,6 +49,32 @@ const pytopics = [
   { chapter: 0, title: "P4 HHint", file: "pages/PYTHON/Practice/hint2.html" },
 
   
+  /* ---------- Practice section ---------- */
+  { Practical: 0, title: "P1 Comparison Operators", file: "pages/PYTHON/Practice/PythonBasics-1-Equality-&-Comparison.html" },
+  { Practical: 1, title: "P2 Comparison & Alignment Explained", file: "pages/PYTHON/Practice/PythonBasics-2.html" },
+  { Practical: 2, title: "Ch5 Type-C-Hints", file: "pages/PYTHON/Practice/h-Ch-5-Type-C.html" },
+  { Practical: 3, title: "P4 HHint", file: "pages/PYTHON/Practice/hint2.html" },
+
+    /* ---------- Test section ---------- */
+  { Test: 0, title: "P1 Comparison Operators", file: "pages/PYTHON/Practice/PythonBasics-1-Equality-&-Comparison.html" },
+  { Test: 1, title: "P2 Comparison & Alignment Explained", file: "pages/PYTHON/Practice/PythonBasics-2.html" },
+  { Test: 2, title: "Ch5 Type-C-Hints", file: "pages/PYTHON/Practice/h-Ch-5-Type-C.html" },
+  { Test: 3, title: "P4 HHint", file: "pages/PYTHON/Practice/hint2.html" },
+
+      /* ---------- Practice section ---------- */
+  { Practice: 0, title: "P1 Comparison Operators", file: "pages/PYTHON/Practice/PythonBasics-1-Equality-&-Comparison.html" },
+  { Practice: 1, title: "P2 Comparison & Alignment Explained", file: "pages/PYTHON/Practice/PythonBasics-2.html" },
+  { Practice: 2, title: "Ch5 Type-C-Hints", file: "pages/PYTHON/Practice/h-Ch-5-Type-C.html" },
+  { Practice: 3, title: "P4 HHint", file: "pages/PYTHON/Practice/hint2.html" },
+
+  
+  { category: "Practice", title: "P1 Comparison Operators", file: "pages/..." },
+  { category: "Practical", title: "Practical 1", file: "pages/..." },
+  { category: "Test", title: "Test Paper 1", file: "pages/..." },
+  { category: "Chapter 1", title: "Type A", file: "/pages/PYTHON/ch-1/CH-1_Type-a.html" }
+
+  
 ];
 
 export default pytopics;
+

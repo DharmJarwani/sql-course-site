@@ -1,44 +1,53 @@
 // src/components/TutorLayoutPython.jsx
-import { useState } from "react";
-import "./TutorLayout.css";
-import topics from "../data/pytopics";  // use your Python topics file
 
-const chapters = [...new Set(topics.map(t => t.chapter))].sort((a, b) => a - b);
+import { useState, useEffect } from "react";
+import { useSearchParams, Link } from "react-router-dom";
+import "./TutorLayout.css";
+import topics from "../data/pytopics";
+
+// Get unique categories
+const categories = [...new Set(topics.map(t => t.category))];
 
 export default function TutorLayoutPython() {
-  const [current, setCurrent] = useState("/pages/welcomePython.html");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [open, setOpen] = useState([]);
 
-  const toggle = ch =>
-    setOpen(o => (o.includes(ch) ? o.filter(x => x !== ch) : [...o, ch]));
+  // Default page (if no file provided in URL)
+  const defaultPage = "/pages/welcomePython.html";
+
+  // Read ?file= from URL
+  const current = searchParams.get("file") || defaultPage;
+
+  // Toggle category expand
+  const toggle = (cat) =>
+    setOpen((o) => (o.includes(cat) ? o.filter((x) => x !== cat) : [...o, cat]));
 
   return (
     <div className="wrapper">
       <aside className="sidebar">
         <h2 className="title">🐍 Python Topics</h2>
 
-        {chapters.map(ch => (
-          <div key={ch} className="level-group">
+        {categories.map((cat) => (
+          <div key={cat} className="level-group">
             <button
-              className={`level-label ${open.includes(ch) ? "open" : ""}`}
-              onClick={() => toggle(ch)}
+              className={`level-label ${open.includes(cat) ? "open" : ""}`}
+              onClick={() => toggle(cat)}
             >
-              <span>Chapter {ch}</span>
+              <span>{cat}</span>
               <span className="chevron" />
             </button>
 
-            <div className={`links-wrap ${open.includes(ch) ? "show" : "hide"}`}>
+            <div className={`links-wrap ${open.includes(cat) ? "show" : "hide"}`}>
               {topics
-                .filter(t => t.chapter === ch)
+                .filter((t) => t.category === cat)
                 .map(({ title, file }) => (
-                  <a
+                  <Link
                     key={file}
-                    href="#!"
+                    to={`/pytopics?file=${encodeURIComponent(file)}`}
                     className={`nav-link ${current === file ? "active" : ""}`}
-                    onClick={() => setCurrent(file)}
                   >
                     {title}
-                  </a>
+                  </Link>
                 ))}
             </div>
           </div>
