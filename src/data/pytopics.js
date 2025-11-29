@@ -1,5 +1,6 @@
 // Chapter-wise Python Topics for TutorLayout
 const pytopics = [
+  
   /* ---------- Chapter 1: Introduction ---------- */
   { category: "Chapter 1", title: "Type A", file: "/pages/PYTHON/ch-1/CH-1_Type-a.html" },
   { category: "Chapter 1", title: "Type B", file: "/pages/PYTHON/ch-1/CH-1_Type-b.html" },
@@ -41,10 +42,7 @@ const pytopics = [
   /* ---------- Practice section ---------- */
   { category: "Practice", title: "P1 Comparison Operators", file: "pages/PYTHON/Practice/PythonBasics-1-Equality-&-Comparison.html" },
   { category: "Practice", title: "P2 Comparison & Alignment Explained", file: "pages/PYTHON/Practice/PythonBasics-2.html" },
-  { category: "Practice", title: "Ch5 Type-C-Hints", file: "pages/PYTHON/Practice/h-Ch-5-Type-C.html" },
-  { category: "Practice", title: "P4 HHint", file: "pages/PYTHON/Practice/hint2.html" },
 
-  
   /* ---------- Hint section ---------- */
   { category: "Hint", title: "Ch5 Type-C-Hints", file: "pages/PYTHON/Practice/h-Ch-5-Type-C.html" },
 ];
