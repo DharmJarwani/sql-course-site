@@ -1,6 +1,6 @@
 // src/components/TutorLayoutPython.jsx
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import "./TutorLayout.css";
 import topics from "../data/pytopics";
@@ -9,7 +9,7 @@ import topics from "../data/pytopics";
 const categories = [...new Set(topics.map(t => t.category))];
 
 export default function TutorLayoutPython() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [open, setOpen] = useState([]);
 
   // Default page (if no file provided in URL)
