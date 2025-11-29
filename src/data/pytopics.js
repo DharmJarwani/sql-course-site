@@ -27,6 +27,10 @@ const pytopics = [
   { chapter: 5, title: "Type B", file: "/pages/PYTHON/ch-5/CH-5_Type-b.html" },
   { chapter: 5, title: "Type C", file: "/pages/PYTHON/ch-5/CH-5_Type-c.html" },
 
+    /* ---------- Chapter 7: Stack ---------- */
+  { chapter: 7, title: "Practical 1", file: "/pages/PYTHON/ch-7/CH-7_page_288_practical.html" },
+  
+
     /* ---------- QP ---------- */
   { chapter: 100, title: "QP", file: "/pages/PYTHON/QP/halfTearly.html" },
   { chapter: 100, title: "QPA1", file: "/pages/PYTHON/QP/halfTearly-Part-A-Section-I.html" },
