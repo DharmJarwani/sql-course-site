@@ -27,10 +27,15 @@ const pytopics = [
   { category: "Chapter 5", title: "Type B", file: "/pages/PYTHON/ch-5/CH-5_Type-b.html" },
   { category: "Chapter 5", title: "Type C", file: "/pages/PYTHON/ch-5/CH-5_Type-c.html" },
 
+
   /* ---------- Chapter 7: Stack ---------- */
-  { category: "Chapter 7", title: "Practical 1", file: "/pages/PYTHON/ch-7/CH-7_page_288_practical.html" },
-  { category: "Chapter 7", title: "Practical 2", file: "/pages/PYTHON/ch-7/Ch-7_page_299_7.1_.html" },
-  { category: "Chapter 7", title: "Practical 2", file: "/pages/PYTHON/ch-7/Ch-7_page_299_7.1_Practical.html" },
+  { category: "Chapter 7", title: "Summary", file: "/pages/PYTHON/ch-7/ch_7_summary.html" },
+  { category: "Chapter 7", title: "Long Summary", file: "/pages/PYTHON/ch-7/ch_7_long_summary.html" },
+  { category: "Chapter 7", title: "Practical 7.1", file: "/pages/PYTHON/ch-7/CH-7_page_288_practical.html" },
+  { category: "Chapter 7", title: "Practical 7.1 code", file: "/pages/PYTHON/ch-7/Ch-7_page_299_7.1_.html" },
+  { category: "Chapter 7", title: "Practical 7.1 debug", file: "/pages/PYTHON/ch-7/Ch-7_page_299_7.1_Practical.html" },
+  { category: "Chapter 7", title: "Type A", file: "/pages/PYTHON/ch-7/CH-7_Type-a.html" },
+  { category: "Chapter 7", title: "Type B", file: "/pages/PYTHON/ch-7/CH-7_Type-b.html" },
 
   /* ---------- Chapter 10: Relational Databases ---------- */
   { category: "Chapter 10", title: "Summary", file: "/pages/PYTHON/ch-10/ch_10_summary.html" },
