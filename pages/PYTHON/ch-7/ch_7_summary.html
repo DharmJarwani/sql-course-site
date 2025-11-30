@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 7 – Data Structures (Summary)</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #fff;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #ff4ec4, #2ae6e2);
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
+
+/* Main container */
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 2rem 1rem;
+}
+
+/* Cards */
+.card {
+    background: rgba(255,255,255,0.12);
+    padding: 1.7rem;
+    border-radius: 18px;
+    margin-bottom: 2rem;
+    border-left: 7px solid #29b6f6;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+    transition: 0.3s ease-in-out;
+}
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+}
+
+h2 {
+    margin: 0 0 1rem 0;
+    color: #80deea;
+    font-size: 1.6rem;
+}
+
+ul { margin-left: 20px; }
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    overflow: hidden;
+    backdrop-filter: blur(7px);
+}
+th, td {
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background: rgba(0,0,0,0.35);
+    font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<header>📘 Chapter 7 – Data Structures (Summary)</header>
+
+<main>
+
+<!-- 7.1 Introduction -->
+<div class="card">
+    <h2>7.1 Introduction</h2>
+    <p>
+        Computers primarily function as <b>data manipulation systems</b>.  
+        Data → processed into information → used in planning & decisions.
+        <br><br>
+        To ensure data is stored, accessed, and managed reliably, we use <b>Data Structures</b>.
+        This chapter explains:
+        <br>✔ What data structures are  
+        ✔ How data is represented  
+        ✔ Types of data structures  
+        ✔ Operations on data structures  
+        ✔ Stack data structure (LIFO)
+    </p>
+</div>
+
+<!-- 7.2 Elementary Data Representation -->
+<div class="card">
+    <h2>7.2 Elementary Data Representation</h2>
+    <p>
+        Data representation is divided into:
+    </p>
+    <ul>
+        <li><b>Raw Data</b> – basic facts.</li>
+        <li><b>Data Item</b> – single unit of value with a data type.</li>
+        <li><b>Data Structure</b> – a named collection of data items stored in a defined manner.</li>
+    </ul>
+
+    <h3>Data Type vs Data Structure</h3>
+    <ul>
+        <li><b>Data Type</b> → defines valid values and operations.</li>
+        <li><b>Data Structure</b> → actual storage & access method (physical implementation).</li>
+    </ul>
+</div>
+
+<!-- 7.3 Different Data Structures -->
+<div class="card">
+    <h2>7.3 Different Data Structures</h2>
+
+    <h3>Two main categories:</h3>
+    <ul>
+        <li><b>Simple Data Structures</b> (integers, floats, chars, booleans)</li>
+        <li><b>Compound Data Structures</b> (linear + non-linear)</li>
+    </ul>
+
+    <h3>7.3.1 Linear Lists (Arrays)</h3>
+    <ul>
+        <liFinite collection of similar elements.</li>
+        <li>Indexed by consecutive integers (0,1,2…n−1).</li>
+        <li>Python implements arrays using <b>lists</b> or NumPy.</li>
+    </ul>
+
+    <h3>7.3.2 Stacks (LIFO)</h3>
+    <ul>
+        <li>Insert/delete from <b>top</b> only.</li>
+        <li>Like plates stacked vertically.</li>
+    </ul>
+
+    <h3>7.3.3 Queues (FIFO)</h3>
+    <ul>
+        <li>Insert at <b>rear</b>, delete at <b>front</b>.</li>
+        <li>Like a line of people waiting.</li>
+    </ul>
+
+    <h3>7.3.4 Linked Lists</h3>
+    <ul>
+        <li>Nodes linked with reference pointers.</li>
+        <li>Node = INFO + NEXT pointer.</li>
+        <li>Can be singly or doubly linked.</li>
+    </ul>
+
+    <h3>7.3.5 Trees (Non-linear)</h3>
+    <ul>
+        <li>Hierarchical structure.</li>
+        <li>Top node → Root.</li>
+        <li>Bottom nodes → Leaves.</li>
+    </ul>
+</div>
+
+<!-- 7.4 Operations on Data Structures -->
+<div class="card">
+    <h2>7.4 Operations on Data Structures</h2>
+    <ul>
+        <li><b>Insertion</b> – add new data.</li>
+        <li><b>Deletion</b> – remove data.</li>
+        <li><b>Searching</b> – find an element.</li>
+        <li><b>Traversal</b> – visit all elements.</li>
+        <li><b>Sorting</b> – arrange in order.</li>
+        <li><b>Merging</b> – combine two structures.</li>
+    </ul>
+</div>
+
+<!-- 7.5 Stacks -->
+<div class="card">
+    <h2>7.5 Stacks (LIFO Structure)</h2>
+    <p>
+        A Stack is a linear structure where all operations happen at the <b>top</b>.
+    </p>
+
+    <ul>
+        <li><b>PUSH</b> – insert at top.</li>
+        <li><b>POP</b> – remove from top.</li>
+        <li><b>PEEK</b> – view top element.</li>
+        <li><b>Overflow</b> – pushing to a full stack.</li>
+        <li><b>Underflow</b> – popping from an empty stack.</li>
+    </ul>
+
+    <h3>7.5.1 Implementing Stack in Python</h3>
+    <ul>
+        <li>Push → <code>stack.append(item)</code></li>
+        <li>Pop → <code>stack.pop()</code></li>
+        <li>Peek → <code>stack[-1]</code></li>
+    </ul>
+
+    <h3>7.5.2 Stack Applications</h3>
+    <ul>
+        <li>Reversing a line of text</li>
+        <li>Expression conversion (infix → postfix)</li>
+        <li>Expression evaluation (postfix / prefix)</li>
+    </ul>
+
+    <h3>Analogy</h3>
+    <p>
+        A stack works like a <b>spring-loaded plate dispenser</b> — the last plate you put is the first you take.
+    </p>
+</div>
+
+</main>
+
+</body>
+</html>
