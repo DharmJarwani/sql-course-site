@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="/sqlTopics/*" element={<TutorLayoutSQL />} /> */}
-        <Route path="/pytopics/*" element={<TutorLayoutPython />} />
+        {/* <Route path="/pytopics/*" element={<TutorLayoutPython />} /> */}
       </Routes>
     </Router>
   );
