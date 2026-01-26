@@ -454,18 +454,18 @@ print(nthRoot(16, 4))    # 2.0 (Fourth root)
   <hr>
 </section>
 
+
+
 <section>
   <div class="question">
     <strong>Q7.</strong> Write a function that takes a number <code>n</code> and then returns a randomly generated number having exactly <code>n</code> digits (not starting with zero).
   </div>
-
   <pre><button class="copy-btn">Copy</button><code class="language-python">
 import random
 
 def generateNDigitNumber(n):
     if n == 1:
         return random.randint(1, 9)
-
     start = 10**(n-1)
     end = 10**n - 1
     return random.randint(start, end)
@@ -478,25 +478,16 @@ print(generateNDigitNumber(4))  # Example: 1045
 # 23
 # 1045
   </code></pre>
-
   <div class="answer">
     <strong>Explanation:</strong>
     <ul>
-      <li>If <code>n = 2</code>, the user expects a 2-digit number.</li>
-      <li><strong>Starting number</strong> of any n-digit range is calculated using: <code>10^(n-1)</code><br>
-          → For n = 2 → <code>10^(2-1) = 10</code></li>
-      <li><strong>Ending number</strong> of the n-digit range is: <code>(10^n) − 1</code><br>
-          → For n = 2 → <code>10^2 − 1 = 99</code></li>
-      <li>So the valid range for 2-digit numbers is <strong>10 to 99</strong>.</li>
-      <li><code>random.randint(start, end)</code> then picks any number from this range.</li>
-      <li>Since the starting value is never zero, the generated number will never begin with zero.</li>
+      <li><code>10**(n-1)</code> gives the smallest n-digit number.</li>
+      <li><code>10**n - 1</code> gives the largest n-digit number.</li>
+      <li>Ensures no leading zero because the range starts from a valid minimum.</li>
     </ul>
   </div>
-
   <hr>
 </section>
-
-
 
 
 

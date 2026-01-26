@@ -461,16 +461,10 @@ AMCount()
   <pre><button class="copy-btn">Copy</button><code class="language-python">
 # Function to count uppercase letters
 def count_uppercase(filename):
-    f = open(filename, 'r')
-    data = f.read()
-
-    count = 0
-    for ch in data:
-        if ch.isupper():
-            count = count + 1
-
-    print("Total uppercase letters:", count)
-    f.close()
+    with open(filename, 'r') as f:
+        data = f.read()
+        count = sum(1 for ch in data if ch.isupper())
+        print("Total uppercase letters:", count)
 
 # Example:
 # If Article.txt contains: "Python Is FUN."
@@ -483,15 +477,13 @@ count_uppercase("Article.txt")
   <div class="answer">
     <strong>Explanation:</strong>
     <ul>
-      <li>The file is opened using <code>open()</code>.</li>
-      <li>Each character is checked using <code>isupper()</code>.</li>
-      <li>A simple counter variable counts the uppercase letters.</li>
-      <li>This logic is very easy for school students to understand.</li>
+      <li>The file is read using <code>read()</code>.</li>
+      <li>Each character is checked with <code>isupper()</code> to identify uppercase letters.</li>
+      <li><code>sum()</code> with a generator expression counts how many are uppercase.</li>
     </ul>
   </div>
   <hr>
 </section>
-
 
 
 <section>
