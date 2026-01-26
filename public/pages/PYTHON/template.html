@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Conceptual Questions</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #0a0b0b, #c8e6c9);
+      /* Light Blue to Light Green */
+      color: #37474f;
+      /* Dark Slate Grey */
+    }
+
+    header {
+      background: linear-gradient(120deg, #b400c1, #26a69a);
+      /* Cyan to Teal */
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      background: linear-gradient(145deg, #ffffff, #e3f2fd);
+      /* White to Lighter Blue */
+      border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 6px solid #118897;
+      /* Light Cyan */
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Style for the horizontal rule to give it some breathing room */
+    hr {
+      border: none;
+      /* Remove default border */
+      border-top: 15px solid #e60808;
+      /* A solid, vibrant Cyan line */
+      margin-top: 2rem;
+      /* More space above */
+      margin-bottom: 2rem;
+      /* More space below */
+      width: 90%;
+      /* Even shorter line for emphasis */
+      margin-left: auto;
+      /* Center the line */
+      margin-right: auto;
+      border-radius: 2px;
+      /* Slightly rounded ends for a softer look */
+    }
+
+    /* Hide the HR after the last sub-question answer */
+    section .answer:last-of-type+hr {
+      display: none;
+    }
+
+    .question {
+      background-color: #e0f7fa;
+      /* Light Cyan */
+      color: #00838f;
+      /* Dark Cyan */
+      font-weight: 600;
+      border-left: 6px solid #26c6da;
+      /* Medium Cyan */
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      /* Added margin for separation */
+    }
+
+    /* --- New Rule for sub-question spacing --- */
+    /* Target the 'question' div when it's specifically a 'Sub-question' for top margin */
+    section .question:has(strong)+pre+div.question {
+      margin-top: 1.5rem;
+      /* Add space above subsequent sub-question headers */
+    }
+
+    /* --- End New Rule --- */
+
+
+    .answer {
+      background-color: #e8f5e9;
+      /* Light Green */
+      border-left: 6px solid #43a047;
+      /* Green */
+      padding: 12px 16px;
+      margin-top: 8px;
+      border-radius: 10px;
+    }
+
+    /* --- New Rule for sub-answer spacing --- */
+    /* Add bottom margin to the answer div within the Sub-question section */
+    section:last-of-type .answer {
+      /* Target only the last section for these specific rules */
+      margin-bottom: 1rem;
+      /* Add space after each sub-answer */
+    }
+
+    /* --- End New Rule --- */
+
+    h2,
+    h3 {
+      margin: 0.5rem 0 1rem;
+      color: #006064;
+      /* Dark Teal */
+    }
+
+    p,
+    li {
+      line-height: 1.8;
+      margin: 0.8rem 0;
+    }
+
+    pre {
+      background: #2d2d2d;
+      /* Darker background for code blocks, complements "Tomorrow" theme */
+      border-radius: 10px;
+      padding: 1.2rem;
+      overflow-x: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+      position: relative;
+      /* Essential for positioning the copy button */
+    }
+
+    /* Custom Copy Button Styles */
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #00bcd4;
+      /* Cyan */
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+      z-index: 10;
+      /* Ensure it's above the code */
+    }
+
+    .copy-btn:hover {
+      background-color: #0097a7;
+      /* Darker Cyan on hover */
+    }
+
+    .copy-btn:active {
+      background-color: #007c8d;
+      /* Even darker on click */
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      /* Slightly darker for inline code against light backgrounds */
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      color: #37474f;
+      /* Matches body text color for inline code */
+    }
+
+    /* Styles for the highlight span in Q26 answers */
+    .highlight {
+      font-weight: bold;
+      color: #e91e63;
+      /* A strong pink for visibility */
+      background-color: #ffebee;
+      /* Very light pink background */
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+    }
+
+    .info-box {
+      background: #e1f5fe;
+      /* Lighter Blue */
+      border-left: 5px solid #2196f3;
+      /* Blue */
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .answer pre.output-pre {
+      background-color: #f0f4c3;
+      /* Light yellowish green */
+      color: #3e2723;
+      /* Dark brown, contrasting well */
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px dashed #afb42b;
+      /* A dashed border for distinction */
+      font-family: 'Fira Code', monospace;
+      /* Keep consistent font */
+      font-size: 1rem;
+      box-shadow: none;
+      /* Remove shadow to make it look like part of the answer */
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.8rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>Chapter - 1</header>
+
+
+  <main>
+
+    <section>
+    
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const codeElement = btn.nextElementSibling;
+        const codeToCopy = codeElement.innerText;
+
+        navigator.clipboard.writeText(codeToCopy).then(() => {
+          btn.innerText = "Copied!";
+          setTimeout(() => btn.innerText = "Copy", 1000);
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+          const textArea = document.createElement("textarea");
+          textArea.value = codeToCopy;
+          textArea.style.position = "fixed";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          try {
+            document.execCommand('copy');
+            btn.innerText = "Copied!";
+            setTimeout(() => btn.innerText = "Copy", 1000);
+          } catch (err) {
+            console.error('Fallback copy failed: ', err);
+            alert('Failed to copy. Please select and copy manually.');
+          }
+          document.body.removeChild(textArea);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

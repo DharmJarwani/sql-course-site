@@ -104,3 +104,51 @@ header p {
     transform: translateY(-10px);
   }
 }
+
+.features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 40px auto;
+  max-width: 900px;
+}
+
+.feature {
+  flex: 1 1 400px;
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+}
+
+.note-box {
+  background-color: #f0f4f8;
+  padding: 12px 14px;
+  border-left: 4px solid #00796b;
+  font-size: 0.9rem;
+  margin-top: 15px;
+  color: #333;
+  border-radius: 4px;
+}
+
+.explore-btn {
+  display: inline-block;
+  margin-top: 15px;
+  background-color: #00796b;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.explore-btn.python {
+  background-color: #4b0082;
+}

@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Conceptual Questions</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #0a0b0b, #c8e6c9);
+      /* Light Blue to Light Green */
+      color: #37474f;
+      /* Dark Slate Grey */
+    }
+
+    header {
+      background: linear-gradient(120deg, #b400c1, #26a69a);
+      /* Cyan to Teal */
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      background: linear-gradient(145deg, #ffffff, #e3f2fd);
+      /* White to Lighter Blue */
+      border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 6px solid #118897;
+      /* Light Cyan */
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Style for the horizontal rule to give it some breathing room */
+    hr {
+      border: none;
+      /* Remove default border */
+      border-top: 15px solid #e60808;
+      /* A solid, vibrant Cyan line */
+      margin-top: 2rem;
+      /* More space above */
+      margin-bottom: 2rem;
+      /* More space below */
+      width: 90%;
+      /* Even shorter line for emphasis */
+      margin-left: auto;
+      /* Center the line */
+      margin-right: auto;
+      border-radius: 2px;
+      /* Slightly rounded ends for a softer look */
+    }
+
+    /* Hide the HR after the last sub-question answer */
+    section .answer:last-of-type+hr {
+      display: none;
+    }
+
+    .question {
+      background-color: #e0f7fa;
+      /* Light Cyan */
+      color: #00838f;
+      /* Dark Cyan */
+      font-weight: 600;
+      border-left: 6px solid #26c6da;
+      /* Medium Cyan */
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      /* Added margin for separation */
+    }
+
+    /* --- New Rule for sub-question spacing --- */
+    /* Target the 'question' div when it's specifically a 'Sub-question' for top margin */
+    section .question:has(strong)+pre+div.question {
+      margin-top: 1.5rem;
+      /* Add space above subsequent sub-question headers */
+    }
+
+    /* --- End New Rule --- */
+
+
+    .answer {
+      background-color: #e8f5e9;
+      /* Light Green */
+      border-left: 6px solid #43a047;
+      /* Green */
+      padding: 12px 16px;
+      margin-top: 8px;
+      border-radius: 10px;
+    }
+
+    /* --- New Rule for sub-answer spacing --- */
+    /* Add bottom margin to the answer div within the Sub-question section */
+    section:last-of-type .answer {
+      /* Target only the last section for these specific rules */
+      margin-bottom: 1rem;
+      /* Add space after each sub-answer */
+    }
+
+    /* --- End New Rule --- */
+
+    h2,
+    h3 {
+      margin: 0.5rem 0 1rem;
+      color: #006064;
+      /* Dark Teal */
+    }
+
+    p,
+    li {
+      line-height: 1.8;
+      margin: 0.8rem 0;
+    }
+
+    pre {
+      background: #2d2d2d;
+      /* Darker background for code blocks, complements "Tomorrow" theme */
+      border-radius: 10px;
+      padding: 1.2rem;
+      overflow-x: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+      position: relative;
+      /* Essential for positioning the copy button */
+    }
+
+    /* Custom Copy Button Styles */
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #00bcd4;
+      /* Cyan */
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+      z-index: 10;
+      /* Ensure it's above the code */
+    }
+
+    .copy-btn:hover {
+      background-color: #0097a7;
+      /* Darker Cyan on hover */
+    }
+
+    .copy-btn:active {
+      background-color: #007c8d;
+      /* Even darker on click */
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      /* Slightly darker for inline code against light backgrounds */
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      color: #37474f;
+      /* Matches body text color for inline code */
+    }
+
+    /* Styles for the highlight span in Q26 answers */
+    .highlight {
+      font-weight: bold;
+      color: #e91e63;
+      /* A strong pink for visibility */
+      background-color: #ffebee;
+      /* Very light pink background */
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+    }
+
+    .info-box {
+      background: #e1f5fe;
+      /* Lighter Blue */
+      border-left: 5px solid #2196f3;
+      /* Blue */
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .answer pre.output-pre {
+      background-color: #f0f4c3;
+      /* Light yellowish green */
+      color: #3e2723;
+      /* Dark brown, contrasting well */
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px dashed #afb42b;
+      /* A dashed border for distinction */
+      font-family: 'Fira Code', monospace;
+      /* Keep consistent font */
+      font-size: 1rem;
+      box-shadow: none;
+      /* Remove shadow to make it look like part of the answer */
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.8rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>Chapter - 2</header>
+
+
+  <main>
+
+    <section>
+      <h2>1. What will be the output produced by following code fragments?</h2>
+
+      <!-- Sub-question (a) -->
+      <div class="question"><strong>(a)</strong> Code Output</div>
+      <div class="answer">
+        <p><strong>Explanation:</strong> This will give a <code>TypeError</code> because string and integer cannot be
+          directly concatenated.</p>
+        <pre><button class="copy-btn">Copy</button><code class="language-python">y = str(123)
+x = "hello" + 3
+print(x, y)</code></pre>
+        <p><strong>Output:</strong> <code>TypeError: can only concatenate str (not "int") to str</code></p>
+      </div>
+      <hr>
+
+      <!-- Sub-question (b) -->
+      <div class="question"><strong>(b)</strong> Code Output</div>
+      <div class="answer">
+        <p><strong>Explanation:</strong> Final value of <code>y</code> is the last character of the string, i.e.,
+          <code>'d'</code>.</p>
+        <pre><button class="copy-btn">Copy</button><code class="language-python">x = "hello" + \
+    "to Python" + \
+    "world"
+for char in x:
+    y = char
+print(y, ':', end=" ")</code></pre>
+        <p><strong>Output:</strong> <code>d :</code></p>
+      </div>
+      <hr>
+
+      <!-- Sub-question (c) -->
+      <div class="question"><strong>(c)</strong> Code Output</div>
+      <div class="answer">
+        <p><strong>Explanation:</strong> Demonstrates slicing and indexing in strings.</p>
+        <pre><button class="copy-btn">Copy</button><code class="language-python">x = "hello world"
+print(x[:2], x[:-2], x[-2:])
+print(x[6], x[2:4])
+print(x[2:-3], x[-4:-2])</code></pre>
+        <p><strong>Output:</strong></p>
+        <ul>
+          <li><code>he hello wor ld</code></li>
+          <li><code>w ll</code></li>
+          <li><code>llo wo rl</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Write a short Python code segment that adds up the length of all the words in a list and then prints the
+        average (mean) length.</h2>
+      <div class="answer">
+        <p><strong>Explanation:</strong> This code calculates total length of words and divides by the number of words
+          to get the mean.</p>
+        <pre><button class="copy-btn">Copy</button><code class="language-python">words = ["hello", "world", "python", "rocks"]
+total_length = 0
+
+for word in words:
+    total_length += len(word)
+
+average = total_length / len(words)
+print("Average length:", average)</code></pre>
+        <p><strong>Output:</strong> <code>Average length: 5.25</code></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Predict the output of the following code snippet</h2>
+      <div class="answer">
+        <p><strong>Code:</strong></p>
+        <pre><button class="copy-btn">Copy</button><code class="language-python">a = [1, 2, 3, 4, 5]
+print(a[3:0:-1])</code></pre>
+        <p><strong>Explanation:</strong> Slicing from index 3 to index 1 (exclusive of 0), step -1</p>
+        <p><strong>Output:</strong> <code>[4, 3, 2]</code></p>
+      </div>
+    </section>
+
+<section>
+  <h2>4. Predict the output of the following code snippet</h2>
+  <div class="answer">
+    <p><strong>Original Code (with fixes):</strong></p>
+    <pre><button class="copy-btn">Copy</button><code class="language-python">arr = [1, 2, 3, 4, 5, 6]  # Fixed syntax: removed extra comma
+
+for i in range(1, 6):
+    arr[i - 1] - arr[i]    # This line performs subtraction but does not store or print the result
+
+for i in range(0, 6):
+    print(arr[i], end=" ")  # Fixed: replaced end -” “ with end=" "</code></pre>
+
+    <p><strong>Output (1st part):</strong> <code>1 2 3 4 5 6</code></p>
+
+    <p><strong>Second Code Snippet (fixed):</strong></p>
+    <pre><button class="copy-btn">Copy</button><code class="language-python">Numbers = [9, 18, 27, 36]
+
+for Num in Numbers:
+    for N in range(1, Num * 8):  # Fixed: NumX8 → Num * 8
+        print(N, "#", end=" ")
+print()</code></pre>
+
+    <p><strong>Output (2nd part):</strong> <br>
+    The output will be numbers from 1 to (Num×8 - 1) with "#" after each number for each value in list.<br>
+    It will be a long output, e.g. <code>1 # 2 # 3 # ...</code> up to 287 # (for Num = 36)</p>
+  </div>
+</section>
+
+
+<section>
+  <h2>Question 5: Find the errors. State reasons.</h2>
+
+  <!-- Sub-question (a) -->
+  <div class="question"><strong>(a)</strong> Tuple is immutable</div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">t = (1, "a", 9.2)
+t[0] = 6    # ❌ Error</code></pre>
+  <div class="answer">
+    <p><strong>Reason:</strong> Tuples are immutable, meaning their elements cannot be changed once defined.</p>
+    <p><strong>Fix:</strong> Use a list if you need to update values.</p>
+    <pre><button class="copy-btn">Copy</button><code class="language-python">t = [1, "a", 9.2]
+t[0] = 6    # ✅ Works correctly</code></pre>
+  </div>
+
+  <!-- Sub-question (b) -->
+  <div class="question"><strong>(b)</strong> Repetition of part (a)</div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">t = (1, "a", 9.2)
+t[0] = 6    # ❌ Error again</code></pre>
+  <div class="answer">
+    <p><strong>Reason:</strong> Same as part (a) — trying to modify a tuple element.</p>
+  </div>
+
+  <!-- Sub-question (c) -->
+  <div class="question"><strong>(c)</strong> Index out of range in tuple</div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">t = (1, "a", 9.2)
+t[4] = 6    # ❌ Error</code></pre>
+  <div class="answer">
+    <p><strong>Reason:</strong> Tuple has only 3 elements (index 0 to 2), so index 4 does not exist.</p>
+    <p><strong>Note:</strong> Even if index existed, it would still be an error since tuples are immutable.</p>
+  </div>
+
+  <!-- Sub-question (d) -->
+  <div class="question"><strong>(d)</strong> Strings are immutable</div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">t = 'hello'
+t[0] = 'H'    # ❌ Error</code></pre>
+  <div class="answer">
+    <p><strong>Reason:</strong> Strings in Python are immutable. You cannot assign to a character position.</p>
+    <p><strong>Fix:</strong> Reconstruct the string instead.</p>
+    <pre><button class="copy-btn">Copy</button><code class="language-python">t = 'hello'
+t = 'H' + t[1:]   # ✅ New string with 'H' at start</code></pre>
+  </div>
+
+  <!-- Sub-question (e) -->
+  <div class="question"><strong>(e)</strong> Multiple syntax errors in loop and condition</div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">for Name in [Amar, Shveta, Parag]:
+    If Name[0] = 'S':
+        print(Name)     # ❌ Multiple Errors</code></pre>
+  <div class="answer">
+    <p><strong>Errors:</strong></p>
+    <ul>
+      <li>Strings must be enclosed in quotes (e.g. <code>"Amar"</code>)</li>
+      <li><code>If</code> should be lowercase → <code>if</code></li>
+      <li><code>=</code> is an assignment operator, use <code>==</code> for comparison</li>
+    </ul>
+    <p><strong>Correct version:</strong></p>
+    <pre><button class="copy-btn">Copy</button><code class="language-python">for Name in ["Amar", "Shveta", "Parag"]:
+    if Name[0] == 'S':
+        print(Name)</code></pre>
+  </div>
+
+</section>
+
+
+<!-- Question 6 -->
+
+<section>
+  <h2>Question 6: Error in list reversal loop</h2>
+
+  <div class="question">
+    Assuming <code>words</code> is a valid list of words, the program below tries to print the list in reverse.
+    Does it have an error? If so, why?<br><br>
+    <strong>Code:</strong>
+  </div>
+  <pre><button class="copy-btn">Copy</button><code class="language-python">for i in range(Ien(words), 0, -1):
+    print(words[1], end-’ ‘ )</code></pre>
+
+  <div class="answer">
+    <p><strong>Yes, there are two errors:</strong></p>
+    <ol>
+      <li><strong>Typo in function name:</strong> <code>Ien</code> should be <code>len</code> (lowercase L).</li>
+      <li><strong>Wrong indexing:</strong> <code>words[1]</code> always prints the second word repeatedly. It should be <code>words[i - 1]</code> because range is from length to 1 (exclusive).</li>
+      <li><strong>Syntax error:</strong> <code>end-’ ‘</code> is invalid. Use <code>end=' '</code>.</li>
+    </ol>
+
+    <p><strong>Corrected version:</strong></p>
+    <pre><button class="copy-btn">Copy</button><code class="language-python">for i in range(len(words), 0, -1):
+    print(words[i - 1], end=' ')</code></pre>
+  </div>
+</section>
+
+ <!-- Question 7 -->
+  <section>
+  <h2>Question 7: Predict the Output</h2>
+
+  <div class="question">
+    What would be the output of the following code if <code>npt = ("Hello!", "Nita", "How's", "Life ?")</code>?
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">npt = ("Hello!", "Nita", "How's", "Life ?")
+(a, b, c, d) = npt1  
+print("a is:", a)  
+print("b is:", b)  
+print("c is:", c)  
+print("d is:", d)  
+
+ntp1(a,b c, d)  
+print(npt1[0][0] + npt1[1][1], npt1[1])</code></pre>
+
+  <div class="answer">
+    <p><strong>There are multiple errors in the code:</strong></p>
+    <ol>
+      <li><code>npt1</code> is not defined — it should be <code>npt</code>.</li>
+      <li>Incorrect function-like call: <code>ntp1(a,b c, d)</code> — it has wrong variable name <code>ntp1</code> and missing comma between <code>b</code> and <code>c</code>.</li>
+      <li>Final line again uses <code>npt1</code> (wrong name), and attempts nested indexing without proper object setup.</li>
+    </ol>
+
+    <p><strong>Corrected Version:</strong></p>
+    <pre><button class="copy-btn">Copy</button><code class="language-python">npt = ("Hello!", "Nita", "How's", "Life ?")
+(a, b, c, d) = npt  
+print("a is:", a)  
+print("b is:", b)  
+print("c is:", c)  
+print("d is:", d)  
+
+# Demonstrating nested indexing
+print(npt[0][0] + npt[1][1], npt[1])</code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>a is: Hello!
+b is: Nita
+c is: How's
+d is: Life ?
+eo Nita</code></pre>
+    <ul>
+      <li><code>npt[0][0]</code> → First character of <code>"Hello!"</code> → <code>'H'</code></li>
+      <li><code>npt[1][1]</code> → Second character of <code>"Nita"</code> → <code>'i'</code></li>
+      <li><code>'H' + 'i'</code> gives <code>'Hi'</code></li>
+      <li>So output is: <code>Hi Nita</code></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Question 8 -->
+
+<section>
+  <h2>Question 8: Predict the Output</h2>
+
+  <div class="question">
+    What will be the output of the following code?
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">tuple_a = 'a', 'b'  
+tuple_b = ('a', 'b')  
+print(tuple_a == tuple_b)</code></pre>
+
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <pre><code>True</code></pre>
+    <ul>
+      <li><code>tuple_a = 'a', 'b'</code> is a valid tuple due to implicit parentheses.</li>
+      <li><code>tuple_b = ('a', 'b')</code> is an explicitly defined tuple.</li>
+      <li>Both tuples are equal in structure and value: <code>('a', 'b')</code></li>
+    </ul>
+    <p><strong>Correct Option:</strong> (d) True</p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>Question 9: Predict the Output</h2>
+
+  <div class="question">
+    What will be the output of the following code snippet?
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">rec = {"Name": "Python", "Age": 20, "Addr": "NJ", "Country": "USA"}  
+id1 = id(rec)  
+del rec  
+rec = {"Name": "Python", "Age": 20, "Addr": "NJ", "Country": "USA"}  
+id2 = id(rec)  
+print(id1 == id2)</code></pre>
+
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <pre><code>False</code></pre>
+    <ul>
+      <li><code>id1</code> stores memory location of the first <code>rec</code>.</li>
+      <li>After <code>del rec</code>, the object is deleted from memory (if no references remain).</li>
+      <li>New dictionary is created again, so <code>id2</code> will be a new memory address.</li>
+      <li>Thus, <code>id1 == id2</code> is <code>False</code>.</li>
+    </ul>
+    <p><strong>Correct Option:</strong> (b) False</p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>Question 10: Output of Dictionary Code</h2>
+
+  <div class="question">
+    Write the output of the code given below:
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">my_dict = {"name": "Aman", "age": 26}
+my_dict['age'] = 27
+my_dict['address'] = "Delhi"
+print(my_dict.items())</code></pre>
+
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <pre><code>dict_items([('name', 'Aman'), ('age', 27), ('address', 'Delhi')])</code></pre>
+    <ul>
+      <li>Initial dictionary: <code>{"name": "Aman", "age": 26}</code></li>
+      <li>Age is updated to <code>27</code>.</li>
+      <li>New key <code>'address'</code> added with value <code>'Delhi'</code>.</li>
+      <li><code>.items()</code> shows all key-value pairs as tuple list.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- Question 11 -->
+
+<section>
+  <h2>Question 11: List Element Formatter</h2>
+
+  <div class="question">
+    Write a method in Python to display the elements of list thrice if it is a number and display the element terminated with ‘#’ if it is not a number.
+    <br><br>
+    <strong>Example Input:</strong><br>
+    <code>List = [‘42’, ‘DROND’, ‘GIRIRAJ’, ‘13’, ‘ZARA’]</code><br>
+    <strong>Expected Output:</strong><br>
+    <pre>
+424242
+DROND#
+GIRIRAJ#
+131313
+ZARA#</pre>
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">def display_elements(lst):
+    for item in lst:
+        if item.isdigit():
+            print(item * 3)
+        else:
+            print(item + '#')
+
+# Sample usage
+List = ['42', 'DROND', 'GIRIRAJ', '13', 'ZARA']
+display_elements(List)</code></pre>
+
+  <div class="answer">
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li><code>isdigit()</code> checks if the string contains only digits.</li>
+      <li>If true, the number string is repeated 3 times using <code>item * 3</code>.</li>
+      <li>If not a number, <code>#</code> is appended to the word.</li>
+    </ul>
+    <p><strong>Output:</strong></p>
+    <pre><code>424242
+DROND#
+GIRIRAJ#
+131313
+ZARA#</code></pre>
+  </div>
+</section>
+
+
+
+<section>
+  <h2>Question 12: Python Functions for String and List</h2>
+  <div class="question">
+    Name the function/method required to: <br>
+    (i) Check if a string contains only uppercase letters<br>
+    (ii) Give the total length of the list
+  </div>
+  <div class="answer">
+    <ul>
+      <li>(i) <code>isupper()</code> — returns <code>True</code> if all characters in the string are uppercase.</li>
+      <li>(ii) <code>len(list)</code> — returns the total number of elements in the list.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Question 13: Predict the Output of Dictionary Code</h2>
+  <div class="question">
+    What will be the output of the following code snippet?
+  </div>
+
+  <pre><button class="copy-btn">Copy</button><code class="language-python">my_dict = {}
+my_dict[(1, 2, 4)] = 8
+my_dict[(4, 2, 1)] = 10
+my_dict[(1, 2)] = 12
+
+sum = 0
+for k in my_dict:
+    sum += my_dict[k]
+
+print(sum)
+print(my_dict)</code></pre>
+
+  <div class="answer">
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li>Dictionary keys are tuples — immutable and hashable, so they can be used as keys.</li>
+      <li>There are 3 unique keys: <code>(1,2,4)</code>, <code>(4,2,1)</code>, and <code>(1,2)</code>.</li>
+      <li>The values are summed: <code>8 + 10 + 12 = 30</code></li>
+    </ul>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>30
+{(1, 2, 4): 8, (4, 2, 1): 10, (1, 2): 12}</code></pre>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const codeElement = btn.nextElementSibling;
+        const codeToCopy = codeElement.innerText;
+
+        navigator.clipboard.writeText(codeToCopy).then(() => {
+          btn.innerText = "Copied!";
+          setTimeout(() => btn.innerText = "Copy", 1000);
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+          const textArea = document.createElement("textarea");
+          textArea.value = codeToCopy;
+          textArea.style.position = "fixed";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          try {
+            document.execCommand('copy');
+            btn.innerText = "Copied!";
+            setTimeout(() => btn.innerText = "Copy", 1000);
+          } catch (err) {
+            console.error('Fallback copy failed: ', err);
+            alert('Failed to copy. Please select and copy manually.');
+          }
+          document.body.removeChild(textArea);
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

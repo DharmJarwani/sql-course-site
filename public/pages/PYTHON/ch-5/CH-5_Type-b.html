@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Conceptual Questions</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #0a0b0b, #c8e6c9);
+      /* Light Blue to Light Green */
+      color: #37474f;
+      /* Dark Slate Grey */
+    }
+
+    header {
+      background: linear-gradient(120deg, #b400c1, #26a69a);
+      /* Cyan to Teal */
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      background: linear-gradient(145deg, #ffffff, #e3f2fd);
+      /* White to Lighter Blue */
+      border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 6px solid #118897;
+      /* Light Cyan */
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Style for the horizontal rule to give it some breathing room */
+    hr {
+      border: none;
+      /* Remove default border */
+      border-top: 15px solid #e60808;
+      /* A solid, vibrant Cyan line */
+      margin-top: 2rem;
+      /* More space above */
+      margin-bottom: 2rem;
+      /* More space below */
+      width: 90%;
+      /* Even shorter line for emphasis */
+      margin-left: auto;
+      /* Center the line */
+      margin-right: auto;
+      border-radius: 2px;
+      /* Slightly rounded ends for a softer look */
+    }
+
+    /* Hide the HR after the last sub-question answer */
+    section .answer:last-of-type+hr {
+      display: none;
+    }
+
+    .question {
+      background-color: #e0f7fa;
+      /* Light Cyan */
+      color: #00838f;
+      /* Dark Cyan */
+      font-weight: 600;
+      border-left: 6px solid #26c6da;
+      /* Medium Cyan */
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      /* Added margin for separation */
+    }
+
+    /* --- New Rule for sub-question spacing --- */
+    /* Target the 'question' div when it's specifically a 'Sub-question' for top margin */
+    section .question:has(strong)+pre+div.question {
+      margin-top: 1.5rem;
+      /* Add space above subsequent sub-question headers */
+    }
+
+    /* --- End New Rule --- */
+
+
+    .answer {
+      background-color: #e8f5e9;
+      /* Light Green */
+      border-left: 6px solid #43a047;
+      /* Green */
+      padding: 12px 16px;
+      margin-top: 8px;
+      border-radius: 10px;
+    }
+
+    /* --- New Rule for sub-answer spacing --- */
+    /* Add bottom margin to the answer div within the Sub-question section */
+    section:last-of-type .answer {
+      /* Target only the last section for these specific rules */
+      margin-bottom: 1rem;
+      /* Add space after each sub-answer */
+    }
+
+    /* --- End New Rule --- */
+
+    h2,
+    h3 {
+      margin: 0.5rem 0 1rem;
+      color: #006064;
+      /* Dark Teal */
+    }
+
+    p,
+    li {
+      line-height: 1.8;
+      margin: 0.8rem 0;
+    }
+
+    pre {
+      background: #2d2d2d;
+      /* Darker background for code blocks, complements "Tomorrow" theme */
+      border-radius: 10px;
+      padding: 1.2rem;
+      overflow-x: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+      position: relative;
+      /* Essential for positioning the copy button */
+    }
+
+    /* Custom Copy Button Styles */
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #00bcd4;
+      /* Cyan */
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+      z-index: 10;
+      /* Ensure it's above the code */
+    }
+
+    .copy-btn:hover {
+      background-color: #0097a7;
+      /* Darker Cyan on hover */
+    }
+
+    .copy-btn:active {
+      background-color: #007c8d;
+      /* Even darker on click */
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      /* Slightly darker for inline code against light backgrounds */
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      color: #37474f;
+      /* Matches body text color for inline code */
+    }
+
+    /* Styles for the highlight span in Q26 answers */
+    .highlight {
+      font-weight: bold;
+      color: #e91e63;
+      /* A strong pink for visibility */
+      background-color: #ffebee;
+      /* Very light pink background */
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+    }
+
+    .info-box {
+      background: #e1f5fe;
+      /* Lighter Blue */
+      border-left: 5px solid #2196f3;
+      /* Blue */
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .answer pre.output-pre {
+      background-color: #f0f4c3;
+      /* Light yellowish green */
+      color: #3e2723;
+      /* Dark brown, contrasting well */
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px dashed #afb42b;
+      /* A dashed border for distinction */
+      font-family: 'Fira Code', monospace;
+      /* Keep consistent font */
+      font-size: 1rem;
+      box-shadow: none;
+      /* Remove shadow to make it look like part of the answer */
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.8rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>Chapter - 5</header>
+
+
+  <main>
+
+   <section>
+  <div class="question"><strong>Question 1:</strong></div>
+  <p>How are the following codes different from one another?</p>
+
+  <pre><code class="language-python"># Code A
+my_file = open('poem.txt', 'r')
+my_file.read()</code></pre>
+
+  <pre><code class="language-python"># Code B
+my_file = open('poem.txt', 'r')</code></pre>
+
+  <div class="answer">
+    <p><strong>Difference:</strong></p>
+    <ul>
+      <li><strong>Code A</strong> opens the file in read mode and reads its content using <code>read()</code>.</li>
+      <li><strong>Code B</strong> only opens the file but does not read anything from it.</li>
+    </ul>
+    <p><strong>So, Code A gives output (file content), Code B does nothing.</strong></p>
+  </div>
+
+  <hr>
+
+  <div class="question"><strong>Question 2:</strong></div>
+  <p>If the file <code>'poemBTH.txt'</code> contains the following poem:</p>
+
+  <pre><code class="language-text">God made the Earth;
+Man made confining countries
+And their fancy-frozen boundaries.
+But with unfound boundless Love
+I behold the borderland of my India
+Expanding into the World.
+Hail, mother of religions, Lotus, scenic beauty, and sages!</code></pre>
+
+  <p>Then what outputs will be produced by both the code fragments given in Question 1?</p>
+
+  <div class="answer">
+    <p><strong>Code A:</strong></p>
+    <pre><code class="language-python">my_file = open('poemBTH.txt', 'r')
+print(my_file.read())</code></pre>
+    <p><strong>Output:</strong></p>
+    <pre><code class="language-text">God made the Earth;
+Man made confining countries
+And their fancy-frozen boundaries.
+But with unfound boundless Love
+I behold the borderland of my India
+Expanding into the World.
+Hail, mother of religions, Lotus, scenic beauty, and sages!</code></pre>
+
+    <hr>
+
+    <p><strong>Code B:</strong></p>
+    <pre><code class="language-python">my_file = open('poemBTH.txt', 'r')</code></pre>
+    <p><strong>Output:</strong> No output shown because no read or print operation is done.</p>
+  </div>
+</section>
+
+<section>
+  <div class="question"><strong>Question 3:</strong></div>
+  <p>Consider the file <code>poemBTH.txt</code> (content given earlier). What output will be produced by the following code?</p>
+
+  <pre><code class="language-python">obj1 = open("poemBTH.txt", "r")
+s1 = obj1.readline()
+s2 = readline(10)   # Incorrect line!
+s3 = obj1.read(15)
+print(s3)
+print(obj1.readline())
+obj1.close()</code></pre>
+
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <ul>
+      <li>This code contains an error on the line: <code>s2 = readline(10)</code></li>
+      <li><code>readline()</code> must be called with a file object, i.e. <code>obj1.readline(10)</code></li>
+      <li><strong>Error:</strong> <code>NameError: name 'readline' is not defined</code></li>
+    </ul>
+
+    <hr>
+
+    <p><strong>Corrected Code:</strong></p>
+    <pre><code class="language-python">obj1 = open("poemBTH.txt", "r")
+s1 = obj1.readline()          # Reads the first line
+s2 = obj1.readline(10)        # Reads next 10 characters from second line
+s3 = obj1.read(15)            # Reads next 15 characters
+print(s3)
+print(obj1.readline())        # Reads next full line
+obj1.close()</code></pre>
+
+    <p><strong>Explanation:</strong> The file cursor moves line-by-line. After fixing, it reads partial lines based on the character count, so actual output depends on the poem’s content.</p>
+  </div>
+
+  <hr>
+
+  <div class="question"><strong>Question 4:</strong></div>
+  <p>Write code to open file <code>contacts.txt</code> and print it in the following form:</p>
+  <p><code>Name : &lt;name&gt;&nbsp;&nbsp;&nbsp;Phone : &lt;phone number&gt;</code></p>
+
+  <pre><code class="language-python"># Sample content of contacts.txt
+# Rohan,9876543210
+# Simran,9845098450
+# Anil,9812345678
+
+with open("contacts.txt", "r") as f:
+    for line in f:
+        name, phone = line.strip().split(",")
+        print(f"Name : {name}\tPhone : {phone}")</code></pre>
+
+  <div class="answer">
+    <p><strong>Sample Output:</strong></p>
+    <pre><code class="language-text">Name : Rohan	Phone : 9876543210
+Name : Simran	Phone : 9845098450
+Name : Anil	Phone : 9812345678</code></pre>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 5:</strong></div>
+  <p>
+    Consider the file <code>poemBTH1.txt</code> and predict the outputs of the following code fragments if the file has been opened in filepointer <code>file1</code> using:
+  </p>
+  <pre><code class="language-python">file1 = open("E:\\mydata\\poemBTH.txt", "r+")</code></pre>
+
+  <p><strong>Assumed content of poemBTH.txt:</strong></p>
+  <pre><code class="language-text">God made the Earth;
+Man made confining countries
+And their fancy-frozen boundaries.
+But with unfound boundless Love
+I behold the borderland of my India
+Expanding into the World.
+Hail, mother of religions, Lotus, scenic beauty, and sages!</code></pre>
+
+  <div class="sub-question"><strong>(a) Output 1</strong></div>
+  <pre><code class="language-python">print("A. Output 1")
+print(file1.read())
+print()</code></pre>
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <pre><code class="language-text">A. Output 1
+God made the Earth;
+Man made confining countries
+And their fancy-frozen boundaries.
+But with unfound boundless Love
+I behold the borderland of my India
+Expanding into the World.
+Hail, mother of religions, Lotus, scenic beauty, and sages!</code></pre>
+    <p><strong>Explanation:</strong> The entire file is read. Cursor moves to EOF (end of file).</p>
+  </div>
+
+  <div class="sub-question"><strong>(b) Output 2</strong></div>
+  <pre><code class="language-python">print("B. Output 2")
+print(file1.readline())
+print()</code></pre>
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <pre><code class="language-text">B. Output 2
+</code></pre>
+    <p><strong>Explanation:</strong> Since the file pointer is already at EOF (after previous read), nothing is returned.</p>
+  </div>
+
+  <div class="sub-question"><strong>(c) Output 3</strong></div>
+  <pre><code class="language-python">print("C. Output 3")
+print(file1.read(9))
+print()</code></pre>
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <pre><code class="language-text">C. Output 3
+</code></pre>
+    <p><strong>Explanation:</strong> Same reason — cursor is still at EOF, so <code>read(9)</code> returns empty string.</p>
+  </div>
+
+  <div class="sub-question"><strong>(d) Output 4</strong></div>
+  <pre><code class="language-python">print("D. Output 4")
+print(file1.readline(9))</code></pre>
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <pre><code class="language-text">D. Output 4
+</code></pre>
+    <p><strong>Explanation:</strong> Still at EOF, so returns nothing.</p>
+  </div>
+
+  <div class="sub-question"><strong>(e) Output of Readlines function</strong></div>
+  <pre><code class="language-python">print("E. Output of Readlines function is")
+print(file1.readlines())
+print()</code></pre>
+  <div class="answer">
+    <p><strong>Output:</strong></p>
+    <pre><code class="language-text">E. Output of Readlines function is
+[]</code></pre>
+    <p><strong>Explanation:</strong> Again, cursor is at EOF, so <code>readlines()</code> returns an empty list.</p>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="question"><strong>Question 6:</strong></div>
+  <div class="answer">
+    <p><strong>What is the following code doing?</strong></p>
+    <pre><code class="language-python">file = open("contacts.csv", "a")
+name = input("Please enter name: ")
+phno = input("Please enter phone number:")
+file.write(name + "," + phno + "\n")</code></pre>
+    <ul>
+      <li>Opens <code>contacts.csv</code> in append mode.</li>
+      <li>Takes user input for name and phone number.</li>
+      <li>Writes the data in CSV format: <code>name,phone</code></li>
+      <li>Appends a new line to the file for each entry.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="question"><strong>Question 7:</strong></div>
+  <div class="answer">
+    <p><strong>What does the following code try to do?</strong></p>
+    <pre><code class="language-python">name = input("Enter name :")
+file = open("contacts.csv", "r")
+for line in file:
+    if name in line:
+        print(line)</code></pre>
+    <ul>
+      <li>Asks user for a name input.</li>
+      <li>Reads each line from <code>contacts.csv</code>.</li>
+      <li>If the entered name is found in the line, it prints that line.</li>
+      <li><strong>Used for searching a contact</strong> by name.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="question"><strong>Question 8:</strong></div>
+  <div class="answer">
+    <p><strong>What is the following code doing? What will be the output?</strong></p>
+    <pre><code class="language-python">f = open("poemBTH.txt", "r")
+n1 = 0
+for line in f:
+    n1 += 1
+print(n1)</code></pre>
+    <ul>
+      <li>Opens <code>poemBTH.txt</code> in read mode.</li>
+      <li>Counts total number of lines in the file.</li>
+      <li><strong>Output:</strong> Number of lines (e.g., <code>7</code> if the poem has 7 lines)</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="question"><strong>Question 9:</strong></div>
+  <div class="answer">
+    <p><strong>Write a method in Python to read the content from a text file <code>diary.txt</code> line by line and display the same on screen.</strong></p>
+    <pre><code class="language-python">def read_diary():
+    with open("diary.txt", "r") as f:
+        for line in f:
+            print(line, end="")</code></pre>
+    <p><strong>Explanation:</strong> Reads and prints each line from <code>diary.txt</code>.</p>
+  </div>
+
+  <hr>
+
+  <div class="question"><strong>Question 10:</strong></div>
+  <div class="answer">
+    <p><strong>Write a method in Python to write multiple lines of text into a text file <code>mylife.txt</code>:</strong></p>
+    <pre><code class="language-python">def write_life():
+    lines = ["line1\n", "line2\n", "line3\n"]
+    with open("mylife.txt", "w") as f:
+        f.writelines(lines)</code></pre>
+    <p><strong>Explanation:</strong> This function writes three lines into the file <code>mylife.txt</code>.</p>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 11:</strong></div>
+  <div class="answer">
+    <p><strong>What will be the output of the following code?</strong></p>
+    <pre><code class="language-python">import pickle
+ID = {"1":"Ziva","2":"35098","3":"IT","4":"30","5":"Dunzo"}
+fin = open("emp.pkl","wb")
+pickle.dump(ID, fin)
+fin.close()
+fout = open("emp.pkl","rb")
+ID = pickle.load(fout)
+print(ID[5])</code></pre>
+    <p><strong>Output:</strong></p>
+    <pre><code class="language-text">KeyError: 5</code></pre>
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li>The dictionary <code>ID</code> has **string keys**, e.g., <code>"1"</code>, <code>"2"</code>, ..., <code>"5"</code>.</li>
+      <li><code>ID[5]</code> tries to access using an integer key, which **does not exist**.</li>
+      <li>Correct access would be: <code>ID["5"]</code> which gives <code>"Dunzo"</code>.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="question"><strong>Question 12:</strong></div>
+  <div class="answer">
+    <p><strong>What will be the output of the following code?</strong></p>
+    <pre><code class="language-python">import pickle
+List1 = ['Roza', {'a': 23, 'b': True}, (1, 2, 3), [['dogs', 'cats'], None]]
+List2 = ['Rita', {'x': 45, 'y': False}, (9, 5, 3), [['insects', 'bees'], None]]
+with open('data.pkl', 'wb') as f:
+    f.write(List1)    # Error here
+with open('data.pkl', 'wb') as f:
+    f.write(List2)
+with open('data.pkl', 'rb') as f:
+    List1 = pickle.load(f)
+print(List1)</code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code class="language-text">TypeError: a bytes-like object is required, not 'list'</code></pre>
+
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li>The line <code>f.write(List1)</code> tries to write a list directly to binary file.</li>
+      <li>This is invalid. You must use <code>pickle.dump(List1, f)</code> to serialize.</li>
+      <li><strong>So the code throws TypeError</strong> before reaching the print statement.</li>
+    </ul>
+    <p><strong>Correct way:</strong></p>
+    <pre><code class="language-python">with open('data.pkl', 'wb') as f:
+    pickle.dump(List1, f)</code></pre>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 13:</strong></div>
+  <div class="answer">
+    <p><strong>What is the output of the following code, considering the file <code>data.csv</code> as shown?</strong></p>
+
+    <p><strong>Python Code:</strong></p>
+    <pre><code class="language-python">import csv
+with open('C:\\data.csv','r+') as f:
+    data = csv.reader(f)
+    for row in data:
+        if 'the' in row:
+            print(row)</code></pre>
+
+    <p><strong>Content of file <code>data.csv</code>:</strong></p>
+    <pre><code class="language-text">Identifier,First name,last name
+901242,Riya,Verma
+207074,Lata,Gupta
+408129,Ajay,Grewal
+934600,Manik,Kur
+507916,Juhi,Jain</code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code class="language-text">(No Output)</code></pre>
+
+    <p><strong>Explanation:</strong></p>
+    <ul>
+      <li>The code is checking if the string <code>'the'</code> exists in <strong>any of the values</strong> of each row.</li>
+      <li>But none of the rows (including the header) contain the substring <code>'the'</code>.</li>
+      <li><strong>Hence, no row satisfies the condition</strong>, and nothing is printed.</li>
+    </ul>
+  </div>
+</section>
+
+
+<section>
+  <div class="question"><strong>Question 14:</strong></div>
+  <div class="answer">
+    <p><strong>Identify the error in the following code:</strong></p>
+
+    <pre><code class="language-python">import csv  
+f = open('attendees1.csv')  
+csv_f = csv.writer(f)</code></pre>
+
+    <p><strong>Correction:</strong></p>
+    <ul>
+      <li><code>csv.writer(f)</code> is used for writing. But no write operation is being performed in the code.</li>
+      <li>If the intention is to <strong>read</strong> the file, use <code>csv.reader(f)</code> instead.</li>
+    </ul>
+
+    <p><strong>Correct version:</strong></p>
+    <pre><code class="language-python">import csv  
+f = open('attendees1.csv')  
+csv_f = csv.reader(f)  
+for row in csv_f:  
+    print(row)</code></pre>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <div class="question"><strong>Question 15:</strong></div>
+  <div class="answer">
+    <p><strong>Identify the error in the following code:</strong></p>
+
+    <pre><code class="language-python">import pickle  
+data = ['one', 2, [3, 4, 5]]  
+with open('data.dat', 'wb'):  
+    pickle.dump(data)</code></pre>
+
+    <p><strong>Error Explanation:</strong></p>
+    <ul>
+      <li>The <code>open()</code> function inside the <code>with</code> block is incomplete.</li>
+      <li>You must assign the opened file to a variable using <code>as</code> keyword.</li>
+      <li>Otherwise, <code>pickle.dump(data)</code> has no file handle to write into.</li>
+    </ul>
+
+    <p><strong>Correct version:</strong></p>
+    <pre><code class="language-python">import pickle  
+data = ['one', 2, [3, 4, 5]]  
+with open('data.dat', 'wb') as f:  
+    pickle.dump(data, f)</code></pre>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const codeElement = btn.nextElementSibling;
+        const codeToCopy = codeElement.innerText;
+
+        navigator.clipboard.writeText(codeToCopy).then(() => {
+          btn.innerText = "Copied!";
+          setTimeout(() => btn.innerText = "Copy", 1000);
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+          const textArea = document.createElement("textarea");
+          textArea.value = codeToCopy;
+          textArea.style.position = "fixed";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          try {
+            document.execCommand('copy');
+            btn.innerText = "Copied!";
+            setTimeout(() => btn.innerText = "Copy", 1000);
+          } catch (err) {
+            console.error('Fallback copy failed: ', err);
+            alert('Failed to copy. Please select and copy manually.');
+          }
+          document.body.removeChild(textArea);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
