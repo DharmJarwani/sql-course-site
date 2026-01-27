@@ -9,8 +9,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sqlTopics/*" element={<TutorLayoutSQL />} />
-        <Route path="/pytopics/*" element={<TutorLayoutPython />} />
+        {<Route path="/sqlTopics/*" element={<TutorLayoutSQL />} />}
+        {<Route path="/pytopics/*" element={<TutorLayoutPython />} />}
       </Routes>
     </Router>
   );

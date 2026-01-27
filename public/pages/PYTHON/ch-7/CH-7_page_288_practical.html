@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Animated Stack Visualizer</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h1 { color: #444; }
+
+    .stack-box {
+        width: 220px;
+        margin: 25px auto;
+        border: 3px solid #333;
+        border-radius: 6px;
+        padding: 10px;
+        background: white;
+    }
+
+    .cell {
+        width: 200px;
+        height: 45px;
+        border: 2px solid #444;
+        margin: 5px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 22px;
+        background: #e9e9e9;
+        transition: 0.3s;
+    }
+
+    .highlight {
+        background: #7fd67f !important;
+    }
+
+    .removed {
+        background: #ff8e8e !important;
+    }
+
+    .top-check {
+        background: #87bfff !important;
+    }
+
+    .controls {
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 10px 18px;
+        margin: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        background: #333;
+        color: white;
+        border: none;
+        border-radius: 4px;
+    }
+
+    button:hover {
+        background: #000;
+    }
+
+    #log {
+        margin-top: 20px;
+        font-size: 18px;
+        height: 30px;
+        color: #c90000;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<h1>Animated Stack (Capacity = 4)</h1>
+
+<div class="stack-box">
+    <div class="cell" id="c3"></div>
+    <div class="cell" id="c2"></div>
+    <div class="cell" id="c1"></div>
+    <div class="cell" id="c0"></div>
+</div>
+
+<div class="controls">
+    <input type="text" id="value" placeholder="Enter value (a,b,c...)"
+           style="padding:8px; font-size:16px; width:160px;">
+    <br><br>
+    <button onclick="push()">Push</button>
+    <button onclick="pop()">Pop</button>
+    <button onclick="checkTop()">Peek/Check Top</button>
+    <button onclick="resetStack()">Reset</button>
+</div>
+
+<div id="log"></div>
+
+<script>
+    let stack = [];
+    const capacity = 4;
+
+    function updateUI() {
+        for (let i = 0; i < capacity; i++) {
+            let cell = document.getElementById("c" + i);
+            cell.textContent = stack[i] !== undefined ? stack[i] : "";
+            cell.classList.remove("highlight", "removed", "top-check");
+        }
+    }
+
+    function push() {
+        let val = document.getElementById("value").value.trim();
+        if (val === "") {
+            show("Please enter a value.");
+            return;
+        }
+        if (stack.length === capacity) {
+            show("STACK OVERFLOW!");
+            return;
+        }
+
+        stack.push(val);
+        updateUI();
+
+        let topCell = document.getElementById("c" + (stack.length - 1));
+        topCell.classList.add("highlight");
+
+        show(`Pushed: ${val}`);
+        document.getElementById("value").value = "";
+    }
+
+    function pop() {
+        if (stack.length === 0) {
+            show("STACK UNDERFLOW!");
+            return;
+        }
+
+        let removed = stack.pop();
+        updateUI();
+
+        let cell = document.getElementById("c" + (stack.length));
+        cell.classList.add("removed");
+
+        show(`Popped: ${removed}`);
+    }
+
+    function checkTop() {
+        updateUI();
+
+        if (stack.length === 0) {
+            show("None");
+            return;
+        }
+
+        let topIndex = stack.length - 1;
+        let topCell = document.getElementById("c" + topIndex);
+        topCell.classList.add("top-check");
+
+        show(`Top = ${stack[topIndex]}`);
+    }
+
+    function resetStack() {
+        stack = [];
+        updateUI();
+        show("Stack reset.");
+    }
+
+    function show(msg) {
+        document.getElementById("log").textContent = msg;
+    }
+</script>
+
+</body>
+</html>

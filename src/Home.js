@@ -5,14 +5,14 @@ export default function Home() {
   return (
     <div className="App">
       <header>
-        <h1>🚀 Learn with Dharm</h1>
-        <p>Master <strong>SQL</strong> & <strong>Python</strong> with real-world examples & practical exercises! 🧠💻</p>
+        <h1>🚀 Learn with Focus</h1>
+        {/* <p>Master <strong>SQL</strong> & <strong>Python</strong> with real-world examples & practical exercises! 🧠💻</p> */}
       </header>
 
       <section className="features">
 
         {/* SQL Section */}
-        <div className="feature sql">
+        {/* <div className="feature sql">
           <h3>📚 SQL Lessons</h3>
           <p>
             Learn SQL step-by-step from basics to intermediate using 
@@ -22,7 +22,7 @@ export default function Home() {
             🔍 <strong>Note:</strong> Northwind is a publicly available sample database originally provided by Microsoft for learning and demonstration purposes.
           </p>
           <Link to="/sqlTopics" className="explore-btn">🧠 Explore SQL</Link>
-        </div>
+        </div> */}
 
         {/* Python Section */}
         <div className="feature python">
